@@ -46,6 +46,8 @@ public class PesapalloxrController {
     public TableColumn<Lyontitiedot, String> taulukkotyyppi;
     public BorderPane ui;
     public TextField sijaintitext;
+    public ComboBox<String> lyonticombobox;
+    public RadioButton vierasjoukkue;
 
 
     @FXML
@@ -104,6 +106,9 @@ public class PesapalloxrController {
 
         jakso.getItems().addAll("1", "2", "supervuoro", "kotari");
         jakso.getSelectionModel().selectFirst();
+
+        lyonticombobox.getItems().addAll("kentässä", "koppi");
+        lyonticombobox.getSelectionModel().selectFirst();
     }
 
     private void taulukkomuokkaus() {
@@ -232,6 +237,11 @@ public class PesapalloxrController {
 
         graphicsContext.strokeLine(150, 532.5, 310, 690); // Kotijuoksuviiva
 
+        graphicsContext.fillOval(265, 105, 10, 10); // Kolmoskoppari
+
+
+        graphicsContext.fillOval(487, 105, 10, 10); // Kakkoskoppari
+
     }
 
     @FXML
@@ -240,17 +250,39 @@ public class PesapalloxrController {
         double mouseX = event.getX() - 2.5;
         double mouseY = event.getY() - 2.5;
 
-        System.out.println("Mouse X: " + mouseX);
-        System.out.println("Mouse Y: " + mouseY);
-
-        // Get the GraphicsContext from the canvas
         GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
 
-        // Draw the oval at the mouse coordinates
         graphicsContext.setFill(Color.RED);
+
+        if (vierasjoukkue.isSelected()){
+            graphicsContext.setFill(Color.BLUE);
+        }
         graphicsContext.fillOval(mouseX, mouseY, 5, 5); // Center the oval
         koordinaattix.setText(String.valueOf(1 - mouseX / 750));
         koordinaattiy.setText(String.valueOf(mouseY / 750));
+
+        String sijainti = "etulyhyt";
+
+        double y = mouseY / 750;
+
+        if (y >= 0.87){
+            sijainti = "etulyhyt";
+        }
+        if (y < 0.87 && y/750 > 0.70){
+            sijainti = "etupitkä";
+        }
+        if (y <= 0.7 && y >= 0.56){
+            sijainti = "linjaetu";
+        }
+        if (y < 0.56 && y >= 0.35){
+            sijainti = "linjataka";
+        }
+        if (y < 0.35){
+            sijainti = "takakenttä";
+        }
+
+        sijaintitext.setText(sijainti);
+
         //lyontitiedot(mouseX, mouseY);
     }
 
@@ -263,24 +295,21 @@ public class PesapalloxrController {
 
         double y = Double.parseDouble(koordinaattiy.getText());
 
-        if (y/750 >= 0.87){
+        if (y >= 0.87){
             sijainti = "etulyhyt";
         }
-        if (y/750 < 0.87 && y/750 > 0.70){
+        if (y < 0.87 && y > 0.70){
             sijainti = "etupitkä";
         }
-        if (y/750 <= 0.7 && y/750 >= 0.56){
+        if (y <= 0.7 && y >= 0.56){
             sijainti = "linjaetu";
         }
-        if (y/750 < 0.56 && y/750 >= 0.40){
+        if (y < 0.56 && y >= 0.40){
             sijainti = "linjataka";
         }
-        if (y/750 < 0.40){
+        if (y < 0.40){
             sijainti = "takakenttä";
         }
-
-        sijaintitext.setText(sijainti);
-
 
         String kuvioxr = kuvio.getValue();
         String tyyppixr = tyyppi.getValue();
@@ -303,7 +332,7 @@ public class PesapalloxrController {
     @FXML
     private void tallennacsvtiedostoon() throws IOException {
 
-        try (FileWriter writer = new FileWriter("file.csv")) {
+        try (FileWriter writer = new FileWriter("testi.csv")) {
 
             List<Lyontitiedot> data = new ArrayList<>(taulukkoxr.getItems());
             CSVFormat format = CSVFormat.Builder.create().setHeader("koordinaatti.x", "koordinaatti.y","kuvioxr",

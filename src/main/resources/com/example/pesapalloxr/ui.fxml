@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -69,6 +70,7 @@
                <ComboBox fx:id="lyonticombobox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                <Button mnemonicParsing="false" onAction="#lyontitiedot" prefHeight="25.0" prefWidth="100.0" text="Lisää lyönti" GridPane.rowIndex="7" />
                <Label prefHeight="17.0" prefWidth="150.0" text="Lyönti" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               <RadioButton fx:id="vierasjoukkue" mnemonicParsing="false" text="Vierasjoukkue" GridPane.rowIndex="4" />
                </GridPane>
                <TableView fx:id="taulukkoxr" editable="true" layoutX="738.0" layoutY="345.0" prefHeight="236.0" prefWidth="800.0">
                    <columns>
