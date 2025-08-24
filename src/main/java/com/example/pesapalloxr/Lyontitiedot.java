@@ -83,19 +83,9 @@ public class Lyontitiedot {
         this.sijainti = sijainti;
     }
 
-    Double koordinaattix;
-    Double koordinaattiy;
-    String sijainti;
-    String kuvio;
-    String tyyppi;
-    String merkki;
-    String syotto;
-    String lyoja;
-    String joukkue;
-    String jakso;
-
-
-    public Lyontitiedot(Double koordinaattix, Double koordinaattiy, String sijainti, String kuvio, String tyyppi, String merkki, String syotto, String lyoja, String joukkue, String jakso) {
+    public Lyontitiedot(Double koordinaattix, Double koordinaattiy, String sijainti, String kuvio, String tyyppi, String merkki, String syotto, String lyoja, String joukkue, String jakso,
+                        Integer vuoropari, Integer ottelunID, String ulkopelipaikka, String ulkopelivirhe, String ulkopelisuorittaja,
+                        String vaaraAlla, String lyonti, Integer juoksut, String lapilyonti, Integer lyontinumero, String ulkopelijoukkue, String etenija) {
         this.koordinaattix = koordinaattix;
         this.koordinaattiy = koordinaattiy;
         this.sijainti = sijainti;
@@ -106,5 +96,137 @@ public class Lyontitiedot {
         this.lyoja = lyoja;
         this.joukkue = joukkue;
         this.jakso = jakso;
+        this.vuoropari = vuoropari;
+        this.ottelunID = ottelunID;
+        this.ulkopelipaikka = ulkopelipaikka;
+        this.ulkopelivirhe = ulkopelivirhe;
+        this.ulkopelisuorittaja = ulkopelisuorittaja;
+        this.vaaraAlla = vaaraAlla;
+        this.lyonti = lyonti;
+        this.juoksut = juoksut;
+        this.lapilyonti = lapilyonti;
+        this.lyontinumero = lyontinumero;
+        this.ulkopelijoukkue = ulkopelijoukkue;
+        this.etenija = etenija;
     }
+
+    Double koordinaattix;
+    Double koordinaattiy;
+    String sijainti;
+    String kuvio;
+    String tyyppi;
+    String merkki;
+    String syotto;
+    String lyoja;
+    String joukkue;
+    String jakso;
+    Integer vuoropari;
+    Integer ottelunID;
+    String ulkopelipaikka;
+    String ulkopelivirhe;
+    String ulkopelisuorittaja;
+    String vaaraAlla;
+    String lyonti;
+    Integer juoksut;
+    String lapilyonti;
+    Integer lyontinumero;
+    String ulkopelijoukkue;
+    String etenija;
+
+    public Integer getVuoropari() {
+        return vuoropari;
+    }
+
+    public void setVuoropari(Integer vuoropari) {
+        this.vuoropari = vuoropari;
+    }
+
+    public Integer getOttelunID() {
+        return ottelunID;
+    }
+
+    public void setOttelunID(Integer ottelunID) {
+        this.ottelunID = ottelunID;
+    }
+
+    public String getUlkopelipaikka() {
+        return ulkopelipaikka;
+    }
+
+    public void setUlkopelipaikka(String ulkopelipaikka) {
+        this.ulkopelipaikka = ulkopelipaikka;
+    }
+
+    public String getUlkopelivirhe() {
+        return ulkopelivirhe;
+    }
+
+    public void setUlkopelivirhe(String ulkopelivirhe) {
+        this.ulkopelivirhe = ulkopelivirhe;
+    }
+
+    public String getUlkopelisuorittaja() {
+        return ulkopelisuorittaja;
+    }
+
+    public void setUlkopelisuorittaja(String ulkopelisuorittaja) {
+        this.ulkopelisuorittaja = ulkopelisuorittaja;
+    }
+
+    public String getVaaraAlla() {
+        return vaaraAlla;
+    }
+
+    public void setVaaraAlla(String vaaraAlla) {
+        this.vaaraAlla = vaaraAlla;
+    }
+
+    public String getLyonti() {
+        return lyonti;
+    }
+
+    public void setLyonti(String lyonti) {
+        this.lyonti = lyonti;
+    }
+
+    public Integer getJuoksut() {
+        return juoksut;
+    }
+
+    public void setJuoksut(Integer juoksut) {
+        this.juoksut = juoksut;
+    }
+
+    public String getLapilyonti() {
+        return lapilyonti;
+    }
+
+    public void setLapilyonti(String lapilyonti) {
+        this.lapilyonti = lapilyonti;
+    }
+
+    public Integer getLyontinumero() {
+        return lyontinumero;
+    }
+
+    public void setLyontinumero(Integer lyontinumero) {
+        this.lyontinumero = lyontinumero;
+    }
+
+    public String getUlkopelijoukkue() {
+        return ulkopelijoukkue;
+    }
+
+    public void setUlkopelijoukkue(String ulkopelijoukkue) {
+        this.ulkopelijoukkue = ulkopelijoukkue;
+    }
+
+    public String getEtenija() {
+        return etenija;
+    }
+
+    public void setEtenija(String etenija) {
+        this.etenija = etenija;
+    }
+
 }
