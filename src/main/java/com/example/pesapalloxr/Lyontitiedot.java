@@ -83,9 +83,7 @@ public class Lyontitiedot {
         this.sijainti = sijainti;
     }
 
-    public Lyontitiedot(Double koordinaattix, Double koordinaattiy, String sijainti, String kuvio, String tyyppi, String merkki, String syotto, String lyoja, String joukkue, String jakso,
-                        Integer vuoropari, Integer ottelunID, String ulkopelipaikka, String ulkopelivirhe, String ulkopelisuorittaja,
-                        String vaaraAlla, String lyonti, Integer juoksut, String lapilyonti, Integer lyontinumero, String ulkopelijoukkue, String etenija) {
+    public Lyontitiedot(Double koordinaattix, Double koordinaattiy, String sijainti, String kuvio, String tyyppi, String merkki, String syotto, String lyoja, String joukkue, String jakso, Integer vuoropari, Integer ottelunID, String ulkopelipaikka, String ulkopelivirhe, String ulkopelisuorittaja, String vaaraAlla, String lyonti, Integer juoksut, String lapilyonti, Integer lyontinumero, String ulkopelijoukkue, String etenija, String etenijanlaatu) {
         this.koordinaattix = koordinaattix;
         this.koordinaattiy = koordinaattiy;
         this.sijainti = sijainti;
@@ -108,6 +106,7 @@ public class Lyontitiedot {
         this.lyontinumero = lyontinumero;
         this.ulkopelijoukkue = ulkopelijoukkue;
         this.etenija = etenija;
+        this.etenijanlaatu = etenijanlaatu;
     }
 
     Double koordinaattix;
@@ -132,6 +131,15 @@ public class Lyontitiedot {
     Integer lyontinumero;
     String ulkopelijoukkue;
     String etenija;
+    String etenijanlaatu;
+
+    public String getEtenijanlaatu() {
+        return etenijanlaatu;
+    }
+
+    public void setEtenijanlaatu(String etenijanlaatu) {
+        this.etenijanlaatu = etenijanlaatu;
+    }
 
     public Integer getVuoropari() {
         return vuoropari;

@@ -23,8 +23,8 @@
    <center>
        <ScrollPane>
            <AnchorPane prefWidth="1919.0">
-               <Canvas fx:id="kentta" height="750.0" onMouseClicked="#lyonti" width="750.0" />
-               <GridPane hgap="5.0" layoutX="765.0" layoutY="38.0">
+               <Canvas fx:id="kentta" height="750.0" layoutX="2.0" onMouseClicked="#lyonti" width="750.0" />
+               <GridPane hgap="5.0" layoutX="769.0" layoutY="38.0">
                    <columnConstraints>
                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -94,6 +94,8 @@
                <Label alignment="CENTER" prefHeight="17.0" prefWidth="144.0" text="Ottelun id" GridPane.columnIndex="2" />
                <ComboBox fx:id="etenijalaatucombobox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
                <Label alignment="CENTER" prefHeight="17.0" prefWidth="136.0" text="Etenijän laatu" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+               <TextField fx:id="sisajoukkeuid" editable="false" text="1" visible="false" GridPane.rowIndex="7" />
+               <TextField fx:id="ulkojoukkueid" editable="false" text="2" visible="false" GridPane.rowIndex="9" />
                </GridPane>
                <GridPane hgap="5.0" layoutX="1311.0" layoutY="96.0" prefHeight="150.0" prefWidth="405.0">
                    <columnConstraints>
