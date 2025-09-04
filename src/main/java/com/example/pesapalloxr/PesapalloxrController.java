@@ -34,9 +34,12 @@ import java.util.*;
 public class PesapalloxrController {
 
     private final Map<String, Double> miestenXrMap = new HashMap<>();
+    private final Map<String, Double> miestenSijaintiMap = new HashMap<>();
+    private final Map<String, Double> miestenEtaisyysVaikutusMap = new HashMap<>();
 
     public ComboBox<String> ulkopelisuorituscombobox;
     public ComboBox<String> lyontisuuntacombobox;
+    public TextField testi;
     @FXML private TextField sisajoukkeuid;
     @FXML private TextField ulkojoukkueid;
     @FXML private ComboBox<String> etenijalaatucombobox;
@@ -245,6 +248,7 @@ public class PesapalloxrController {
         miestenXrMap.put("pystari/viisto", -0.097);
         miestenXrMap.put("vaakamaila", 0.289);
         miestenXrMap.put("varsi", 0.176);
+        miestenXrMap.put("koppi", 0.000);
         miestenXrMap.put("karvauskahdella", 0.369);
         miestenXrMap.put("karvausyhdella", 0.391);
         miestenXrMap.put("oulu", 0.035);
@@ -505,6 +509,7 @@ public class PesapalloxrController {
 
         taulukkoxr.getItems().addAll(tiedot);
 
+        juoksuodottama(sijainti);
         haearvo(tyyppixr);
     }
 
@@ -516,6 +521,25 @@ public class PesapalloxrController {
         System.out.print(1 / (1 + Math.exp(-(-3.17379 + 0.28894 + 0.56405 + 1.77917 + 0.14177 +
                 0.145122190 * 5.76319 +  1.31913)))
         );
+    }
+
+    @FXML
+    private void juoksuodottama(String sijainti){
+        String kuvioxr = kuvio.getValue();
+        String tyyppixr = tyyppi.getValue();
+        String merkkixr = merkki.getValue();
+        String etenijalaatuxr = etenijalaatucombobox.getValue();
+
+        Double kuvio = miestenXrMap.get(kuvioxr);
+        Double tyyppi = miestenXrMap.get(tyyppixr);
+        Double merkki = miestenXrMap.get(merkkixr);
+        Double etenijalaatu = miestenXrMap.get(etenijalaatuxr);
+        Double sijanti = miestenXrMap.get(sijainti);
+
+        double juoksutn = 1 / (1 + Math.exp(-(-3.17379 + kuvio + tyyppi + merkki + etenijalaatu + sijanti)));
+
+        testi.setText(String.valueOf(juoksutn));
+
     }
 
     @FXML
