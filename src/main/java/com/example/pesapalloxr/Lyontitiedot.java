@@ -3,6 +3,56 @@ package com.example.pesapalloxr;
 
 public class Lyontitiedot {
 
+    Double koordinaattix;
+    Double koordinaattiy;
+    String sijainti;
+    String kuvio;
+    String tyyppi;
+    String merkki;
+    String syotto;
+    String lyoja;
+    String joukkue;
+    String jakso;
+    Integer vuoropari;
+    Integer ottelunID;
+    String ulkopelipaikka;
+    String ulkopelivirhe;
+    String ulkopelisuorittaja;
+    String vaaraAlla;
+    String lyonti;
+    Integer juoksut;
+    String lapilyonti;
+    Integer lyontinumero;
+    String ulkopelijoukkue;
+    String etenija;
+    String etenijanlaatu;
+
+    public Lyontitiedot(Double koordinaattix, Double koordinaattiy, String sijainti, String kuvio, String tyyppi, String merkki, String syotto, String lyoja, String joukkue, String jakso, Integer vuoropari, Integer ottelunID, String ulkopelipaikka, String ulkopelivirhe, String ulkopelisuorittaja, String vaaraAlla, String lyonti, Integer juoksut, String lapilyonti, Integer lyontinumero, String ulkopelijoukkue, String etenija, String etenijanlaatu) {
+        this.koordinaattix = koordinaattix;
+        this.koordinaattiy = koordinaattiy;
+        this.sijainti = sijainti;
+        this.kuvio = kuvio;
+        this.tyyppi = tyyppi;
+        this.merkki = merkki;
+        this.syotto = syotto;
+        this.lyoja = lyoja;
+        this.joukkue = joukkue;
+        this.jakso = jakso;
+        this.vuoropari = vuoropari;
+        this.ottelunID = ottelunID;
+        this.ulkopelipaikka = ulkopelipaikka;
+        this.ulkopelivirhe = ulkopelivirhe;
+        this.ulkopelisuorittaja = ulkopelisuorittaja;
+        this.vaaraAlla = vaaraAlla;
+        this.lyonti = lyonti;
+        this.juoksut = juoksut;
+        this.lapilyonti = lapilyonti;
+        this.lyontinumero = lyontinumero;
+        this.ulkopelijoukkue = ulkopelijoukkue;
+        this.etenija = etenija;
+        this.etenijanlaatu = etenijanlaatu;
+    }
+
     public Double getKoordinaattix() {
         return koordinaattix;
     }
@@ -82,56 +132,6 @@ public class Lyontitiedot {
     public void setSijainti(String sijainti) {
         this.sijainti = sijainti;
     }
-
-    public Lyontitiedot(Double koordinaattix, Double koordinaattiy, String sijainti, String kuvio, String tyyppi, String merkki, String syotto, String lyoja, String joukkue, String jakso, Integer vuoropari, Integer ottelunID, String ulkopelipaikka, String ulkopelivirhe, String ulkopelisuorittaja, String vaaraAlla, String lyonti, Integer juoksut, String lapilyonti, Integer lyontinumero, String ulkopelijoukkue, String etenija, String etenijanlaatu) {
-        this.koordinaattix = koordinaattix;
-        this.koordinaattiy = koordinaattiy;
-        this.sijainti = sijainti;
-        this.kuvio = kuvio;
-        this.tyyppi = tyyppi;
-        this.merkki = merkki;
-        this.syotto = syotto;
-        this.lyoja = lyoja;
-        this.joukkue = joukkue;
-        this.jakso = jakso;
-        this.vuoropari = vuoropari;
-        this.ottelunID = ottelunID;
-        this.ulkopelipaikka = ulkopelipaikka;
-        this.ulkopelivirhe = ulkopelivirhe;
-        this.ulkopelisuorittaja = ulkopelisuorittaja;
-        this.vaaraAlla = vaaraAlla;
-        this.lyonti = lyonti;
-        this.juoksut = juoksut;
-        this.lapilyonti = lapilyonti;
-        this.lyontinumero = lyontinumero;
-        this.ulkopelijoukkue = ulkopelijoukkue;
-        this.etenija = etenija;
-        this.etenijanlaatu = etenijanlaatu;
-    }
-
-    Double koordinaattix;
-    Double koordinaattiy;
-    String sijainti;
-    String kuvio;
-    String tyyppi;
-    String merkki;
-    String syotto;
-    String lyoja;
-    String joukkue;
-    String jakso;
-    Integer vuoropari;
-    Integer ottelunID;
-    String ulkopelipaikka;
-    String ulkopelivirhe;
-    String ulkopelisuorittaja;
-    String vaaraAlla;
-    String lyonti;
-    Integer juoksut;
-    String lapilyonti;
-    Integer lyontinumero;
-    String ulkopelijoukkue;
-    String etenija;
-    String etenijanlaatu;
 
     public String getEtenijanlaatu() {
         return etenijanlaatu;

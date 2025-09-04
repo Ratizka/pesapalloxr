@@ -2,6 +2,20 @@ package com.example.pesapalloxr;
 
 public class Lyojat {
 
+    Integer numero;
+    Integer id;
+    String nimi;
+    Integer joukkueID;
+    String joukkue;
+
+    public Lyojat(Integer numero, Integer id, String nimi, Integer joukkueID, String joukkue) {
+        this.numero = numero;
+        this.id = id;
+        this.nimi = nimi;
+        this.joukkueID = joukkueID;
+        this.joukkue = joukkue;
+    }
+
     public Integer getNumero() {
         return numero;
     }
@@ -38,20 +52,6 @@ public class Lyojat {
     public void setJoukkueID(Integer joukkueID) {
         this.joukkueID = joukkueID;
     }
-
-    public Lyojat(Integer numero, Integer id, String nimi, Integer joukkueID, String joukkue) {
-        this.numero = numero;
-        this.id = id;
-        this.nimi = nimi;
-        this.joukkueID = joukkueID;
-        this.joukkue = joukkue;
-    }
-
-    Integer numero;
-    Integer id;
-    String nimi;
-    Integer joukkueID;
-    String joukkue;
 
     public String getJoukkue() {
         return joukkue;
