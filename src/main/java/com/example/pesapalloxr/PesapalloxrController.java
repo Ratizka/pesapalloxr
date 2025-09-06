@@ -42,7 +42,9 @@ public class PesapalloxrController {
     public ComboBox<String> lyontisuuntacombobox;
     public TextField testi;
     @FXML
-    public ComboBox<String> tilannecombobox;
+    private ComboBox<String> tilannecombobox;
+    @FXML
+    private ComboBox<String> karkauscombobox;
     @FXML private TextField sisajoukkeuid;
     @FXML private TextField ulkojoukkueid;
     @FXML private ComboBox<String> etenijalaatucombobox;
@@ -246,6 +248,9 @@ public class PesapalloxrController {
 
         tilannecombobox.getItems().addAll("0-3", "1-3", "2-3", "ajo");
         tilannecombobox.getSelectionModel().selectFirst();
+
+        karkauscombobox.getItems().addAll("", "ei", "kyllä");
+        karkauscombobox.getSelectionModel().selectFirst();
     }
 
     private void xrmap(){
@@ -623,7 +628,10 @@ public class PesapalloxrController {
         graphicsContext.strokeLine(600, 465, 412.5, 690); // Kakkosraja
         graphicsContext.strokeLine(150, 420, 600, 420); // 2-3 väli
 
-        graphicsContext.strokeLine(210, 592.5, 600, 420); // 1-2 väli
+        //graphicsContext.strokeLine(620, 430, 600, 430);
+        //graphicsContext.strokeLine(130, 430, 150, 430);
+
+        graphicsContext.strokeLine(212, 592.5, 600, 420); // 1-2 väli
 
         graphicsContext.strokeLine(150, 532.5, 310, 690); // Kotijuoksuviiva
 

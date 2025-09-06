@@ -24,13 +24,14 @@
        <ScrollPane>
            <AnchorPane>
                <Canvas fx:id="kentta" height="750.0" layoutX="2.0" onMouseClicked="#lyonti" width="750.0" />
-               <GridPane hgap="5.0" layoutX="769.0" layoutY="38.0">
+               <GridPane hgap="5.0" layoutX="945.0" layoutY="47.0">
                    <columnConstraints>
                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                    </columnConstraints>
                    <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -49,11 +50,11 @@
                    <ComboBox fx:id="kuvio" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                    <ComboBox fx:id="tyyppi" prefWidth="150.0" GridPane.rowIndex="5" />
                    <ComboBox fx:id="merkki" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
-                   <ComboBox fx:id="syotto" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                   <ComboBox fx:id="syotto" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                    <Label alignment="CENTER" prefWidth="100.0" text="Kuvio" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                    <Label alignment="CENTER" prefWidth="100.0" text="Tyyppi" GridPane.rowIndex="4" />
                    <Label alignment="CENTER" prefWidth="100.0" text="Merkki" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-                   <Label alignment="CENTER" prefWidth="100.0" text="Syöttö" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                   <Label alignment="CENTER" prefWidth="100.0" text="Syöttö" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                    <Label alignment="CENTER" prefWidth="100.0" text="X-koordinaatti" GridPane.rowIndex="10" />
                    <Label alignment="CENTER" prefWidth="100.0" text="Y-koodrinaatti" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                    <Label alignment="CENTER" prefWidth="100.0" text="Sijainti" GridPane.columnIndex="2" GridPane.rowIndex="10" />
@@ -64,8 +65,8 @@
                    <TextField fx:id="sijaintitext" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="11" />
                    <TextField fx:id="joukkue" GridPane.rowIndex="7" />
                    <TextField fx:id="lyoja" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                   <ComboBox fx:id="jakso" prefWidth="150.0" GridPane.rowIndex="1" />
-                   <Label alignment="CENTER" prefWidth="100.0" text="Jakso" />
+                   <ComboBox fx:id="jakso" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                   <Label alignment="CENTER" prefWidth="100.0" text="Jakso" GridPane.columnIndex="2" />
                <Label alignment="CENTER" prefWidth="100.0" text="Ulkopelijoukkue" GridPane.rowIndex="8" />
                <TextField fx:id="ulkopelijoukkue" GridPane.rowIndex="9" />
                <Label alignment="CENTER" prefWidth="100.0" text="Suorittaja" GridPane.columnIndex="1" GridPane.rowIndex="8" />
@@ -84,14 +85,12 @@
                <TextField fx:id="etenija" GridPane.columnIndex="2" GridPane.rowIndex="7" />
                <Label alignment="CENTER" prefHeight="17.0" prefWidth="114.0" text="Läpillyönti" GridPane.columnIndex="4" GridPane.rowIndex="4" />
                <Label alignment="CENTER" prefHeight="17.0" prefWidth="154.0" text="Kunnari" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-               <Label alignment="CENTER" prefHeight="17.0" prefWidth="164.0" text="Väärä alla" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-               <ComboBox fx:id="vaaraalla" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+               <Label alignment="CENTER" prefHeight="17.0" prefWidth="164.0" text="Väärä alla" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               <ComboBox fx:id="vaaraalla" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                <ComboBox fx:id="lapilyonti" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
                <ComboBox fx:id="kunnari" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                <ComboBox fx:id="lyontinumero" prefWidth="150.0" GridPane.rowIndex="3" />
                <Label alignment="CENTER" prefHeight="17.0" prefWidth="269.0" text="Lyönnin nro." GridPane.rowIndex="2" />
-               <TextField fx:id="idottelu" editable="false" text="1" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-               <Label alignment="CENTER" prefHeight="17.0" prefWidth="144.0" text="Ottelun id" GridPane.columnIndex="4" />
                <ComboBox fx:id="etenijalaatucombobox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
                <Label alignment="CENTER" prefHeight="17.0" prefWidth="136.0" text="Etenijän laatu" GridPane.columnIndex="3" GridPane.rowIndex="6" />
                <TextField fx:id="sisajoukkeuid" editable="false" text="1" visible="false" GridPane.rowIndex="7" />
@@ -100,36 +99,44 @@
                <ComboBox fx:id="ulkopelisuorituscombobox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
                <ComboBox fx:id="lyontisuuntacombobox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                <Label alignment="CENTER" prefHeight="17.0" prefWidth="179.0" text="Suunta" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-               <ComboBox fx:id="tilannecombobox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-               <Label alignment="CENTER" prefHeight="17.0" prefWidth="249.0" text="Tilanne" GridPane.columnIndex="2" />
+               <ComboBox fx:id="tilannecombobox" prefWidth="150.0" GridPane.rowIndex="1" />
+               <Label alignment="CENTER" prefHeight="17.0" prefWidth="249.0" text="Tilanne" />
+               <ComboBox fx:id="karkauscombobox" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+               <Label alignment="CENTER" prefHeight="17.0" prefWidth="187.0" text="Karkaus" GridPane.columnIndex="5" GridPane.rowIndex="6" />
                </GridPane>
-               <GridPane hgap="5.0" layoutX="1311.0" layoutY="96.0" prefHeight="150.0" prefWidth="405.0">
+               <GridPane hgap="5.0" layoutX="764.0" layoutY="47.0" prefHeight="354.0" prefWidth="149.0">
                    <columnConstraints>
-                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                    </columnConstraints>
                    <rowConstraints>
                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                    </rowConstraints>
                    <Label alignment="CENTER" prefHeight="17.0" prefWidth="194.0" text="Kotilyöjät" />
                    <ComboBox fx:id="kotilyojat" onAction="#kotilyoja" prefWidth="150.0" GridPane.rowIndex="1" />
-                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="176.0" text="Vieraslyöjät" GridPane.rowIndex="2" />
-                   <ComboBox fx:id="vieraslyojat" onAction="#vieraslyoja" prefWidth="150.0" GridPane.rowIndex="3" />
-                   <ComboBox fx:id="kotiulkopelaajat" onAction="#kotiulkopelaaja" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                   <ComboBox fx:id="vierasulkopelaajat" onAction="#vierasulkopelaaja" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="198.0" text="Kotiulkopelaaja" GridPane.columnIndex="2" />
-                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="208.0" text="Vierasulkopelaaja" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="194.0" text="Kotietenijä" GridPane.columnIndex="1" />
-                   <ComboBox fx:id="kotietenija" onAction="#kotietenijalisays" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="176.0" text="Vierasetenijä" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                   <ComboBox fx:id="vierasetenija" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="176.0" text="Vieraslyöjät" GridPane.rowIndex="6" />
+                   <ComboBox fx:id="vieraslyojat" onAction="#vieraslyoja" prefWidth="150.0" GridPane.rowIndex="7" />
+                   <ComboBox fx:id="kotiulkopelaajat" onAction="#kotiulkopelaaja" prefWidth="150.0" GridPane.rowIndex="5" />
+                   <ComboBox fx:id="vierasulkopelaajat" onAction="#vierasulkopelaaja" prefWidth="150.0" GridPane.rowIndex="11" />
+                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="198.0" text="Kotiulkopelaaja" GridPane.rowIndex="4" />
+                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="208.0" text="Vierasulkopelaaja" GridPane.rowIndex="10" />
+                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="194.0" text="Kotietenijä" GridPane.rowIndex="2" />
+                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="176.0" text="Vierasetenijä" GridPane.rowIndex="8" />
+                   <ComboBox fx:id="vierasetenija" prefWidth="150.0" GridPane.rowIndex="9" />
+                   <ComboBox fx:id="kotietenija" onAction="#kotietenijalisays" prefWidth="150.0" GridPane.rowIndex="3" />
                </GridPane>
-               <TableView fx:id="taulukkoxr" editable="true" layoutX="765.0" layoutY="440.0" prefHeight="500.0" prefWidth="1125.0">
+               <TableView fx:id="taulukkoxr" editable="true" layoutX="765.0" layoutY="484.0" prefHeight="500.0" prefWidth="1125.0">
                    <columns>
                        <TableColumn fx:id="taulukkoOttelunID" prefWidth="75.0" text="ottelunID" />
                        <TableColumn fx:id="taulukkojakso" prefWidth="75.0" text="jakso" />
@@ -156,12 +163,16 @@
                        <TableColumn fx:id="taulukkokoordinaattiy" editable="false" prefWidth="75.0" text="y" />
                    </columns>
                </TableView>
-                <Button layoutX="979.0" layoutY="405.0" mnemonicParsing="false" onAction="#poistarivi" prefHeight="25.0" prefWidth="100.0" text="Poista lyönti" />
-            <RadioButton fx:id="vierasjoukkue" layoutX="765.0" layoutY="412.0" mnemonicParsing="false" text="Vierasjoukkue" />
-            <TextField fx:id="ottelunid" layoutX="1311.0" layoutY="71.0" prefHeight="25.0" prefWidth="136.0" promptText="Anna ottelun id" />
-            <Button layoutX="1460.0" layoutY="71.0" mnemonicParsing="false" onAction="#haepelaajat" text="Hae ottelu tiedot" />
-            <Button layoutX="874.0" layoutY="405.0" mnemonicParsing="false" onAction="#lyontitiedot" prefHeight="25.0" prefWidth="100.0" text="Lisää lyönti" />
-            <TextField fx:id="testi" editable="false" layoutX="1088.0" layoutY="405.0" />
+                <Button layoutX="1003.0" layoutY="443.0" mnemonicParsing="false" onAction="#poistarivi" prefHeight="25.0" prefWidth="100.0" text="Poista lyönti" />
+            <RadioButton fx:id="vierasjoukkue" layoutX="765.0" layoutY="393.0" mnemonicParsing="false" text="Vierasjoukkue" />
+            <TextField fx:id="ottelunid" layoutX="1544.0" layoutY="389.0" prefHeight="25.0" prefWidth="136.0" promptText="Anna ottelun id" />
+            <Button layoutX="1544.0" layoutY="350.0" mnemonicParsing="false" onAction="#haepelaajat" prefHeight="25.0" prefWidth="137.0" text="Hae ottelu tiedot" />
+            <Button layoutX="899.0" layoutY="443.0" mnemonicParsing="false" onAction="#lyontitiedot" prefHeight="25.0" prefWidth="100.0" text="Lisää lyönti" />
+            <TextField fx:id="testi" editable="false" layoutX="1227.0" layoutY="430.0" />
+            <ComboBox layoutX="1618.0" layoutY="260.0" prefWidth="150.0" />
+            <ComboBox layoutX="1618.0" layoutY="224.0" prefWidth="150.0" />
+            <Label alignment="CENTER" layoutX="1617.0" layoutY="97.0" prefHeight="17.0" prefWidth="144.0" text="Ottelun id" />
+            <TextField fx:id="idottelu" editable="false" layoutX="1649.0" layoutY="127.0" text="1" />
            </AnchorPane>
        </ScrollPane>
    </center>
