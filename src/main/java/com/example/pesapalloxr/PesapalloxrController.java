@@ -2,6 +2,7 @@ package com.example.pesapalloxr;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
@@ -40,7 +41,8 @@ public class PesapalloxrController {
 
     public ComboBox<String> ulkopelisuorituscombobox;
     public ComboBox<String> lyontisuuntacombobox;
-    public TextField testi;
+    @FXML
+    private TextField testi;
     @FXML
     private ComboBox<String> tilannecombobox;
     @FXML
@@ -182,6 +184,11 @@ public class PesapalloxrController {
 
     }
 
+    @FXML
+    private void korjaus(){
+        laskeTodennakoisyys();
+    }
+
     private void valikot() {
         kuvio.getItems().addAll("oulu", "pertsa", "ristivitonen", "kaannettypertsa", "tahko", "tahko2", "sailytys",
                 "karvauskahdella", "karvausyhdella", "muu"
@@ -254,6 +261,7 @@ public class PesapalloxrController {
     }
 
     private void xrmap(){
+        miestenXrMap.put("msualkuarvo", -3.17379);
         miestenXrMap.put("kumura", 0.195);
         miestenXrMap.put("nappi", 0.325);
         miestenXrMap.put("pomppu", 0.699);
@@ -717,13 +725,14 @@ public class PesapalloxrController {
         String ulkopelijoukkuexr = ulkopelijoukkue.getText();
         String etenijaxr = etenija.getText();
         String etenijalaatuxr = etenijalaatucombobox.getValue();
+        Integer otteluID = Integer.valueOf(idottelu.getText());
 
         Lyontitiedot tiedot = new Lyontitiedot(
                 x, y,
                 sijainti, kuvioxr, tyyppixr,
                 merrkixr, syottoxr, lyojaxr,
                 joukkuexr, jaksoxr, vuoroparixr,
-                1, ulkopelixr, ulkopelivirhexr,
+                otteluID, ulkopelixr, ulkopelivirhexr,
                 ulkopelisuorittjaxr, vaaraallaxr, lyontixr,
                 juoksutxr, lapilyontixr, lyontinumeroxr, ulkopelijoukkuexr,
                 etenijaxr, etenijalaatuxr
@@ -731,7 +740,7 @@ public class PesapalloxrController {
 
         taulukkoxr.getItems().addAll(tiedot);
 
-        juoksuodottama(sijainti);
+        laskeTodennakoisyys();
     }
 
     private void haearvo(String avain){
@@ -742,7 +751,7 @@ public class PesapalloxrController {
     }
 
     @FXML
-    private void juoksuodottama(String sijainti){
+    public void laskeTodennakoisyys(){
         String kuvioxr = kuvio.getValue();
         String tyyppixr = tyyppi.getValue();
         String merkkixr = merkki.getValue();
@@ -753,12 +762,13 @@ public class PesapalloxrController {
         Double tyyppi = miestenXrMap.get(tyyppixr);
         Double merkki = miestenXrMap.get(merkkixr);
         Double etenijalaatu = miestenXrMap.get(etenijalaatuxr);
-        Double sijanti = miestenXrMap.get(sijainti);
         Double ulkopelaajaxr = miestenXrMap.get(ulkopelaaja);
 
         double x = Double.parseDouble(koordinaattix.getText());
-
         double y = Double.parseDouble(koordinaattiy.getText());
+
+        String sijainti = haesijanti(y);
+        Double sijanti = miestenXrMap.get(sijainti);
 
         Double ulkopelaajaX = miestenSijaintiMapX.get(kuvioxr + ulkopelaaja);
         Double ulkopelaajaY = miestenSijaintiMapY.get(kuvioxr + ulkopelaaja);
@@ -841,6 +851,8 @@ public class PesapalloxrController {
             //"https://api.pesistulokset.fi/api/v1/public/match?id=127440&apikey=wRX0tTke3DZ8RLKAMntjZ81LwgNQuSN9"
 
             String otteluid = ottelunid.getText();
+
+            idottelu.setText(otteluid);
 
             String ilma = "https://api.pesistulokset.fi/api/v1/public/match?id=" + otteluid + "&apikey=wRX0tTke3DZ8RLKAMntjZ81LwgNQuSN9";
 
@@ -1147,5 +1159,6 @@ public class PesapalloxrController {
         taulukkoxr.getItems().remove(poistettava);
 
     }
+
 
 }
