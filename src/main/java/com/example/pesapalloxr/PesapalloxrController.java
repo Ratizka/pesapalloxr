@@ -743,11 +743,9 @@ public class PesapalloxrController {
         laskeTodennakoisyys();
     }
 
-    private void haearvo(String avain){
-        System.out.print(miestenXrMap.get(avain));
-        System.out.print("\n");
-        System.out.print(1 / (1 + Math.exp(miestenXrMap.get(avain))));
-        System.out.print("\n");
+    @FXML
+    private void haearvo(){
+        System.exit(0);
     }
 
     @FXML
