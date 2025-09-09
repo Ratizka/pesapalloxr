@@ -106,6 +106,7 @@
                <Label alignment="CENTER" prefHeight="17.0" prefWidth="211.0" text="Juoksun todennäköisyys" GridPane.columnIndex="3" GridPane.rowIndex="10" />
                <TextField fx:id="testi" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="11" />
                <Label prefHeight="17.0" prefWidth="217.0" text="Läpilyönnin todennäköisyys" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+               <TextField GridPane.columnIndex="4" GridPane.rowIndex="11" />
                </GridPane>
                <GridPane hgap="5.0" layoutX="764.0" layoutY="47.0" prefHeight="354.0" prefWidth="149.0">
                    <columnConstraints>
@@ -138,6 +139,7 @@
                    <Label alignment="CENTER" prefHeight="17.0" prefWidth="176.0" text="Vierasetenijä" GridPane.rowIndex="8" />
                    <ComboBox fx:id="vierasetenija" prefWidth="150.0" GridPane.rowIndex="9" />
                    <ComboBox fx:id="kotietenija" onAction="#kotietenijalisays" prefWidth="150.0" GridPane.rowIndex="3" />
+               <RadioButton fx:id="vierasjoukkue" mnemonicParsing="false" text="Vierasjoukkue" GridPane.rowIndex="12" />
                </GridPane>
                <TableView fx:id="taulukkoxr" editable="true" layoutX="765.0" layoutY="484.0" prefHeight="500.0" prefWidth="1125.0">
                    <columns>
@@ -167,12 +169,11 @@
                    </columns>
                </TableView>
                 <Button layoutX="1051.0" layoutY="414.0" mnemonicParsing="false" onAction="#poistarivi" prefHeight="25.0" prefWidth="100.0" text="Poista lyönti" />
-            <RadioButton fx:id="vierasjoukkue" layoutX="765.0" layoutY="393.0" mnemonicParsing="false" text="Vierasjoukkue" />
-            <TextField fx:id="ottelunid" layoutX="1544.0" layoutY="389.0" prefHeight="25.0" prefWidth="136.0" promptText="Anna ottelun id" />
-            <Button layoutX="1544.0" layoutY="350.0" mnemonicParsing="false" onAction="#haepelaajat" prefHeight="25.0" prefWidth="137.0" text="Hae ottelu tiedot" />
+            <TextField fx:id="ottelunid" layoutX="764.0" layoutY="453.0" prefHeight="25.0" prefWidth="136.0" promptText="Anna ottelun id" />
+            <Button layoutX="764.0" layoutY="414.0" mnemonicParsing="false" onAction="#haepelaajat" prefHeight="25.0" prefWidth="137.0" text="Hae ottelu tiedot" />
             <Button layoutX="945.0" layoutY="414.0" mnemonicParsing="false" onAction="#lyontitiedot" prefHeight="25.0" prefWidth="100.0" text="Lisää lyönti" />
-            <ComboBox layoutX="1618.0" layoutY="260.0" prefWidth="150.0" />
-            <ComboBox layoutX="1618.0" layoutY="224.0" prefWidth="150.0" />
+            <ComboBox fx:id="ulkopelijoukkuecombobox" layoutX="1618.0" layoutY="260.0" prefWidth="150.0" />
+            <ComboBox fx:id="sisajoukkuecombobox" layoutX="1618.0" layoutY="224.0" prefWidth="150.0" />
             <TextField fx:id="idottelu" editable="false" layoutX="1649.0" layoutY="127.0" text="1" visible="false" />
             <Button layoutX="1157.0" layoutY="414.0" mnemonicParsing="false" onAction="#laskeTodennakoisyys" text="Laske todennäköisyys" />
            </AnchorPane>
@@ -186,7 +187,7 @@
                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                    </accelerator>
                </MenuItem>
-               <MenuItem mnemonicParsing="false" text="Sulje" onAction="#haearvo"/>
+               <MenuItem mnemonicParsing="false" onAction="#haearvo" text="Sulje" />
            </Menu>
            <Menu mnemonicParsing="false" text="Edit">
                <MenuItem mnemonicParsing="false" text="Delete" />
