@@ -2,7 +2,6 @@ package com.example.pesapalloxr;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
@@ -39,10 +38,12 @@ public class PesapalloxrController {
     private final Map<String, Double> miestenSijaintiMapY = new HashMap<>();
     private final Map<String, Double> miestenEtaisyysVaikutusMap = new HashMap<>();
 
-    public ComboBox<String> ulkopelisuorituscombobox;
-    public ComboBox<String> lyontisuuntacombobox;
     @FXML
-    private TextField testi;
+    private ComboBox<String> ulkopelisuorituscombobox;
+    @FXML
+    private ComboBox<String> lyontisuuntacombobox;
+    @FXML
+    private TextField juoksuodottama;
     @FXML
     private ComboBox<String> tilannecombobox;
     @FXML
@@ -256,7 +257,7 @@ public class PesapalloxrController {
         tilannecombobox.getItems().addAll("0-3", "1-3", "2-3", "ajo");
         tilannecombobox.getSelectionModel().selectFirst();
 
-        karkauscombobox.getItems().addAll("", "ei", "kyllä");
+        karkauscombobox.getItems().addAll("ei", "kyllä");
         karkauscombobox.getSelectionModel().selectFirst();
     }
 
@@ -726,6 +727,7 @@ public class PesapalloxrController {
         String etenijaxr = etenija.getText();
         String etenijalaatuxr = etenijalaatucombobox.getValue();
         Integer otteluID = Integer.valueOf(idottelu.getText());
+        Double juoksutodennaikoisyys = laskeTodennakoisyys();
 
         Lyontitiedot tiedot = new Lyontitiedot(
                 x, y,
@@ -735,7 +737,7 @@ public class PesapalloxrController {
                 otteluID, ulkopelixr, ulkopelivirhexr,
                 ulkopelisuorittjaxr, vaaraallaxr, lyontixr,
                 juoksutxr, lapilyontixr, lyontinumeroxr, ulkopelijoukkuexr,
-                etenijaxr, etenijalaatuxr
+                etenijaxr, etenijalaatuxr, juoksutodennaikoisyys
         );
 
         taulukkoxr.getItems().addAll(tiedot);
@@ -749,7 +751,7 @@ public class PesapalloxrController {
     }
 
     @FXML
-    public void laskeTodennakoisyys(){
+    public double laskeTodennakoisyys(){
         String kuvioxr = kuvio.getValue();
         String tyyppixr = tyyppi.getValue();
         String merkkixr = merkki.getValue();
@@ -775,8 +777,9 @@ public class PesapalloxrController {
 
         double juoksutn = 1 / (1 + Math.exp(-(-3.17379 + kuvio + tyyppi + merkki + etenijalaatu + sijanti + ulkopelaajaxr * etaisyys)));
 
-        testi.setText(String.format(Locale.US, "%.3f", juoksutn));
+        juoksuodottama.setText(String.format(Locale.US, "%.3f", juoksutn));
 
+        return juoksutn;
     }
 
     @FXML
@@ -795,12 +798,12 @@ public class PesapalloxrController {
             List<Lyontitiedot> data = new ArrayList<>(taulukkoxr.getItems());
 
             CSVFormat format = CSVFormat.Builder.create().setHeader(
-                    "otteluID", "koordinaatti.x", "koordinaatti.y", "kuvioxr",
+                    "otteluID","jakso", "vuoropari", "sisajoukkue",
+                    "koordinaatti.x", "koordinaatti.y", "kuvioxr",
                     "tyyppixr", "merkkixr", "sijaintixr", "syotto", "lyoja",
-                    "sisajoukkue", "jakso", "vuoropari", "ulkopelipaikka",
-                    "ulkopelivirhe", "ulkopelisuorittaja", "vaaraAlla", "lyonti",
+                    "ulkopelipaikka", "ulkopelivirhe", "ulkopelisuorittaja", "vaaraAlla", "lyonti",
                     "juoksut", "lapilyonti", "lyontinumero", "ulkopelijoukkue",
-                    "etenija", "etenijanlaatu"
+                    "etenija", "etenijanlaatu", "juoksutodennakoisyys"
             ).get();
 
             CSVPrinter printer = format.print(writer);
@@ -809,6 +812,9 @@ public class PesapalloxrController {
             for (Lyontitiedot datum : data) {
                 printer.printRecord(
                         datum.getOttelunID(),
+                        datum.getJakso(),
+                        datum.getVuoropari(),
+                        datum.getJoukkue(),
                         datum.getKoordinaattix(),
                         datum.getKoordinaattiy(),
                         datum.getKuvio(),
@@ -817,9 +823,6 @@ public class PesapalloxrController {
                         datum.getSijainti(),
                         datum.getSyotto(),
                         datum.getLyoja(),
-                        datum.getJoukkue(),
-                        datum.getJakso(),
-                        datum.getVuoropari(),
                         datum.getUlkopelipaikka(),
                         datum.getUlkopelivirhe(),
                         datum.getUlkopelisuorittaja(),
@@ -830,7 +833,8 @@ public class PesapalloxrController {
                         datum.getLyontinumero(),
                         datum.getUlkopelijoukkue(),
                         datum.getEtenija(),
-                        datum.getEtenijanlaatu()
+                        datum.getEtenijanlaatu(),
+                        datum.getJuoksutodennakoisyys()
                 );
             }
 
