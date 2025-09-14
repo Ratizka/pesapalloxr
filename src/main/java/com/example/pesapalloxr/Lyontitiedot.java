@@ -18,6 +18,7 @@ public class Lyontitiedot {
     String ulkopelipaikka;
     String ulkopelivirhe;
     String ulkopelisuorittaja;
+    String ulkopelisuoritus;
     String vaaraAlla;
     String lyonti;
     Integer juoksut;
@@ -27,13 +28,10 @@ public class Lyontitiedot {
     String etenija;
     String etenijanlaatu;
     Double juoksutodennakoisyys;
+    String kunnari;
+    String tilanne;
 
-    public Lyontitiedot(Double koordinaattix, Double koordinaattiy, String sijainti, String kuvio,
-                        String tyyppi, String merkki, String syotto, String lyoja, String joukkue,
-                        String jakso, Integer vuoropari, Integer ottelunID, String ulkopelipaikka, String ulkopelivirhe,
-                        String ulkopelisuorittaja, String vaaraAlla, String lyonti, Integer juoksut, String lapilyonti,
-                        Integer lyontinumero, String ulkopelijoukkue, String etenija, String etenijanlaatu,
-                        Double juoksutodennakoisyys) {
+    public Lyontitiedot(Double koordinaattix, Double koordinaattiy, String sijainti, String kuvio, String tyyppi, String merkki, String syotto, String lyoja, String joukkue, String jakso, Integer vuoropari, Integer ottelunID, String ulkopelipaikka, String ulkopelivirhe, String ulkopelisuorittaja, String ulkopelisuoritus, String vaaraAlla, String lyonti, Integer juoksut, String lapilyonti, Integer lyontinumero, String ulkopelijoukkue, String etenija, String etenijanlaatu, Double juoksutodennakoisyys, String kunnari, String tilanne) {
         this.koordinaattix = koordinaattix;
         this.koordinaattiy = koordinaattiy;
         this.sijainti = sijainti;
@@ -49,6 +47,7 @@ public class Lyontitiedot {
         this.ulkopelipaikka = ulkopelipaikka;
         this.ulkopelivirhe = ulkopelivirhe;
         this.ulkopelisuorittaja = ulkopelisuorittaja;
+        this.ulkopelisuoritus = ulkopelisuoritus;
         this.vaaraAlla = vaaraAlla;
         this.lyonti = lyonti;
         this.juoksut = juoksut;
@@ -58,6 +57,32 @@ public class Lyontitiedot {
         this.etenija = etenija;
         this.etenijanlaatu = etenijanlaatu;
         this.juoksutodennakoisyys = juoksutodennakoisyys;
+        this.kunnari = kunnari;
+        this.tilanne = tilanne;
+    }
+
+    public String getUlkopelisuoritus() {
+        return ulkopelisuoritus;
+    }
+
+    public void setUlkopelisuoritus(String ulkopelisuoritus) {
+        this.ulkopelisuoritus = ulkopelisuoritus;
+    }
+
+    public String getTilanne() {
+        return tilanne;
+    }
+
+    public void setTilanne(String tilanne) {
+        this.tilanne = tilanne;
+    }
+
+    public String getKunnari() {
+        return kunnari;
+    }
+
+    public void setKunnari(String kunnari) {
+        this.kunnari = kunnari;
     }
 
     public Double getJuoksutodennakoisyys() {
