@@ -201,7 +201,7 @@ public class PesapalloxrController {
         tyyppi.getSelectionModel().selectFirst();
 
 
-        merkki.getItems().addAll("vapaa", "jokumuu", "lento"
+        merkki.getItems().addAll("vapaa", "vääräpois", "kulma", "lento"
         );
         merkki.getSelectionModel().selectFirst();
 
@@ -282,7 +282,8 @@ public class PesapalloxrController {
         miestenXrMap.put("kaannettypertsa", 0.000);
         miestenXrMap.put("muu", 0.75);
 
-        miestenXrMap.put("jokumuu", 0.000);
+        miestenXrMap.put("vääräpois", 0.000);
+        miestenXrMap.put("kulma", 0.050);
         miestenXrMap.put("lento", 0.100);
         miestenXrMap.put("vapaa", 1.319);
         miestenXrMap.put("etulyhyt", 0.000);
