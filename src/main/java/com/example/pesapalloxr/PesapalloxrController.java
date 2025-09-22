@@ -2,7 +2,6 @@ package com.example.pesapalloxr;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
@@ -38,50 +37,95 @@ public class PesapalloxrController {
     private final Map<String, Double> miestenSijaintiMapX = new HashMap<>();
     private final Map<String, Double> miestenSijaintiMapY = new HashMap<>();
     private final Map<String, Double> miestenEtaisyysVaikutusMap = new HashMap<>();
+    public ComboBox<String> ulkopelijoukkuecombobox;
+    public ComboBox<String> sisajoukkuecombobox;
+    public TableColumn<Lyontitiedot, String> taulukkoTilanne;
+    public RadioMenuItem vierasjoukkueToggle;
 
-    public ComboBox<String> ulkopelisuorituscombobox;
-    public ComboBox<String> lyontisuuntacombobox;
     @FXML
-    private TextField testi;
+    private ComboBox<String> ulkopelisuorituscombobox;
+    @FXML
+    private ComboBox<String> lyontisuuntacombobox;
+    @FXML
+    private TextField juoksuodottama;
     @FXML
     private ComboBox<String> tilannecombobox;
     @FXML
     private ComboBox<String> karkauscombobox;
-    @FXML private TextField sisajoukkeuid;
-    @FXML private TextField ulkojoukkueid;
-    @FXML private ComboBox<String> etenijalaatucombobox;
-    @FXML private ComboBox<Lyojat> kotietenija;
-    @FXML private ComboBox<Lyojat> vierasetenija;
-    @FXML private ComboBox<String> ulkopelivirhe;
-    @FXML private ComboBox<Integer> juoksut;
-    @FXML private ComboBox<String> ulkopelipaikka;
-    @FXML private ComboBox<Lyojat> kotilyojat;
-    @FXML private ComboBox<Lyojat> vieraslyojat;
-    @FXML private TextField ottelunid;
-    @FXML private ComboBox<Lyojat> kotiulkopelaajat;
-    @FXML private ComboBox<Lyojat> vierasulkopelaajat;
-    @FXML private TextField ulkopelisuorittaja;
-    @FXML private TextField ulkopelijoukkue;
-    @FXML private ComboBox<Integer> vuoropari;
-    @FXML private TextField etenija;
-    @FXML private ComboBox<String> vaaraalla;
-    @FXML private ComboBox<String> lapilyonti;
-    @FXML private ComboBox<String> kunnari;
-    @FXML private ComboBox<Integer> lyontinumero;
-    @FXML private TextField idottelu;
-    @FXML private TableColumn<Lyontitiedot, Integer> taulukkoOttelunID;
-    @FXML private TableColumn<Lyontitiedot, Integer> taulukkovuoropari;
-    @FXML private TableColumn<Lyontitiedot, String> taulukkoetenija;
-    @FXML private TableColumn<Lyontitiedot, String> taulukkoulkopelijoukkue;
-    @FXML private TableColumn<Lyontitiedot, String> taulukkoulkopelaaja;
-    @FXML private TableColumn<Lyontitiedot, String> taulukkoulkopelipaikka;
-    @FXML private TableColumn<Lyontitiedot, Integer> taulukkolyontinumero;
-    @FXML private TableColumn<Lyontitiedot, String> taulukkovaaraalla;
-    @FXML private TableColumn<Lyontitiedot, String> taulukkolyonti;
-    @FXML private TableColumn<Lyontitiedot, Integer> taulukkojuoksut;
-    @FXML private TableColumn<Lyontitiedot, String> taulukkolapilyonti;
-    @FXML private TableColumn<Lyontitiedot, String> taulukkokunnari;
-    @FXML private TableColumn<Lyontitiedot, String> taulukkoulkopelivirhe;
+    @FXML
+    private TextField sisajoukkeuid;
+    @FXML
+    private TextField ulkojoukkueid;
+    @FXML
+    private ComboBox<String> etenijalaatucombobox;
+    @FXML
+    private ComboBox<Lyojat> kotietenija;
+    @FXML
+    private ComboBox<Lyojat> vierasetenija;
+    @FXML
+    private ComboBox<String> ulkopelivirhe;
+    @FXML
+    private ComboBox<Integer> juoksut;
+    @FXML
+    private ComboBox<String> ulkopelipaikka;
+    @FXML
+    private ComboBox<Lyojat> kotilyojat;
+    @FXML
+    private ComboBox<Lyojat> vieraslyojat;
+    @FXML
+    private TextField ottelunid;
+    @FXML
+    private ComboBox<Lyojat> kotiulkopelaajat;
+    @FXML
+    private ComboBox<Lyojat> vierasulkopelaajat;
+    @FXML
+    private TextField ulkopelisuorittaja;
+    @FXML
+    private TextField ulkopelijoukkue;
+    @FXML
+    private ComboBox<Integer> vuoropari;
+    @FXML
+    private TextField etenija;
+    @FXML
+    private ComboBox<String> vaaraalla;
+    @FXML
+    private ComboBox<String> lapilyonti;
+    @FXML
+    private ComboBox<String> kunnari;
+    @FXML
+    private ComboBox<Integer> lyontinumero;
+    @FXML
+    private TextField idottelu;
+    @FXML
+    private TableColumn<Lyontitiedot, Integer> taulukkoOttelunID;
+    @FXML
+    private TableColumn<Lyontitiedot, Integer> taulukkovuoropari;
+    @FXML
+    private TableColumn<Lyontitiedot, String> taulukkoetenija;
+    @FXML
+    private TableColumn<Lyontitiedot, String> taulukkoulkopelijoukkue;
+    @FXML
+    private TableColumn<Lyontitiedot, String> taulukkoulkopelaaja;
+    @FXML
+    private TableColumn<Lyontitiedot, String> taulukkoulkopelipaikka;
+    @FXML
+    private TableColumn<Lyontitiedot, Integer> taulukkolyontinumero;
+    @FXML
+    private TableColumn<Lyontitiedot, String> taulukkovaaraalla;
+    @FXML
+    private TableColumn<Lyontitiedot, String> taulukkolyonti;
+    @FXML
+    private TableColumn<Lyontitiedot, Integer> taulukkojuoksut;
+    @FXML
+    private TableColumn<Lyontitiedot, String> taulukkolapilyonti;
+    @FXML
+    private TableColumn<Lyontitiedot, String> taulukkokunnari;
+    @FXML
+    private TableColumn<Lyontitiedot, String> taulukkoulkopelivirhe;
+    @FXML
+    private TableColumn<Lyontitiedot, String> taulukkoEtenijaLaatu;
+    @FXML
+    private TableColumn<Lyontitiedot, Double> taulukkoJuoksunTodennakoisyys;
     @FXML
     private Canvas kentta;
     @FXML
@@ -178,15 +222,16 @@ public class PesapalloxrController {
         taulukkolyonti.setCellValueFactory(new PropertyValueFactory<>("lyonti"));
         taulukkojuoksut.setCellValueFactory(new PropertyValueFactory<>("juoksut"));
         taulukkolapilyonti.setCellValueFactory(new PropertyValueFactory<>("lapilyonti"));
-        //taulukkokunnari.setCellValueFactory(new PropertyValueFactory<>(""));
+        taulukkokunnari.setCellValueFactory(new PropertyValueFactory<>("kunnari"));
         taulukkoulkopelivirhe.setCellValueFactory(new PropertyValueFactory<>("ulkopelivirhe"));
-
-
+        taulukkoEtenijaLaatu.setCellValueFactory(new PropertyValueFactory<>("etenijanlaatu"));
+        taulukkoJuoksunTodennakoisyys.setCellValueFactory(new PropertyValueFactory<>("juoksutodennakoisyys"));
+        taulukkoTilanne.setCellValueFactory(new PropertyValueFactory<>("tilanne"));
     }
 
     @FXML
-    private void korjaus(){
-        laskeTodennakoisyys();
+    private void sulje(){
+        System.exit(0);
     }
 
     private void valikot() {
@@ -206,7 +251,7 @@ public class PesapalloxrController {
         merkki.getSelectionModel().selectFirst();
 
 
-        syotto.getItems().addAll("perus", "puolikorkea", "tolppa", "taktinen väärä");
+        syotto.getItems().addAll("perus", "puolikorkea", "tolppa", "matala", "lautasväärä", "taktinen väärä/linkku");
         syotto.getSelectionModel().selectFirst();
 
         jakso.getItems().addAll("1", "2", "supervuoro", "kotari");
@@ -218,12 +263,11 @@ public class PesapalloxrController {
         juoksut.getItems().addAll(0, 1, 2, 3, 4);
         juoksut.getSelectionModel().selectFirst();
 
-        ulkopelivirhe.getItems().addAll("ei", "kyllä");
+        ulkopelivirhe.getItems().addAll("ei", "kiinniotto", "häpläys", "harhaheitto", "heittoa ei saada kiinni");
         ulkopelivirhe.getSelectionModel().selectFirst();
 
         etenijalaatucombobox.getItems().addAll("erinomainen", "hyvä", "keskiverto", "heikko", "huono");
         etenijalaatucombobox.getSelectionModel().selectFirst();
-
 
         ulkopelipaikka.getItems().addAll("l", "S", "1v", "3v", "3p", "2p", "2v", "3k", "2k");
         ulkopelipaikka.getSelectionModel().selectFirst();
@@ -244,9 +288,10 @@ public class PesapalloxrController {
         kunnari.getSelectionModel().selectFirst();
 
         lyontisuuntacombobox.getItems().addAll(
-                "kolmosraja", "kolmosluukku", "kolmosauma", "kolmospussi",
-                "keskisauma", "keskipussi", "kakkossauma", "kakkospussi", "kakkosluukku", "kakkosraja",
-                "keskikentta", "kolmosjatke", "kolmoskoppari", "keskitakanen", "kakkoskoppari", "kakkosjatke"
+                "3-raja", "3-luukku", "3-sauma", "3-pussi", "3-kolmosjatke","3-koppari",
+                "keskitakanen", "keskisauma", "keskipussi","keskikentta",
+                "2-sauma", "2-pussi", "2-luukku", "2-raja",
+                "2-koppari", "2-jatke"
         );
         lyontisuuntacombobox.getSelectionModel().selectFirst();
 
@@ -256,7 +301,7 @@ public class PesapalloxrController {
         tilannecombobox.getItems().addAll("0-3", "1-3", "2-3", "ajo");
         tilannecombobox.getSelectionModel().selectFirst();
 
-        karkauscombobox.getItems().addAll("", "ei", "kyllä");
+        karkauscombobox.getItems().addAll("ei", "kyllä");
         karkauscombobox.getSelectionModel().selectFirst();
     }
 
@@ -525,6 +570,7 @@ public class PesapalloxrController {
         taulukkojoukkue.setCellFactory(TextFieldTableCell.forTableColumn());
         taulukkolyoja.setCellFactory(TextFieldTableCell.forTableColumn());
         taulukkotyyppi.setCellFactory(TextFieldTableCell.forTableColumn());
+
     }
 
     private void sarakkeidenmuokkaus() {
@@ -664,10 +710,9 @@ public class PesapalloxrController {
         double y = mouseY / 750;
 
         GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
-
         graphicsContext.setFill(Color.RED);
 
-        if (vierasjoukkue.isSelected()) {
+        if (vierasjoukkue.isSelected() | vierasjoukkueToggle.isSelected()) {
             graphicsContext.setFill(Color.BLUE);
         }
 
@@ -727,6 +772,10 @@ public class PesapalloxrController {
         String etenijaxr = etenija.getText();
         String etenijalaatuxr = etenijalaatucombobox.getValue();
         Integer otteluID = Integer.valueOf(idottelu.getText());
+        Double juoksutodennakoisyys = laskeTodennakoisyys();
+        String kunnarixr = kunnari.getValue();
+        String tilanne = tilannecombobox.getValue();
+        String ulkopelisuoritusxr = ulkopelisuorituscombobox.getValue();
 
         Lyontitiedot tiedot = new Lyontitiedot(
                 x, y,
@@ -734,23 +783,18 @@ public class PesapalloxrController {
                 merrkixr, syottoxr, lyojaxr,
                 joukkuexr, jaksoxr, vuoroparixr,
                 otteluID, ulkopelixr, ulkopelivirhexr,
-                ulkopelisuorittjaxr, vaaraallaxr, lyontixr,
+                ulkopelisuorittjaxr, ulkopelisuoritusxr, vaaraallaxr, lyontixr,
                 juoksutxr, lapilyontixr, lyontinumeroxr, ulkopelijoukkuexr,
-                etenijaxr, etenijalaatuxr
+                etenijaxr, etenijalaatuxr, juoksutodennakoisyys, kunnarixr, tilanne
         );
 
         taulukkoxr.getItems().addAll(tiedot);
 
-        laskeTodennakoisyys();
     }
 
-    @FXML
-    private void haearvo(){
-        System.exit(0);
-    }
 
     @FXML
-    public void laskeTodennakoisyys(){
+    public double laskeTodennakoisyys(){
         String kuvioxr = kuvio.getValue();
         String tyyppixr = tyyppi.getValue();
         String merkkixr = merkki.getValue();
@@ -776,8 +820,9 @@ public class PesapalloxrController {
 
         double juoksutn = 1 / (1 + Math.exp(-(-3.17379 + kuvio + tyyppi + merkki + etenijalaatu + sijanti + ulkopelaajaxr * etaisyys)));
 
-        testi.setText(String.format(Locale.US, "%.3f", juoksutn));
+        juoksuodottama.setText(String.format(Locale.US, "%.3f", juoksutn));
 
+        return juoksutn;
     }
 
     @FXML
@@ -796,12 +841,13 @@ public class PesapalloxrController {
             List<Lyontitiedot> data = new ArrayList<>(taulukkoxr.getItems());
 
             CSVFormat format = CSVFormat.Builder.create().setHeader(
-                    "otteluID", "koordinaatti.x", "koordinaatti.y", "kuvioxr",
-                    "tyyppixr", "merkkixr", "sijaintixr", "syotto", "lyoja",
-                    "sisajoukkue", "jakso", "vuoropari", "ulkopelipaikka",
-                    "ulkopelivirhe", "ulkopelisuorittaja", "vaaraAlla", "lyonti",
-                    "juoksut", "lapilyonti", "lyontinumero", "ulkopelijoukkue",
-                    "etenija", "etenijanlaatu"
+                    "otteluID", "jakso", "vuoropari",
+                    "sisajoukkue",  "lyoja", "etenija", "etenijanlaatu",
+                    "ulkopelijoukkue", "ulkopelisuoritus", "ulkopelisuorittaja","ulkopelipaikka", "ulkopelivirhe",
+                    "koordinaatti.x", "koordinaatti.y", "kuvioxr",
+                    "tyyppixr", "merkkixr", "sijaintixr", "syotto",
+                    "vaaraAlla", "lyonti",
+                    "juoksut", "lapilyonti", "lyontinumero", "juoksutodennakoisyys"
             ).get();
 
             CSVPrinter printer = format.print(writer);
@@ -810,28 +856,37 @@ public class PesapalloxrController {
             for (Lyontitiedot datum : data) {
                 printer.printRecord(
                         datum.getOttelunID(),
+                        datum.getJakso(),
+                        datum.getVuoropari(),
+
+                        datum.getJoukkue(),
+                        datum.getLyoja(),
+                        datum.getEtenija(),
+                        datum.getEtenijanlaatu(),
+
+                        datum.getUlkopelijoukkue(),
+                        datum.getUlkopelisuoritus(),
+                        datum.getUlkopelisuorittaja(),
+                        datum.getUlkopelipaikka(),
+                        datum.getUlkopelivirhe(),
+
                         datum.getKoordinaattix(),
                         datum.getKoordinaattiy(),
+
                         datum.getKuvio(),
                         datum.getTyyppi(),
                         datum.getMerkki(),
                         datum.getSijainti(),
                         datum.getSyotto(),
-                        datum.getLyoja(),
-                        datum.getJoukkue(),
-                        datum.getJakso(),
-                        datum.getVuoropari(),
-                        datum.getUlkopelipaikka(),
-                        datum.getUlkopelivirhe(),
-                        datum.getUlkopelisuorittaja(),
+
                         datum.getVaaraAlla(),
                         datum.getLyonti(),
                         datum.getJuoksut(),
                         datum.getLapilyonti(),
                         datum.getLyontinumero(),
-                        datum.getUlkopelijoukkue(),
-                        datum.getEtenija(),
-                        datum.getEtenijanlaatu()
+
+
+                        datum.getJuoksutodennakoisyys()
                 );
             }
 
