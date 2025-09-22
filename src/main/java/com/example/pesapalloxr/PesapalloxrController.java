@@ -250,6 +250,7 @@ public class PesapalloxrController {
         );
         merkki.getSelectionModel().selectFirst();
 
+        //
 
         syotto.getItems().addAll("perus", "puolikorkea", "tolppa", "matala", "lautasväärä", "taktinen väärä/linkku");
         syotto.getSelectionModel().selectFirst();
