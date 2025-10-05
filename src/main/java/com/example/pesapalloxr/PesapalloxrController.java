@@ -34,13 +34,21 @@ import java.util.*;
 public class PesapalloxrController {
 
     private final Map<String, Double> miestenXrMap = new HashMap<>();
-    private final Map<String, Double> miestenSijaintiMapX = new HashMap<>();
-    private final Map<String, Double> miestenSijaintiMapY = new HashMap<>();
-    private final Map<String, Double> miestenEtaisyysVaikutusMap = new HashMap<>();
-    public ComboBox<String> ulkopelijoukkuecombobox;
-    public ComboBox<String> sisajoukkuecombobox;
-    public TableColumn<Lyontitiedot, String> taulukkoTilanne;
-    public RadioMenuItem vierasjoukkueToggle;
+    private final Map<String, Double> naistenXrMap = new HashMap<>();
+    private final Map<String, Double> SijaintiMapX = new HashMap<>();
+    private final Map<String, Double> SijaintiMapY = new HashMap<>();
+    private int otteluID;
+    @FXML private ComboBox<String> saumakorkeuscombobox;
+    @FXML private ComboBox<String> ulkopelitempocombobox;
+
+    @FXML private ComboBox<String> ulkopelijoukkuecombobox;
+    @FXML private ComboBox<String> sisajoukkuecombobox;
+    @FXML private TableColumn<Lyontitiedot, String> taulukkoTilanne;
+    @FXML private RadioMenuItem vierasjoukkueToggle;
+    @FXML
+    private RadioMenuItem menuItemMiehet;
+    @FXML
+    private RadioMenuItem menuItemNaiset;
 
     @FXML
     private ComboBox<String> ulkopelisuorituscombobox;
@@ -304,6 +312,12 @@ public class PesapalloxrController {
 
         karkauscombobox.getItems().addAll("ei", "kyllä");
         karkauscombobox.getSelectionModel().selectFirst();
+
+        saumakorkeuscombobox.getItems().addAll("", "maa","ilma");
+        saumakorkeuscombobox.getSelectionModel().selectFirst();
+
+        ulkopelitempocombobox.getItems().addAll("pysäytys", "ali", "peli", "yli");
+        ulkopelitempocombobox.getSelectionModel().selectFirst();
     }
 
     private void xrmap(){
@@ -356,209 +370,209 @@ public class PesapalloxrController {
     }
 
     private void miestensijanti(){
-        miestenSijaintiMapX.put("kaannettypertsal", 0.50);
-        miestenSijaintiMapX.put("oulul", 0.50);
-        miestenSijaintiMapX.put("pertsal", 0.50);
-        miestenSijaintiMapX.put("ristivitonenl", 0.50);
-        miestenSijaintiMapX.put("tahkol", 0.50);
-        miestenSijaintiMapX.put("tahko2l", 0.50);
-        miestenSijaintiMapX.put("sailytysl", 0.50);
-        miestenSijaintiMapX.put("karvauskahdellal", 0.50);
-        miestenSijaintiMapX.put("karvausyhdellal", 0.50);
-        miestenSijaintiMapX.put("muul", 0.50);
+        SijaintiMapX.put("kaannettypertsal", 0.50);
+        SijaintiMapX.put("oulul", 0.50);
+        SijaintiMapX.put("pertsal", 0.50);
+        SijaintiMapX.put("ristivitonenl", 0.50);
+        SijaintiMapX.put("tahkol", 0.50);
+        SijaintiMapX.put("tahko2l", 0.50);
+        SijaintiMapX.put("sailytysl", 0.50);
+        SijaintiMapX.put("karvauskahdellal", 0.50);
+        SijaintiMapX.put("karvausyhdellal", 0.50);
+        SijaintiMapX.put("muul", 0.50);
 
-        miestenSijaintiMapX.put("kaannettypertsa3v", 0.75);
-        miestenSijaintiMapX.put("oulu3v", 0.80);
-        miestenSijaintiMapX.put("pertsa3v", 0.765);
-        miestenSijaintiMapX.put("ristivitonen3v", 0.77);
-        miestenSijaintiMapX.put("tahko3v", 0.80);
-        miestenSijaintiMapX.put("tahko23v", 0.755);
-        miestenSijaintiMapX.put("sailytys3v", 0.80);
-        miestenSijaintiMapX.put("karvauskahdella3v", 0.80);
-        miestenSijaintiMapX.put("karvausyhdella3v", 0.80);
-        miestenSijaintiMapX.put("muu3v", 0.80);
+        SijaintiMapX.put("kaannettypertsa3v", 0.75);
+        SijaintiMapX.put("oulu3v", 0.80);
+        SijaintiMapX.put("pertsa3v", 0.765);
+        SijaintiMapX.put("ristivitonen3v", 0.77);
+        SijaintiMapX.put("tahko3v", 0.80);
+        SijaintiMapX.put("tahko23v", 0.755);
+        SijaintiMapX.put("sailytys3v", 0.80);
+        SijaintiMapX.put("karvauskahdella3v", 0.80);
+        SijaintiMapX.put("karvausyhdella3v", 0.80);
+        SijaintiMapX.put("muu3v", 0.80);
 
-        miestenSijaintiMapX.put("kaannettypertsa1v", 0.41);
-        miestenSijaintiMapX.put("oulu1v", 0.52);
-        miestenSijaintiMapX.put("pertsa1v", 0.53);
-        miestenSijaintiMapX.put("ristivitonen1v", 0.425);
-        miestenSijaintiMapX.put("tahko1v", 0.60);
-        miestenSijaintiMapX.put("tahko21v", 0.55);
-        miestenSijaintiMapX.put("sailytys1v", 0.62);
-        miestenSijaintiMapX.put("karvauskahdella1v", 0.63);
-        miestenSijaintiMapX.put("karvausyhdella1v", 0.63);
-        miestenSijaintiMapX.put("muu1v", 0.20);
-
-
-        miestenSijaintiMapX.put("kaannettypertsaS", 0.25);
-        miestenSijaintiMapX.put("ouluS", 0.22);
-        miestenSijaintiMapX.put("pertsaS", 0.235);
-        miestenSijaintiMapX.put("ristivitonenS", 0.20);
-        miestenSijaintiMapX.put("tahkoS", 0.235);
-        miestenSijaintiMapX.put("tahko2S", 0.34);
-        miestenSijaintiMapX.put("sailytysS", 0.385);
-        miestenSijaintiMapX.put("karvauskahdellaS", 0.33);
-        miestenSijaintiMapX.put("karvausyhdellaS", 0.22);
-        miestenSijaintiMapX.put("muuS", 0.20);
+        SijaintiMapX.put("kaannettypertsa1v", 0.41);
+        SijaintiMapX.put("oulu1v", 0.52);
+        SijaintiMapX.put("pertsa1v", 0.53);
+        SijaintiMapX.put("ristivitonen1v", 0.425);
+        SijaintiMapX.put("tahko1v", 0.60);
+        SijaintiMapX.put("tahko21v", 0.55);
+        SijaintiMapX.put("sailytys1v", 0.62);
+        SijaintiMapX.put("karvauskahdella1v", 0.63);
+        SijaintiMapX.put("karvausyhdella1v", 0.63);
+        SijaintiMapX.put("muu1v", 0.20);
 
 
-        miestenSijaintiMapX.put("kaannettypertsa3p", 0.68);
-        miestenSijaintiMapX.put("oulu3p", 0.68);
-        miestenSijaintiMapX.put("pertsa3p", 0.68);
-        miestenSijaintiMapX.put("ristivitonen3p", 0.68);
-        miestenSijaintiMapX.put("tahko3p", 0.535);
-        miestenSijaintiMapX.put("tahko23p", 0.68);
-        miestenSijaintiMapX.put("sailytys3p", 0.58);
-        miestenSijaintiMapX.put("karvauskahdella3p", 0.68);
-        miestenSijaintiMapX.put("karvausyhdella3p", 0.68);
-        miestenSijaintiMapX.put("muu3p", 0.80);
+        SijaintiMapX.put("kaannettypertsaS", 0.25);
+        SijaintiMapX.put("ouluS", 0.22);
+        SijaintiMapX.put("pertsaS", 0.235);
+        SijaintiMapX.put("ristivitonenS", 0.20);
+        SijaintiMapX.put("tahkoS", 0.235);
+        SijaintiMapX.put("tahko2S", 0.34);
+        SijaintiMapX.put("sailytysS", 0.385);
+        SijaintiMapX.put("karvauskahdellaS", 0.33);
+        SijaintiMapX.put("karvausyhdellaS", 0.22);
+        SijaintiMapX.put("muuS", 0.20);
 
-        miestenSijaintiMapX.put("kaannettypertsa2p", 0.52);
-        miestenSijaintiMapX.put("oulu2p", 0.43);
-        miestenSijaintiMapX.put("pertsa2p", 0.43);
-        miestenSijaintiMapX.put("ristivitonen2p", 0.525);
-        miestenSijaintiMapX.put("tahko2p", 0.425);
-        miestenSijaintiMapX.put("tahko22p", 0.42);
-        miestenSijaintiMapX.put("sailytys2p", 0.43);
-        miestenSijaintiMapX.put("karvauskahdella2p", 0.43);
-        miestenSijaintiMapX.put("karvausyhdella2p", 0.43);
-        miestenSijaintiMapX.put("muu2p", 0.50);
 
-        miestenSijaintiMapX.put("kaannettypertsa2v", 0.30);
-        miestenSijaintiMapX.put("oulu2v", 0.30);
-        miestenSijaintiMapX.put("pertsa2v", 0.30);
-        miestenSijaintiMapX.put("ristivitonen2v", 0.30);
-        miestenSijaintiMapX.put("tahko2v", 0.30);
-        miestenSijaintiMapX.put("tahko22v", 0.20);
-        miestenSijaintiMapX.put("sailytys2v", 0.30);
-        miestenSijaintiMapX.put("karvauskahdella2v", 0.30);
-        miestenSijaintiMapX.put("karvausyhdella2v", 0.30);
-        miestenSijaintiMapX.put("muu2v", 0.20);
+        SijaintiMapX.put("kaannettypertsa3p", 0.68);
+        SijaintiMapX.put("oulu3p", 0.68);
+        SijaintiMapX.put("pertsa3p", 0.68);
+        SijaintiMapX.put("ristivitonen3p", 0.68);
+        SijaintiMapX.put("tahko3p", 0.535);
+        SijaintiMapX.put("tahko23p", 0.68);
+        SijaintiMapX.put("sailytys3p", 0.58);
+        SijaintiMapX.put("karvauskahdella3p", 0.68);
+        SijaintiMapX.put("karvausyhdella3p", 0.68);
+        SijaintiMapX.put("muu3p", 0.80);
 
-        miestenSijaintiMapX.put("kaannettypertsa3k", 0.65);
-        miestenSijaintiMapX.put("oulu3k", 0.65);
-        miestenSijaintiMapX.put("pertsa3k", 0.65);
-        miestenSijaintiMapX.put("ristivitonen3k", 0.65);
-        miestenSijaintiMapX.put("tahko3k", 0.65);
-        miestenSijaintiMapX.put("tahko23k", 0.65);
-        miestenSijaintiMapX.put("sailytys3k", 0.65);
-        miestenSijaintiMapX.put("karvauskahdella3k", 0.65);
-        miestenSijaintiMapX.put("karvausyhdella3k", 0.65);
-        miestenSijaintiMapX.put("muu3k", 0.70);
+        SijaintiMapX.put("kaannettypertsa2p", 0.52);
+        SijaintiMapX.put("oulu2p", 0.43);
+        SijaintiMapX.put("pertsa2p", 0.43);
+        SijaintiMapX.put("ristivitonen2p", 0.525);
+        SijaintiMapX.put("tahko2p", 0.425);
+        SijaintiMapX.put("tahko22p", 0.42);
+        SijaintiMapX.put("sailytys2p", 0.43);
+        SijaintiMapX.put("karvauskahdella2p", 0.43);
+        SijaintiMapX.put("karvausyhdella2p", 0.43);
+        SijaintiMapX.put("muu2p", 0.50);
 
-        miestenSijaintiMapX.put("kaannettypertsa2k", 0.35);
-        miestenSijaintiMapX.put("oulu2k", 0.35);
-        miestenSijaintiMapX.put("pertsa2k", 0.35);
-        miestenSijaintiMapX.put("ristivitonen2k", 0.35);
-        miestenSijaintiMapX.put("tahko2k", 0.35);
-        miestenSijaintiMapX.put("tahko22k", 0.35);
-        miestenSijaintiMapX.put("sailytys2k", 0.35);
-        miestenSijaintiMapX.put("karvauskahdella2k", 0.35);
-        miestenSijaintiMapX.put("karvausyhdella2k", 0.35);
-        miestenSijaintiMapX.put("muu2k", 0.30);
+        SijaintiMapX.put("kaannettypertsa2v", 0.30);
+        SijaintiMapX.put("oulu2v", 0.30);
+        SijaintiMapX.put("pertsa2v", 0.30);
+        SijaintiMapX.put("ristivitonen2v", 0.30);
+        SijaintiMapX.put("tahko2v", 0.30);
+        SijaintiMapX.put("tahko22v", 0.20);
+        SijaintiMapX.put("sailytys2v", 0.30);
+        SijaintiMapX.put("karvauskahdella2v", 0.30);
+        SijaintiMapX.put("karvausyhdella2v", 0.30);
+        SijaintiMapX.put("muu2v", 0.20);
+
+        SijaintiMapX.put("kaannettypertsa3k", 0.65);
+        SijaintiMapX.put("oulu3k", 0.65);
+        SijaintiMapX.put("pertsa3k", 0.65);
+        SijaintiMapX.put("ristivitonen3k", 0.65);
+        SijaintiMapX.put("tahko3k", 0.65);
+        SijaintiMapX.put("tahko23k", 0.65);
+        SijaintiMapX.put("sailytys3k", 0.65);
+        SijaintiMapX.put("karvauskahdella3k", 0.65);
+        SijaintiMapX.put("karvausyhdella3k", 0.65);
+        SijaintiMapX.put("muu3k", 0.70);
+
+        SijaintiMapX.put("kaannettypertsa2k", 0.35);
+        SijaintiMapX.put("oulu2k", 0.35);
+        SijaintiMapX.put("pertsa2k", 0.35);
+        SijaintiMapX.put("ristivitonen2k", 0.35);
+        SijaintiMapX.put("tahko2k", 0.35);
+        SijaintiMapX.put("tahko22k", 0.35);
+        SijaintiMapX.put("sailytys2k", 0.35);
+        SijaintiMapX.put("karvauskahdella2k", 0.35);
+        SijaintiMapX.put("karvausyhdella2k", 0.35);
+        SijaintiMapX.put("muu2k", 0.30);
     }
 
     private void miestensijantiy(){
-        miestenSijaintiMapY.put("kaannettypertsal", 0.93);
-        miestenSijaintiMapY.put("oulul", 0.93);
-        miestenSijaintiMapY.put("pertsal", 0.93);
-        miestenSijaintiMapY.put("ristivitonenl", 0.93);
-        miestenSijaintiMapY.put("tahkol", 0.93);
-        miestenSijaintiMapY.put("tahko2l", 0.93);
-        miestenSijaintiMapY.put("sailytysl", 0.93);
-        miestenSijaintiMapY.put("karvauskahdellal", 0.93);
-        miestenSijaintiMapY.put("karvausyhdellal", 0.93);
-        miestenSijaintiMapY.put("muul", 0.93);
+        SijaintiMapY.put("kaannettypertsal", 0.93);
+        SijaintiMapY.put("oulul", 0.93);
+        SijaintiMapY.put("pertsal", 0.93);
+        SijaintiMapY.put("ristivitonenl", 0.93);
+        SijaintiMapY.put("tahkol", 0.93);
+        SijaintiMapY.put("tahko2l", 0.93);
+        SijaintiMapY.put("sailytysl", 0.93);
+        SijaintiMapY.put("karvauskahdellal", 0.93);
+        SijaintiMapY.put("karvausyhdellal", 0.93);
+        SijaintiMapY.put("muul", 0.93);
 
-        miestenSijaintiMapY.put("kaannettypertsa3v", 0.60);
-        miestenSijaintiMapY.put("oulu3v", 0.56);
-        miestenSijaintiMapY.put("pertsa3v", 0.61);
-        miestenSijaintiMapY.put("ristivitonen3v", 0.585);
-        miestenSijaintiMapY.put("tahko3v", 0.52);
-        miestenSijaintiMapY.put("tahko23v", 0.61);
-        miestenSijaintiMapY.put("sailytys3v", 0.54);
-        miestenSijaintiMapY.put("karvauskahdella3v", 0.56);
-        miestenSijaintiMapY.put("karvausyhdella3v", 0.56);
-        miestenSijaintiMapY.put("muu3v", 0.54);
+        SijaintiMapY.put("kaannettypertsa3v", 0.60);
+        SijaintiMapY.put("oulu3v", 0.56);
+        SijaintiMapY.put("pertsa3v", 0.61);
+        SijaintiMapY.put("ristivitonen3v", 0.585);
+        SijaintiMapY.put("tahko3v", 0.52);
+        SijaintiMapY.put("tahko23v", 0.61);
+        SijaintiMapY.put("sailytys3v", 0.54);
+        SijaintiMapY.put("karvauskahdella3v", 0.56);
+        SijaintiMapY.put("karvausyhdella3v", 0.56);
+        SijaintiMapY.put("muu3v", 0.54);
 
-        miestenSijaintiMapY.put("kaannettypertsa1v", 0.55);
-        miestenSijaintiMapY.put("oulu1v", 0.68);
-        miestenSijaintiMapY.put("pertsa1v", 0.56);
-        miestenSijaintiMapY.put("ristivitonen1v", 0.68);
-        miestenSijaintiMapY.put("tahko1v", 0.66);
-        miestenSijaintiMapY.put("tahko21v", 0.52);
-        miestenSijaintiMapY.put("sailytys1v", 0.68);
-        miestenSijaintiMapY.put("karvauskahdella1v", 0.75);
-        miestenSijaintiMapY.put("karvausyhdella1v", 0.75);
-        miestenSijaintiMapY.put("muu1v", 0.20);
-
-
-        miestenSijaintiMapY.put("kaannettypertsaS", 0.60);
-        miestenSijaintiMapY.put("ouluS", 0.58);
-        miestenSijaintiMapY.put("pertsaS", 0.61);
-        miestenSijaintiMapY.put("ristivitonenS", 0.56);
-        miestenSijaintiMapY.put("tahkoS", 0.58);
-        miestenSijaintiMapY.put("tahko2S", 0.645);
-        miestenSijaintiMapY.put("sailytysS", 0.68);
-        miestenSijaintiMapY.put("karvauskahdellaS", 0.70);
-        miestenSijaintiMapY.put("karvausyhdellaS", 0.58);
-        miestenSijaintiMapY.put("muuS", 0.54);
+        SijaintiMapY.put("kaannettypertsa1v", 0.55);
+        SijaintiMapY.put("oulu1v", 0.68);
+        SijaintiMapY.put("pertsa1v", 0.56);
+        SijaintiMapY.put("ristivitonen1v", 0.68);
+        SijaintiMapY.put("tahko1v", 0.66);
+        SijaintiMapY.put("tahko21v", 0.52);
+        SijaintiMapY.put("sailytys1v", 0.68);
+        SijaintiMapY.put("karvauskahdella1v", 0.75);
+        SijaintiMapY.put("karvausyhdella1v", 0.75);
+        SijaintiMapY.put("muu1v", 0.20);
 
 
-        miestenSijaintiMapY.put("kaannettypertsa3p", 0.47);
-        miestenSijaintiMapY.put("oulu3p", 0.47);
-        miestenSijaintiMapY.put("pertsa3p", 0.47);
-        miestenSijaintiMapY.put("ristivitonen3p", 0.47);
-        miestenSijaintiMapY.put("tahko3p", 0.40);
-        miestenSijaintiMapY.put("tahko23p", 0.45);
-        miestenSijaintiMapY.put("sailytys3p", 0.45);
-        miestenSijaintiMapY.put("karvauskahdella3p", 0.47);
-        miestenSijaintiMapY.put("karvausyhdella3p", 0.47);
-        miestenSijaintiMapY.put("muu3p", 0.30);
+        SijaintiMapY.put("kaannettypertsaS", 0.60);
+        SijaintiMapY.put("ouluS", 0.58);
+        SijaintiMapY.put("pertsaS", 0.61);
+        SijaintiMapY.put("ristivitonenS", 0.56);
+        SijaintiMapY.put("tahkoS", 0.58);
+        SijaintiMapY.put("tahko2S", 0.645);
+        SijaintiMapY.put("sailytysS", 0.68);
+        SijaintiMapY.put("karvauskahdellaS", 0.70);
+        SijaintiMapY.put("karvausyhdellaS", 0.58);
+        SijaintiMapY.put("muuS", 0.54);
 
-        miestenSijaintiMapY.put("kaannettypertsa2p", 0.40);
-        miestenSijaintiMapY.put("oulu2p", 0.40);
-        miestenSijaintiMapY.put("pertsa2p", 0.40);
-        miestenSijaintiMapY.put("ristivitonen2p", 0.40);
-        miestenSijaintiMapY.put("tahko2p", 0.525);
-        miestenSijaintiMapY.put("tahko22p", 0.40);
-        miestenSijaintiMapY.put("sailytys2p", 0.45);
-        miestenSijaintiMapY.put("karvauskahdella2p", 0.40);
-        miestenSijaintiMapY.put("karvausyhdella2p", 0.40);
-        miestenSijaintiMapY.put("muu2p", 0.10);
 
-        miestenSijaintiMapY.put("kaannettypertsa2v", 0.48);
-        miestenSijaintiMapY.put("oulu2v", 0.48);
-        miestenSijaintiMapY.put("pertsa2v", 0.495);
-        miestenSijaintiMapY.put("ristivitonen2v", 0.48);
-        miestenSijaintiMapY.put("tahko2v", 0.45);
-        miestenSijaintiMapY.put("tahko22v", 0.53);
-        miestenSijaintiMapY.put("sailytys2v", 0.53);
-        miestenSijaintiMapY.put("karvauskahdella2v", 0.48);
-        miestenSijaintiMapY.put("karvausyhdella2v", 0.48);
-        miestenSijaintiMapY.put("muu2v", 0.20);
+        SijaintiMapY.put("kaannettypertsa3p", 0.47);
+        SijaintiMapY.put("oulu3p", 0.47);
+        SijaintiMapY.put("pertsa3p", 0.47);
+        SijaintiMapY.put("ristivitonen3p", 0.47);
+        SijaintiMapY.put("tahko3p", 0.40);
+        SijaintiMapY.put("tahko23p", 0.45);
+        SijaintiMapY.put("sailytys3p", 0.45);
+        SijaintiMapY.put("karvauskahdella3p", 0.47);
+        SijaintiMapY.put("karvausyhdella3p", 0.47);
+        SijaintiMapY.put("muu3p", 0.30);
 
-        miestenSijaintiMapY.put("kaannettypertsa3k", 0.14);
-        miestenSijaintiMapY.put("oulu3k", 0.14);
-        miestenSijaintiMapY.put("pertsa3k", 0.14);
-        miestenSijaintiMapY.put("ristivitonen3k", 0.14);
-        miestenSijaintiMapY.put("tahko3k", 0.14);
-        miestenSijaintiMapY.put("tahko23k", 0.14);
-        miestenSijaintiMapY.put("sailytys3k", 0.14);
-        miestenSijaintiMapY.put("karvauskahdella3k", 0.14);
-        miestenSijaintiMapY.put("karvausyhdella3k", 0.14);
-        miestenSijaintiMapY.put("muu3k", 0.035);
+        SijaintiMapY.put("kaannettypertsa2p", 0.40);
+        SijaintiMapY.put("oulu2p", 0.40);
+        SijaintiMapY.put("pertsa2p", 0.40);
+        SijaintiMapY.put("ristivitonen2p", 0.40);
+        SijaintiMapY.put("tahko2p", 0.525);
+        SijaintiMapY.put("tahko22p", 0.40);
+        SijaintiMapY.put("sailytys2p", 0.45);
+        SijaintiMapY.put("karvauskahdella2p", 0.40);
+        SijaintiMapY.put("karvausyhdella2p", 0.40);
+        SijaintiMapY.put("muu2p", 0.10);
 
-        miestenSijaintiMapY.put("kaannettypertsa2k", 0.14);
-        miestenSijaintiMapY.put("oulu2k", 0.14);
-        miestenSijaintiMapY.put("pertsa2k", 0.14);
-        miestenSijaintiMapY.put("ristivitonen2k", 0.14);
-        miestenSijaintiMapY.put("tahko2k", 0.14);
-        miestenSijaintiMapY.put("tahko22k", 0.14);
-        miestenSijaintiMapY.put("sailytys2k", 0.14);
-        miestenSijaintiMapY.put("karvauskahdella2k", 0.14);
-        miestenSijaintiMapY.put("karvausyhdella2k", 0.14);
-        miestenSijaintiMapY.put("muu2k", 0.035);
+        SijaintiMapY.put("kaannettypertsa2v", 0.48);
+        SijaintiMapY.put("oulu2v", 0.48);
+        SijaintiMapY.put("pertsa2v", 0.495);
+        SijaintiMapY.put("ristivitonen2v", 0.48);
+        SijaintiMapY.put("tahko2v", 0.45);
+        SijaintiMapY.put("tahko22v", 0.53);
+        SijaintiMapY.put("sailytys2v", 0.53);
+        SijaintiMapY.put("karvauskahdella2v", 0.48);
+        SijaintiMapY.put("karvausyhdella2v", 0.48);
+        SijaintiMapY.put("muu2v", 0.20);
+
+        SijaintiMapY.put("kaannettypertsa3k", 0.14);
+        SijaintiMapY.put("oulu3k", 0.14);
+        SijaintiMapY.put("pertsa3k", 0.14);
+        SijaintiMapY.put("ristivitonen3k", 0.14);
+        SijaintiMapY.put("tahko3k", 0.14);
+        SijaintiMapY.put("tahko23k", 0.14);
+        SijaintiMapY.put("sailytys3k", 0.14);
+        SijaintiMapY.put("karvauskahdella3k", 0.14);
+        SijaintiMapY.put("karvausyhdella3k", 0.14);
+        SijaintiMapY.put("muu3k", 0.035);
+
+        SijaintiMapY.put("kaannettypertsa2k", 0.14);
+        SijaintiMapY.put("oulu2k", 0.14);
+        SijaintiMapY.put("pertsa2k", 0.14);
+        SijaintiMapY.put("ristivitonen2k", 0.14);
+        SijaintiMapY.put("tahko2k", 0.14);
+        SijaintiMapY.put("tahko22k", 0.14);
+        SijaintiMapY.put("sailytys2k", 0.14);
+        SijaintiMapY.put("karvauskahdella2k", 0.14);
+        SijaintiMapY.put("karvausyhdella2k", 0.14);
+        SijaintiMapY.put("muu2k", 0.035);
     }
 
     private void taulukkomuokkaus() {
@@ -720,7 +734,7 @@ public class PesapalloxrController {
         graphicsContext.fillOval(mouseX, mouseY, 5, 5);
 
         koordinaattix.setText(String.format(Locale.US, "%.3f", 1 - mouseX / 750));
-        koordinaattiy.setText(String.format(Locale.US, "%.3f",mouseY / 750));
+        koordinaattiy.setText(String.format(Locale.US, "%.3f",y));
 
         sijaintitext.setText(haesijanti(y));
 
@@ -772,7 +786,7 @@ public class PesapalloxrController {
         String ulkopelijoukkuexr = ulkopelijoukkue.getText();
         String etenijaxr = etenija.getText();
         String etenijalaatuxr = etenijalaatucombobox.getValue();
-        Integer otteluID = Integer.valueOf(idottelu.getText());
+        //Integer otteluID = Integer.valueOf(idottelu.getText());
         Double juoksutodennakoisyys = laskeTodennakoisyys();
         String kunnarixr = kunnari.getValue();
         String tilanne = tilannecombobox.getValue();
@@ -814,8 +828,8 @@ public class PesapalloxrController {
         String sijainti = haesijanti(y);
         Double sijanti = miestenXrMap.get(sijainti);
 
-        Double ulkopelaajaX = miestenSijaintiMapX.get(kuvioxr + ulkopelaaja);
-        Double ulkopelaajaY = miestenSijaintiMapY.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaX = SijaintiMapX.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaY = SijaintiMapY.get(kuvioxr + ulkopelaaja);
 
         double etaisyys = Math.sqrt(Math.pow(x-ulkopelaajaX,2) + Math.pow(y-ulkopelaajaY,2));
 
@@ -907,7 +921,7 @@ public class PesapalloxrController {
 
             String otteluid = ottelunid.getText();
 
-            idottelu.setText(otteluid);
+            otteluID = Integer.parseInt(ottelunid.getText());
 
             String ilma = "https://api.pesistulokset.fi/api/v1/public/match?id=" + otteluid + "&apikey=wRX0tTke3DZ8RLKAMntjZ81LwgNQuSN9";
 
@@ -920,6 +934,7 @@ public class PesapalloxrController {
             JSONObject jsonObject = new JSONObject(response.body());
 
             client.close();
+
 
             return jsonObject;
         } catch (Exception e) {
@@ -1052,7 +1067,6 @@ public class PesapalloxrController {
 
     @FXML
     private void haepelaajat(){
-        idottelu.setText(ottelunid.getText());
         kotipelaajat();
         vieraspelaajat();
         haepelaajatulkopelaajat();

@@ -13,6 +13,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -20,7 +21,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane fx:id="ui" prefHeight="1040.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pesapalloxr.PesapalloxrController">
+<BorderPane fx:id="ui" prefHeight="1040.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pesapalloxr.PesapalloxrController">
    <center>
        <ScrollPane>
            <AnchorPane>
@@ -121,6 +122,11 @@
                    <ComboBox fx:id="vierasetenija" prefWidth="150.0" GridPane.rowIndex="9" />
                    <ComboBox fx:id="kotietenija" onAction="#kotietenijalisays" prefWidth="150.0" GridPane.rowIndex="3" />
                <RadioButton fx:id="vierasjoukkue" mnemonicParsing="false" text="Vierasjoukkue" GridPane.columnIndex="6" GridPane.rowIndex="11" />
+               <TextField GridPane.columnIndex="5" GridPane.rowIndex="11" />
+               <Label text="Saumalyönnin korkeus" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+               <Label alignment="CENTER" prefHeight="17.0" prefWidth="161.0" text="Tempo" textAlignment="JUSTIFY" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+               <ComboBox fx:id="saumakorkeuscombobox" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+               <ComboBox fx:id="ulkopelitempocombobox" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="9" />
                </GridPane>
                <TableView fx:id="taulukkoxr" editable="true" layoutX="765.0" layoutY="484.0" prefHeight="500.0" prefWidth="1125.0">
                    <columns>
@@ -130,11 +136,11 @@
                        <TableColumn fx:id="taulukkojoukkue" prefWidth="75.0" text="sisäpelijoukkue" />
                        <TableColumn fx:id="taulukkolyoja" prefWidth="75.0" text="lyöja" />
                        <TableColumn fx:id="taulukkoetenija" prefWidth="75.0" text="etenijä" />
-                  <TableColumn fx:id="taulukkoEtenijaLaatu" prefWidth="75.0" text="etenijänlaatu" />
+                       <TableColumn fx:id="taulukkoEtenijaLaatu" prefWidth="75.0" text="etenijänlaatu" />
                        <TableColumn fx:id="taulukkoulkopelijoukkue" prefWidth="75.0" text="ulkopelijoukkue" />
                        <TableColumn fx:id="taulukkoulkopelaaja" prefWidth="75.0" text="ulkopelaaja" />
                        <TableColumn fx:id="taulukkoulkopelipaikka" prefWidth="75.0" text="ulkopelipaikka" />
-                  <TableColumn fx:id="taulukkoTilanne" prefWidth="75.0" text="tilanne" />
+                       <TableColumn fx:id="taulukkoTilanne" prefWidth="75.0" text="tilanne" />
                        <TableColumn fx:id="taulukkolyontinumero" prefWidth="75.0" text="lyontinumero" />
                        <TableColumn fx:id="taulukkokuvio" prefWidth="75.0" text="kuvio" />
                        <TableColumn fx:id="taulukkovaaraalla" prefWidth="75.0" text="väärä alla" />
@@ -152,14 +158,14 @@
                        <TableColumn fx:id="taulukkokoordinaattiy" editable="false" prefWidth="75.0" text="y" />
                    </columns>
                </TableView>
-                <Button layoutX="976.0" layoutY="377.0" mnemonicParsing="false" onAction="#poistarivi" prefHeight="25.0" prefWidth="100.0" text="Poista lyönti" />
-            <TextField fx:id="ottelunid" layoutX="753.0" layoutY="414.0" prefHeight="25.0" prefWidth="110.0" promptText="Anna ottelun id" />
-            <Button layoutX="752.0" layoutY="377.0" mnemonicParsing="false" onAction="#haepelaajat" prefHeight="25.0" prefWidth="111.0" text="Hae ottelu tiedot" />
-            <Button layoutX="870.0" layoutY="377.0" mnemonicParsing="false" onAction="#lyontitiedot" prefHeight="25.0" prefWidth="100.0" text="Lisää lyönti" />
+                <Button layoutX="975.0" layoutY="385.0" mnemonicParsing="false" onAction="#poistarivi" prefHeight="25.0" prefWidth="100.0" text="Poista lyönti" />
+            <TextField fx:id="ottelunid" layoutX="766.0" layoutY="422.0" prefHeight="25.0" prefWidth="110.0" promptText="Anna ottelun id" />
+            <Button layoutX="765.0" layoutY="385.0" mnemonicParsing="false" onAction="#haepelaajat" prefHeight="25.0" prefWidth="100.0" text="Hae ottelu tiedot" />
+            <Button layoutX="870.0" layoutY="385.0" mnemonicParsing="false" onAction="#lyontitiedot" prefHeight="25.0" prefWidth="100.0" text="Lisää lyönti" />
             <ComboBox fx:id="ulkopelijoukkuecombobox" layoutX="1618.0" layoutY="260.0" prefWidth="150.0" />
             <ComboBox fx:id="sisajoukkuecombobox" layoutX="1618.0" layoutY="224.0" prefWidth="150.0" />
             <TextField fx:id="idottelu" editable="false" layoutX="1649.0" layoutY="127.0" text="1" visible="false" />
-            <Button layoutX="1080.0" layoutY="377.0" mnemonicParsing="false" onAction="#laskeTodennakoisyys" prefWidth="100.0" text="Laske juoksu %" />
+            <Button layoutX="1080.0" layoutY="385.0" mnemonicParsing="false" onAction="#laskeTodennakoisyys" prefWidth="100.0" text="Laske juoksu %" />
            </AnchorPane>
        </ScrollPane>
    </center>
@@ -175,11 +181,14 @@
                <MenuItem mnemonicParsing="false" onAction="#sulje" text="Sulje" />
            </Menu>
            <Menu mnemonicParsing="false" text="Sarja">
-               <MenuItem mnemonicParsing="false" text="Miehet" />
-            <MenuItem mnemonicParsing="false" text="Naiset" />
+               <RadioMenuItem fx:id="menuItemMiehet" mnemonicParsing="false" selected="true" text="Miehet">
+               <toggleGroup>
+                  <ToggleGroup fx:id="sarja" />
+               </toggleGroup></RadioMenuItem>
+               <RadioMenuItem fx:id="menuItemNaiset" mnemonicParsing="false" text="Naiset" toggleGroup="$sarja" />
            </Menu>
            <Menu mnemonicParsing="false" text="Ohje">
-               <MenuItem mnemonicParsing="false" text="Tietoa" />
+               <RadioMenuItem mnemonicParsing="false" text="Tietoa" />
            </Menu>
          <Menu mnemonicParsing="false" text="Joukkue">
            <items>
