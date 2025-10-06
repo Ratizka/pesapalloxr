@@ -38,6 +38,8 @@ public class PesapalloxrController {
     private final Map<String, Double> naistenXrMap = new HashMap<>();
     private final Map<String, Double> SijaintiMapX = new HashMap<>();
     private final Map<String, Double> SijaintiMapY = new HashMap<>();
+    public TextField xmetri;
+    public TextField ymetri;
     private int otteluID;
     @FXML private ComboBox<String> saumakorkeuscombobox;
     @FXML private ComboBox<String> ulkopelitempocombobox;
@@ -689,9 +691,9 @@ public class PesapalloxrController {
 
 
         graphicsContext.strokeLine(150, 37.5, 600, 37.5); // Takaraja
-        graphicsContext.strokeLine(150, 37.5, 150, 532.5); // Kolmosjatke
+        graphicsContext.strokeLine(150, 37.5, 150, 550); // Kolmosjatke
         graphicsContext.strokeLine(600, 37.5, 600, 465); // Kakkosjatke
-        graphicsContext.strokeLine(300, 690, 435, 690); // Kotipesä
+        graphicsContext.strokeLine(280, 690, 445, 690); // Kotipesä
 
         graphicsContext.strokeLine(150, 465, 337.5, 690); // Kolmosraja
 
@@ -702,9 +704,9 @@ public class PesapalloxrController {
         //graphicsContext.strokeLine(620, 430, 600, 430);
         //graphicsContext.strokeLine(130, 430, 150, 430);
 
-        graphicsContext.strokeLine(212, 592.5, 600, 420); // 1-2 väli
+        graphicsContext.strokeLine(197, 592.5, 600, 420); // 1-2 väli
 
-        graphicsContext.strokeLine(150, 532.5, 310, 690); // Kotijuoksuviiva
+        graphicsContext.strokeLine(150, 550, 300, 690); // Kotijuoksuviiva
 
         graphicsContext.fillOval(265, 105, 10, 10); // Kolmoskoppari
 
@@ -723,6 +725,9 @@ public class PesapalloxrController {
         double mouseX = event.getX() - 2.5;
         double mouseY = event.getY() - 2.5;
 
+        double xMetri = event.getX();
+        double yMetri = event.getY();
+
         double y = mouseY / 750;
 
         GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
@@ -732,14 +737,41 @@ public class PesapalloxrController {
             graphicsContext.setFill(Color.BLUE);
         }
 
-        System.out.print((event.getX()/150-1)*14 + "\n");
-        System.out.print((event.getY()/690-1)*-99.41+ "\n" );
+        //System.out.print((event.getX()/150-1)*12 + "\n");
+        //System.out.print((event.getY()/690-1)*-86.71265+ "\n" );
+
         graphicsContext.fillOval(mouseX, mouseY, 5, 5);
 
         koordinaattix.setText(String.format(Locale.US, "%.3f", 1 - mouseX / 750));
         koordinaattiy.setText(String.format(Locale.US, "%.3f",y));
 
         sijaintitext.setText(haesijanti(y));
+
+        if (menuItemMiehet.isSelected()){
+            lyonninSijaintiMetreissaMiestenRajat(xMetri, yMetri);
+        }else{
+            lyonninSijaintiMetreissaNaistenRajat(xMetri, yMetri);
+        }
+
+    }
+
+    @FXML
+    private void lyonninSijaintiMetreissaMiestenRajat(double x, double y){
+        double xLaskettu = (x/150-1)*14;
+        double yLaskettu = (y/690-1)*-101.52;
+
+        xmetri.setText(String.format(Locale.US, "%.2f",xLaskettu));
+        ymetri.setText(String.format(Locale.US, "%.2f",yLaskettu));
+
+    }
+
+    @FXML
+    private void lyonninSijaintiMetreissaNaistenRajat(double x, double y){
+        double xLaskettu = (x/150-1)*12;
+        double yLaskettu = (y/690-1)*-86.71265;
+
+        xmetri.setText(String.format(Locale.US, "%.2f",xLaskettu));
+        ymetri.setText(String.format(Locale.US, "%.2f",yLaskettu));
 
     }
 
@@ -1219,6 +1251,15 @@ public class PesapalloxrController {
         }
 
         etenija.setText(kotietenija.getValue().getNimi());
+    }
+
+    @FXML
+    private void vierasetenijalisays(){
+        if (vierasetenija.getValue() == null){
+            return;
+        }
+
+        etenija.setText(vierasetenija.getValue().getNimi());
     }
 
 
