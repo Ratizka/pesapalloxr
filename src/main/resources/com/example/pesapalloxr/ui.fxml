@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane fx:id="ui" prefHeight="1040.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pesapalloxr.PesapalloxrController">
+<BorderPane fx:id="ui" prefHeight="1040.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pesapalloxr.PesapalloxrController">
    <center>
        <ScrollPane>
            <AnchorPane>
@@ -150,7 +150,7 @@
                        <TableColumn fx:id="taulukkosijainti" prefWidth="75.0" text="sijainti" />
                        <TableColumn fx:id="taulukkolyonti" prefWidth="75.0" text="lyonti" />
                        <TableColumn fx:id="taulukkojuoksut" prefWidth="75.0" text="juoksut" />
-                  <TableColumn fx:id="taulukkoJuoksunTodennakoisyys" prefWidth="75.0" text="juoksun todennäköiysyys" />
+                       <TableColumn fx:id="taulukkoJuoksunTodennakoisyys" prefWidth="75.0" text="juoksun todennäköiysyys" />
                        <TableColumn fx:id="taulukkoulkopelivirhe" prefWidth="75.0" text="ulkopelivirhe" />
                        <TableColumn fx:id="taulukkolapilyonti" prefWidth="75.0" text="läpilyönti" />
                        <TableColumn fx:id="taulukkokunnari" prefWidth="75.0" text="kunnari" />

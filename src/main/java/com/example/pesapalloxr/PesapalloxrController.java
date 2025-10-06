@@ -1,5 +1,6 @@
 package com.example.pesapalloxr;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -920,8 +921,6 @@ public class PesapalloxrController {
         try {
             String otteluid = ottelunid.getText();
 
-            otteluID = Integer.parseInt(ottelunid.getText());
-
             String ilma = "https://api.pesistulokset.fi/api/v1/public/match?id=" + otteluid + "&apikey=wRX0tTke3DZ8RLKAMntjZ81LwgNQuSN9";
 
             HttpClient client = HttpClient.newHttpClient();
@@ -934,6 +933,12 @@ public class PesapalloxrController {
 
             client.close();
 
+            if (jsonObject.has("error")) {
+                return null;
+            }
+
+            otteluID = Integer.parseInt(ottelunid.getText());
+
             return jsonObject;
         } catch (Exception e) {
             System.err.print(e.getMessage());
@@ -942,19 +947,45 @@ public class PesapalloxrController {
         return null;
     }
 
+    public class HaeOtteluThread extends Thread{
+        @Override
+        public void run() {
+            JSONObject data = haeotteluntiedot();
+
+            if (data == null) {
+                return;
+            }
+            pelaajalisays(data);
+        }
+    }
+
     @FXML
     private void haepelaajat(){
-        JSONObject jsonObject = haeotteluntiedot();
+        String otteluid = ottelunid.getText();
 
-        if ((jsonObject != null && jsonObject.has("error")) | jsonObject == null) {
+        if (otteluid.isEmpty()) {
             return;
         }
-        kotipelaajat(jsonObject);
-        vieraspelaajat(jsonObject);
-        kotipelaajatulkopelaajat(jsonObject);
-        vieraspelaajatulkopelaajat(jsonObject);
-        kotipelaajatetenijat(jsonObject);
-        vieraspelaajaetenijat(jsonObject);
+
+        Thread t = new HaeOtteluThread();
+        t.start();
+    }
+
+    private void pelaajalisays(JSONObject jsonObject) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if ((jsonObject != null && jsonObject.has("error")) | jsonObject == null) {
+                    return;
+                }
+                kotipelaajat(jsonObject);
+                vieraspelaajat(jsonObject);
+                kotipelaajatulkopelaajat(jsonObject);
+                vieraspelaajatulkopelaajat(jsonObject);
+                kotipelaajatetenijat(jsonObject);
+                vieraspelaajaetenijat(jsonObject);
+            }
+        });
     }
 
     @FXML
@@ -1183,7 +1214,7 @@ public class PesapalloxrController {
 
     @FXML
     private void kotietenijalisays(){
-        if (vierasulkopelaajat.getValue() == null){
+        if (kotietenija.getValue() == null){
             return;
         }
 
