@@ -195,7 +195,7 @@ public class PesapalloxrController {
         taulukkomuokkaus();
         sarakkeidenmuokkaus();
         xrmap();
-        miestensijanti();
+        pelaajienSijaintiLisays();
         miestensijantiy();
     }
 
@@ -369,7 +369,7 @@ public class PesapalloxrController {
 
     }
 
-    private void miestensijanti(){
+    private void pelaajienSijaintiLisays(){
         SijaintiMapX.put("kaannettypertsal", 0.50);
         SijaintiMapX.put("oulul", 0.50);
         SijaintiMapX.put("pertsal", 0.50);
@@ -731,6 +731,8 @@ public class PesapalloxrController {
             graphicsContext.setFill(Color.BLUE);
         }
 
+        System.out.print((event.getX()/150-1)*14 + "\n");
+        System.out.print((event.getY()/690-1)*-99.41+ "\n" );
         graphicsContext.fillOval(mouseX, mouseY, 5, 5);
 
         koordinaattix.setText(String.format(Locale.US, "%.3f", 1 - mouseX / 750));
@@ -916,9 +918,6 @@ public class PesapalloxrController {
     @FXML
     private JSONObject haeotteluntiedot() {
         try {
-            //  + URLEncoder.encode(123, StandardCharsets.UTF_8);
-            //"https://api.pesistulokset.fi/api/v1/public/match?id=127440&apikey=wRX0tTke3DZ8RLKAMntjZ81LwgNQuSN9"
-
             String otteluid = ottelunid.getText();
 
             otteluID = Integer.parseInt(ottelunid.getText());
@@ -935,7 +934,6 @@ public class PesapalloxrController {
 
             client.close();
 
-
             return jsonObject;
         } catch (Exception e) {
             System.err.print(e.getMessage());
@@ -945,14 +943,23 @@ public class PesapalloxrController {
     }
 
     @FXML
-    private void kotipelaajat() {
-        ObservableList<Lyojat> kotilyojatlista = FXCollections.observableArrayList();
-
+    private void haepelaajat(){
         JSONObject jsonObject = haeotteluntiedot();
 
-        if (jsonObject == null) {
+        if ((jsonObject != null && jsonObject.has("error")) | jsonObject == null) {
             return;
         }
+        kotipelaajat(jsonObject);
+        vieraspelaajat(jsonObject);
+        kotipelaajatulkopelaajat(jsonObject);
+        vieraspelaajatulkopelaajat(jsonObject);
+        kotipelaajatetenijat(jsonObject);
+        vieraspelaajaetenijat(jsonObject);
+    }
+
+    @FXML
+    private void kotipelaajat(JSONObject jsonObject) {
+        ObservableList<Lyojat> kotilyojatlista = FXCollections.observableArrayList();
 
         JSONArray kotipelaajalista = jsonObject.getJSONObject("home").getJSONArray("players");
 
@@ -979,14 +986,8 @@ public class PesapalloxrController {
     }
 
     @FXML
-    private void vieraspelaajat() {
+    private void vieraspelaajat(JSONObject jsonObject) {
         ObservableList<Lyojat> vieraslyojatlista = FXCollections.observableArrayList();
-
-        JSONObject jsonObject = haeotteluntiedot();
-
-        if (jsonObject == null) {
-            return;
-        }
 
         JSONArray vieraspelaajalista = jsonObject.getJSONObject("away").getJSONArray("players");
 
@@ -1010,6 +1011,130 @@ public class PesapalloxrController {
         vieraslyojat.setItems(vieraslyojatlista);
 
         vieraslyojat.getSelectionModel().selectFirst();
+
+    }
+
+    @FXML
+    private void kotipelaajatulkopelaajat(JSONObject jsonObject) {
+        ObservableList<Lyojat> kotilyojatlista = FXCollections.observableArrayList();
+
+        JSONArray kotipelaajalista = jsonObject.getJSONObject("home").getJSONArray("players");
+
+        String vierasjoukkue = jsonObject.getJSONObject("home").getString("name");
+
+        int kotijoukkueID = jsonObject.getJSONObject("home").getInt("sport_club_id");
+
+        int kotipelaajapituus = kotipelaajalista.length();
+
+        for (int i = 0; i < kotipelaajapituus; i++) {
+
+            JSONObject pelaaja = kotipelaajalista.getJSONObject(i);
+
+            kotilyojatlista.add(
+                    new Lyojat(
+                            pelaaja.getInt("number"), pelaaja.getInt("id"), pelaaja.getString("name"),
+                            kotijoukkueID, vierasjoukkue
+                    )
+            );
+        }
+        kotiulkopelaajat.setItems(kotilyojatlista);
+
+        kotiulkopelaajat.getSelectionModel().selectFirst();
+    }
+
+    @FXML
+    private void kotipelaajatetenijat(JSONObject jsonObject) {
+        ObservableList<Lyojat> kotilyojatlista = FXCollections.observableArrayList();
+
+        JSONArray kotipelaajalista = jsonObject.getJSONObject("home").getJSONArray("players");
+
+        String vierasjoukkue = jsonObject.getJSONObject("home").getString("name");
+
+        int kotijoukkueID = jsonObject.getJSONObject("home").getInt("sport_club_id");
+
+        int kotipelaajapituus = kotipelaajalista.length();
+
+        for (int i = 0; i < kotipelaajapituus; i++) {
+
+            JSONObject pelaaja = kotipelaajalista.getJSONObject(i);
+
+            kotilyojatlista.add(
+                    new Lyojat(
+                            pelaaja.getInt("number"), pelaaja.getInt("id"), pelaaja.getString("name"),
+                            kotijoukkueID, vierasjoukkue
+                    )
+            );
+        }
+        kotietenija.setItems(kotilyojatlista);
+
+        kotietenija.getSelectionModel().selectFirst();
+    }
+
+    @FXML
+    private void vieraspelaajatulkopelaajat(JSONObject jsonObject) {
+        ObservableList<Lyojat> vieraslyojatlista = FXCollections.observableArrayList();
+
+        if (jsonObject == null) {
+            return;
+        }
+
+        JSONArray vieraspelaajalista = jsonObject.getJSONObject("away").getJSONArray("players");
+
+        int kotijoukkueID = jsonObject.getJSONObject("away").getInt("sport_club_id");
+
+        String vierasjoukkue = jsonObject.getJSONObject("away").getString("name");
+
+        int vieraspelaajapituus = vieraspelaajalista.length();
+
+        for (int i = 0; i < vieraspelaajapituus; i++) {
+
+            JSONObject pelaaja = vieraspelaajalista.getJSONObject(i);
+
+            vieraslyojatlista.add(
+                    new Lyojat(
+                            pelaaja.getInt("number"), pelaaja.getInt("id"), pelaaja.getString("name"),
+                            kotijoukkueID, vierasjoukkue
+                    )
+            );
+        }
+
+        vierasulkopelaajat.setItems(vieraslyojatlista);
+
+        vierasulkopelaajat.getSelectionModel().selectFirst();
+
+    }
+
+    @FXML
+    private void vieraspelaajaetenijat(JSONObject jsonObject) {
+        ObservableList<Lyojat> vieraslyojatlista = FXCollections.observableArrayList();
+
+        if (jsonObject == null) {
+            return;
+        }
+
+        JSONArray vieraspelaajalista = jsonObject.getJSONObject("away").getJSONArray("players");
+
+        int kotijoukkueID = jsonObject.getJSONObject("away").getInt("sport_club_id");
+
+        String vierasjoukkue = jsonObject.getJSONObject("away").getString("name");
+
+        int vieraspelaajapituus = vieraspelaajalista.length();
+
+        for (int i = 0; i < vieraspelaajapituus; i++) {
+
+            JSONObject pelaaja = vieraspelaajalista.getJSONObject(i);
+
+            vieraslyojatlista.add(
+                    new Lyojat(
+                            pelaaja.getInt("number"), pelaaja.getInt("id"), pelaaja.getString("name"),
+                            kotijoukkueID, vierasjoukkue
+                    )
+            );
+        }
+
+        vierasetenija.setItems(vieraslyojatlista);
+
+        vierasetenija.getSelectionModel().selectFirst();
 
     }
 
@@ -1065,164 +1190,9 @@ public class PesapalloxrController {
         etenija.setText(kotietenija.getValue().getNimi());
     }
 
-    @FXML
-    private void haepelaajat(){
-        kotipelaajat();
-        vieraspelaajat();
-        haepelaajatulkopelaajat();
-        kotipelaajatetenijat();
-        vieraspelaajaetenijat();
-    }
-
-    @FXML
-    private void kotipelaajatulkopelaajat() {
-        ObservableList<Lyojat> kotilyojatlista = FXCollections.observableArrayList();
-
-        JSONObject jsonObject = haeotteluntiedot();
-
-        if (jsonObject == null) {
-            return;
-        }
-
-        JSONArray kotipelaajalista = jsonObject.getJSONObject("home").getJSONArray("players");
-
-
-        String vierasjoukkue = jsonObject.getJSONObject("home").getString("name");
-
-        int kotijoukkueID = jsonObject.getJSONObject("home").getInt("sport_club_id");
-
-        int kotipelaajapituus = kotipelaajalista.length();
-
-        for (int i = 0; i < kotipelaajapituus; i++) {
-
-            JSONObject pelaaja = kotipelaajalista.getJSONObject(i);
-
-            kotilyojatlista.add(
-                    new Lyojat(
-                            pelaaja.getInt("number"), pelaaja.getInt("id"), pelaaja.getString("name"),
-                            kotijoukkueID, vierasjoukkue
-                    )
-            );
-        }
-        kotiulkopelaajat.setItems(kotilyojatlista);
-
-        kotiulkopelaajat.getSelectionModel().selectFirst();
-    }
-
-    @FXML
-    private void kotipelaajatetenijat() {
-        ObservableList<Lyojat> kotilyojatlista = FXCollections.observableArrayList();
-
-        JSONObject jsonObject = haeotteluntiedot();
-
-        if (jsonObject == null) {
-            return;
-        }
-
-        JSONArray kotipelaajalista = jsonObject.getJSONObject("home").getJSONArray("players");
-
-        String vierasjoukkue = jsonObject.getJSONObject("home").getString("name");
-
-        int kotijoukkueID = jsonObject.getJSONObject("home").getInt("sport_club_id");
-
-        int kotipelaajapituus = kotipelaajalista.length();
-
-        for (int i = 0; i < kotipelaajapituus; i++) {
-
-            JSONObject pelaaja = kotipelaajalista.getJSONObject(i);
-
-            kotilyojatlista.add(
-                    new Lyojat(
-                            pelaaja.getInt("number"), pelaaja.getInt("id"), pelaaja.getString("name"),
-                            kotijoukkueID, vierasjoukkue
-                    )
-            );
-        }
-        kotietenija.setItems(kotilyojatlista);
-
-        kotietenija.getSelectionModel().selectFirst();
-    }
-
-    @FXML
-    private void vieraspelaajatulkopelaajat() {
-        ObservableList<Lyojat> vieraslyojatlista = FXCollections.observableArrayList();
-
-        JSONObject jsonObject = haeotteluntiedot();
-
-        if (jsonObject == null) {
-            return;
-        }
-
-        JSONArray vieraspelaajalista = jsonObject.getJSONObject("away").getJSONArray("players");
-
-        int kotijoukkueID = jsonObject.getJSONObject("away").getInt("sport_club_id");
-
-        String vierasjoukkue = jsonObject.getJSONObject("away").getString("name");
-
-        int vieraspelaajapituus = vieraspelaajalista.length();
-
-        for (int i = 0; i < vieraspelaajapituus; i++) {
-
-            JSONObject pelaaja = vieraspelaajalista.getJSONObject(i);
-
-            vieraslyojatlista.add(
-                    new Lyojat(
-                            pelaaja.getInt("number"), pelaaja.getInt("id"), pelaaja.getString("name"),
-                            kotijoukkueID, vierasjoukkue
-                    )
-            );
-        }
-
-        vierasulkopelaajat.setItems(vieraslyojatlista);
-
-        vierasulkopelaajat.getSelectionModel().selectFirst();
-
-    }
-
-    @FXML
-    private void vieraspelaajaetenijat() {
-        ObservableList<Lyojat> vieraslyojatlista = FXCollections.observableArrayList();
-
-        JSONObject jsonObject = haeotteluntiedot();
-
-        if (jsonObject == null) {
-            return;
-        }
-
-        JSONArray vieraspelaajalista = jsonObject.getJSONObject("away").getJSONArray("players");
-
-        int kotijoukkueID = jsonObject.getJSONObject("away").getInt("sport_club_id");
-
-        String vierasjoukkue = jsonObject.getJSONObject("away").getString("name");
-
-        int vieraspelaajapituus = vieraspelaajalista.length();
-
-        for (int i = 0; i < vieraspelaajapituus; i++) {
-
-            JSONObject pelaaja = vieraspelaajalista.getJSONObject(i);
-
-            vieraslyojatlista.add(
-                    new Lyojat(
-                            pelaaja.getInt("number"), pelaaja.getInt("id"), pelaaja.getString("name"),
-                            kotijoukkueID, vierasjoukkue
-                    )
-            );
-        }
-
-        vierasetenija.setItems(vieraslyojatlista);
-
-        vierasetenija.getSelectionModel().selectFirst();
-
-    }
-    @FXML
-    private void haepelaajatulkopelaajat(){
-        kotipelaajatulkopelaajat();
-        vieraspelaajatulkopelaajat();
-    }
 
     @FXML
     private void poistarivi(){
-
         Lyontitiedot poistettava = taulukkoxr.getSelectionModel().getSelectedItem();
 
         taulukkoxr.getItems().remove(poistettava);

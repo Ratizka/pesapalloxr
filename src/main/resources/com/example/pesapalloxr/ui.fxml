@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane fx:id="ui" prefHeight="1040.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pesapalloxr.PesapalloxrController">
+<BorderPane fx:id="ui" prefHeight="1040.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pesapalloxr.PesapalloxrController">
    <center>
        <ScrollPane>
            <AnchorPane>
