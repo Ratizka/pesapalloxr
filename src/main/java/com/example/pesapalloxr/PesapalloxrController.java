@@ -35,11 +35,13 @@ import java.util.*;
 public class PesapalloxrController {
 
     private final Map<String, Double> miestenXrMap = new HashMap<>();
+    private final Map<String, Double> miestenXLapiMap = new HashMap<>();
     private final Map<String, Double> naistenXrMap = new HashMap<>();
     private final Map<String, Double> SijaintiMapX = new HashMap<>();
     private final Map<String, Double> SijaintiMapY = new HashMap<>();
     public TextField xmetri;
     public TextField ymetri;
+    public TextField lapilyontiolettama;
     private int otteluID;
     @FXML private ComboBox<String> saumakorkeuscombobox;
     @FXML private ComboBox<String> ulkopelitempocombobox;
@@ -200,6 +202,7 @@ public class PesapalloxrController {
         xrmap();
         pelaajienSijaintiLisays();
         miestensijantiy();
+        miestenXlapilyontiMap();
     }
 
     private void resoluutio() {
@@ -369,6 +372,55 @@ public class PesapalloxrController {
         miestenXrMap.put("l", 23.19);
         miestenXrMap.put("S", 8.53);
         miestenXrMap.put("1v", 6.57882);
+
+    }
+
+    private void miestenXlapilyontiMap(){
+        miestenXLapiMap.put("msualkuarvo", -20.23931974);
+        miestenXLapiMap.put("kumura", 0.89692858);
+        miestenXLapiMap.put("nappi", -15.67192285);
+        miestenXLapiMap.put("pomppu", -0.85974399);
+        miestenXLapiMap.put("pussari", -15.28975029);
+        miestenXLapiMap.put("pystari/viisto", 0.42902384);
+        miestenXLapiMap.put("vaakamaila", 1.09875118);
+        miestenXLapiMap.put("varsi", -15.6036073);
+        miestenXLapiMap.put("koppi", 0.000);
+
+        miestenXLapiMap.put("karvauskahdella", -18.16454414);
+        miestenXLapiMap.put("karvausyhdella", 0.13573397);
+        miestenXLapiMap.put("oulu", -0.77576714);
+        miestenXLapiMap.put("pertsa", -0.55334101);
+        miestenXLapiMap.put("ristivitonen", -0.107884802);
+        miestenXLapiMap.put("sailytys", 0.13665726);
+        miestenXLapiMap.put("tahko", -1.27498680);
+        miestenXLapiMap.put("tahko2", -0.48639065);
+        miestenXLapiMap.put("kaannettypertsa", 0.000);
+        miestenXLapiMap.put("muu", -10.0);
+
+        miestenXLapiMap.put("vääräpois", 0.000);
+        miestenXLapiMap.put("kulma", 0.000);
+        miestenXLapiMap.put("lento", -2.12432265);
+        miestenXLapiMap.put("vapaa", 0.98174228);
+        miestenXLapiMap.put("etulyhyt", 0.000);
+        miestenXLapiMap.put("etupitkä", 15.13486023);
+        miestenXLapiMap.put("linjaetu", 16.87343891);
+        miestenXLapiMap.put("linjataka", 17.10900609);
+        miestenXLapiMap.put("takakenttä", 16.30968012);
+        miestenXLapiMap.put("erinomainen", 0.02941683);
+        miestenXLapiMap.put("huono", -0.04073751);
+        miestenXLapiMap.put("hyvä", -0.22099589);
+        miestenXLapiMap.put("keskiverto", -0.19710496);
+        miestenXLapiMap.put("heikko", 0.000);
+
+        miestenXLapiMap.put("2k", 2.04641622);
+        miestenXLapiMap.put("3k", 2.30121352);
+        miestenXLapiMap.put("2p", -26.23246982);
+        miestenXLapiMap.put("2v", 0.47406555);
+        miestenXLapiMap.put("3p", -20.02194498);
+        miestenXLapiMap.put("3v", 13.7784512);
+        miestenXLapiMap.put("l", 53.56879673);
+        miestenXLapiMap.put("S", 13.71007295);
+        miestenXLapiMap.put("1v", -92.02236471);
 
     }
 
@@ -822,10 +874,11 @@ public class PesapalloxrController {
         String etenijaxr = etenija.getText();
         String etenijalaatuxr = etenijalaatucombobox.getValue();
         //Integer otteluID = Integer.valueOf(idottelu.getText());
-        Double juoksutodennakoisyys = laskeTodennakoisyys();
+        Double juoksutodennakoisyys = laskeJuoksuTodennakoisyysMiehet();
         String kunnarixr = kunnari.getValue();
         String tilanne = tilannecombobox.getValue();
         String ulkopelisuoritusxr = ulkopelisuorituscombobox.getValue();
+
 
         Lyontitiedot tiedot = new Lyontitiedot(
                 x, y,
@@ -840,11 +893,19 @@ public class PesapalloxrController {
 
         taulukkoxr.getItems().addAll(tiedot);
 
+        laskeTodennakoisyysLapi();
+
+    }
+
+    @FXML
+    private void laskeTodennakoisyydet(){
+        laskeJuoksuTodennakoisyysMiehet();
+        laskeTodennakoisyysLapi();
     }
 
 
     @FXML
-    public double laskeTodennakoisyys(){
+    private double laskeJuoksuTodennakoisyysMiehet(){
         String kuvioxr = kuvio.getValue();
         String tyyppixr = tyyppi.getValue();
         String merkkixr = merkki.getValue();
@@ -872,7 +933,40 @@ public class PesapalloxrController {
 
         juoksuodottama.setText(String.format(Locale.US, "%.3f", juoksutn));
 
+        laskeTodennakoisyysLapi();
+
         return juoksutn;
+    }
+
+    @FXML
+    private void laskeTodennakoisyysLapi(){
+        String kuvioxr = kuvio.getValue();
+        String tyyppixr = tyyppi.getValue();
+        String merkkixr = merkki.getValue();
+        String etenijalaatuxr = etenijalaatucombobox.getValue();
+        String ulkopelaaja = ulkopelipaikka.getValue();
+
+        Double kuvio = miestenXLapiMap.get(kuvioxr);
+        Double tyyppi = miestenXLapiMap.get(tyyppixr);
+        Double merkki = miestenXLapiMap.get(merkkixr);
+        Double etenijalaatu = miestenXLapiMap.get(etenijalaatuxr);
+        Double ulkopelaajaxr = miestenXLapiMap.get(ulkopelaaja);
+
+        double x = Double.parseDouble(koordinaattix.getText());
+        double y = Double.parseDouble(koordinaattiy.getText());
+
+        String sijainti = haesijanti(y);
+        Double sijanti = miestenXLapiMap.get(sijainti);
+
+        Double ulkopelaajaX = SijaintiMapX.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaY = SijaintiMapY.get(kuvioxr + ulkopelaaja);
+
+        double etaisyys = Math.sqrt(Math.pow(x-ulkopelaajaX,2) + Math.pow(y-ulkopelaajaY,2));
+
+        double juoksutn = 1 / (1 + Math.exp(-(miestenXLapiMap.get("msualkuarvo") + kuvio + tyyppi + merkki + etenijalaatu + sijanti + ulkopelaajaxr * etaisyys)));
+
+        lapilyontiolettama.setText(String.format(Locale.US, "%.3f", juoksutn));
+
     }
 
     @FXML
