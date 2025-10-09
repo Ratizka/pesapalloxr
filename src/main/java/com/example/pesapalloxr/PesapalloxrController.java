@@ -382,51 +382,47 @@ public class PesapalloxrController {
     }
 
     private void miestenXlapilyontiMap() {
-        miestenXLapiMap.put("msualkuarvo", -20.23931974);
-        miestenXLapiMap.put("kumura", 0.89692858);
-        miestenXLapiMap.put("nappi", -15.67192285);
-        miestenXLapiMap.put("pomppu", -0.85974399);
-        miestenXLapiMap.put("pussari", -15.28975029);
-        miestenXLapiMap.put("pystari/viisto", 0.42902384);
-        miestenXLapiMap.put("vaakamaila", 1.09875118);
-        miestenXLapiMap.put("varsi", -15.6036073);
+        miestenXLapiMap.put("msualkuarvo", -3.74111484357479);
+        miestenXLapiMap.put("kumura", 0.977723470386608);
+        miestenXLapiMap.put("nappi", -19.8325083730858);
+        miestenXLapiMap.put("pomppu", -0.874800259177843);
+        miestenXLapiMap.put("pussari", -17.8878537782153);
+        miestenXLapiMap.put("pystari/viisto", 0.570457975284505);
+        miestenXLapiMap.put("vaakamaila", 1.24146978346401);
+        miestenXLapiMap.put("varsi", -19.0243635240676);
         miestenXLapiMap.put("koppi", 0.000);
 
-        miestenXLapiMap.put("karvauskahdella", -18.16454414);
-        miestenXLapiMap.put("karvausyhdella", 0.13573397);
-        miestenXLapiMap.put("oulu", -0.77576714);
-        miestenXLapiMap.put("pertsa", -0.55334101);
-        miestenXLapiMap.put("ristivitonen", -0.107884802);
-        miestenXLapiMap.put("sailytys", 0.13665726);
-        miestenXLapiMap.put("tahko", -1.27498680);
-        miestenXLapiMap.put("tahko2", -0.48639065);
+        miestenXLapiMap.put("karvauskahdella", -20.1989628741689);
+        miestenXLapiMap.put("karvausyhdella", 0.143950424284888);
+        miestenXLapiMap.put("oulu", -0.755901626136598);
+        miestenXLapiMap.put("pertsa", -0.532995293745015);
+        miestenXLapiMap.put("ristivitonen", -0.107682577007698);
+        miestenXLapiMap.put("sailytys", 0.201028493574105);
+        miestenXLapiMap.put("tahko", -1.15519621313716);
+        miestenXLapiMap.put("tahko2", -0.440085497399834);
         miestenXLapiMap.put("kaannettypertsa", 0.000);
-        miestenXLapiMap.put("muu", -10.0);
+        miestenXLapiMap.put("muu", -20.0);
 
         miestenXLapiMap.put("vääräpois", 0.000);
         miestenXLapiMap.put("kulma", 0.000);
-        miestenXLapiMap.put("lento", -2.12432265);
-        miestenXLapiMap.put("vapaa", 0.98174228);
-        miestenXLapiMap.put("etulyhyt", 0.000);
-        miestenXLapiMap.put("etupitkä", 15.13486023);
-        miestenXLapiMap.put("linjaetu", 16.87343891);
-        miestenXLapiMap.put("linjataka", 17.10900609);
-        miestenXLapiMap.put("takakenttä", 16.30968012);
-        miestenXLapiMap.put("erinomainen", 0.02941683);
-        miestenXLapiMap.put("huono", -0.04073751);
-        miestenXLapiMap.put("hyvä", -0.22099589);
-        miestenXLapiMap.put("keskiverto", -0.19710496);
+        miestenXLapiMap.put("lento", 0.000);
+        miestenXLapiMap.put("vapaa", 1.143045);
+
+        miestenXLapiMap.put("erinomainen", -0.069127674681326);
+        miestenXLapiMap.put("huono", -0.0754493112298983);
+        miestenXLapiMap.put("hyvä", -0.303208882019161);
+        miestenXLapiMap.put("keskiverto", -0.228036303390344);
         miestenXLapiMap.put("heikko", 0.000);
 
-        miestenXLapiMap.put("2k", 2.04641622);
-        miestenXLapiMap.put("3k", 2.30121352);
-        miestenXLapiMap.put("2p", -26.23246982);
-        miestenXLapiMap.put("2v", 0.47406555);
-        miestenXLapiMap.put("3p", -20.02194498);
-        miestenXLapiMap.put("3v", 13.7784512);
-        miestenXLapiMap.put("l", 53.56879673);
-        miestenXLapiMap.put("S", 13.71007295);
-        miestenXLapiMap.put("1v", -92.02236471);
+        miestenXLapiMap.put("2k", -0.281165035254733);
+        miestenXLapiMap.put("3k", -0.0817919030566167);
+        miestenXLapiMap.put("2p", -21.8889556287686);
+        miestenXLapiMap.put("2v", 2.97700892465864);
+        miestenXLapiMap.put("3p", -16.522098535326);
+        miestenXLapiMap.put("3v", 14.3843690102728);
+        miestenXLapiMap.put("l", -1980.43938443253);
+        miestenXLapiMap.put("S", 11.4667870418702);
+        miestenXLapiMap.put("1v", -86.4424905304973);
 
     }
 
@@ -961,15 +957,12 @@ public class PesapalloxrController {
         double x = Double.parseDouble(koordinaattix.getText());
         double y = Double.parseDouble(koordinaattiy.getText());
 
-        String sijainti = haesijanti(y);
-        Double sijanti = miestenXLapiMap.get(sijainti);
-
         Double ulkopelaajaX = SijaintiMapX.get(kuvioxr + ulkopelaaja);
         Double ulkopelaajaY = SijaintiMapY.get(kuvioxr + ulkopelaaja);
 
         double etaisyys = Math.sqrt(Math.pow(x - ulkopelaajaX, 2) + Math.pow(y - ulkopelaajaY, 2));
 
-        double juoksutn = 1 / (1 + Math.exp(-(miestenXLapiMap.get("msualkuarvo") + kuvio + tyyppi + merkki + etenijalaatu + sijanti + ulkopelaajaxr * etaisyys)));
+        double juoksutn = 1 / (1 + Math.exp(-(miestenXLapiMap.get("msualkuarvo") + kuvio + tyyppi + merkki + etenijalaatu + ulkopelaajaxr * etaisyys)));
 
         lapilyontiolettama.setText(String.format(Locale.US, "%.3f", juoksutn));
 
