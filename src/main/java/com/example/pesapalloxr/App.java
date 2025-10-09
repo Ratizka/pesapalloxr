@@ -3,13 +3,13 @@ package com.example.pesapalloxr;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javafx.application.Application;
 import java.io.IOException;
 
-public class Application extends javafx.application.Application {
+public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("ui.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("ui.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Juoksuodottama");
         stage.setScene(scene);
