@@ -1,6 +1,6 @@
 package com.example.pesapalloxr;
 
-public class Lyojat {
+public class Pelaajat {
 
     Integer numero;
     Integer id;
@@ -8,7 +8,7 @@ public class Lyojat {
     Integer joukkueID;
     String joukkue;
 
-    public Lyojat(Integer numero, Integer id, String nimi, Integer joukkueID, String joukkue) {
+    public Pelaajat(Integer numero, Integer id, String nimi, Integer joukkueID, String joukkue) {
         this.numero = numero;
         this.id = id;
         this.nimi = nimi;
