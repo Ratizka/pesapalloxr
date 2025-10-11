@@ -3,7 +3,9 @@ package com.example.pesapalloxr;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
@@ -11,12 +13,14 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
+import javafx.util.converter.IntegerStringConverter;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.json.JSONArray;
@@ -38,8 +42,12 @@ public class PesapalloxrController {
     private final Map<String, Double> miestenXrMap = new HashMap<>();
     private final Map<String, Double> miestenXLapiMap = new HashMap<>();
     private final Map<String, Double> naistenXrMap = new HashMap<>();
-    private final Map<String, Double> SijaintiMapX = new HashMap<>();
-    private final Map<String, Double> SijaintiMapY = new HashMap<>();
+    private final Map<String, Double> miestenSijaintiMapX = new HashMap<>();
+    private final Map<String, Double> miestenSijaintiMapY = new HashMap<>();
+
+    @FXML private ComboBox<String> kumuranTyyppi;
+    @FXML private ComboBox<Integer> palojenMaara;
+    @FXML private Tooltip tempoToolTip;
     @FXML
     private TextField lyonninEtaisyysulkopelaajasta;
     @FXML
@@ -48,11 +56,6 @@ public class PesapalloxrController {
     private ComboBox<String> saumakorkeuscombobox;
     @FXML
     private ComboBox<String> ulkopelitempocombobox;
-
-    @FXML
-    private ComboBox<String> ulkopelijoukkuecombobox;
-    @FXML
-    private ComboBox<String> sisajoukkuecombobox;
     @FXML
     private TableColumn<Lyontitiedot, String> taulukkoTilanne;
     @FXML
@@ -61,7 +64,6 @@ public class PesapalloxrController {
     private RadioMenuItem menuItemMiehet;
     @FXML
     private RadioMenuItem menuItemNaiset;
-
     @FXML
     private ComboBox<String> ulkopelisuorituscombobox;
     @FXML
@@ -114,8 +116,6 @@ public class PesapalloxrController {
     private ComboBox<String> kunnari;
     @FXML
     private ComboBox<Integer> lyontinumero;
-    @FXML
-    private TextField idottelu;
     @FXML
     private TableColumn<Lyontitiedot, Integer> taulukkoOttelunID;
     @FXML
@@ -194,14 +194,15 @@ public class PesapalloxrController {
     private TextField sijaintitext;
     @FXML
     private ComboBox<String> lyonticombobox;
-    @FXML
-    private RadioButton vierasjoukkue;
 
+    @FXML
+    private void sulje() {
+        System.exit(0);
+    }
 
     @FXML
     public void initialize() {
         resoluutio();
-        //pesapallokentta();
         pesapallokentta();
         valikot();
         taulukontiedot();
@@ -221,42 +222,16 @@ public class PesapalloxrController {
         ui.setPrefHeight(height);
     }
 
-    private void taulukontiedot() {
-        taulukkoxr.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        taulukkokoordinaattix.setCellValueFactory(new PropertyValueFactory<>("koordinaattix"));
-        taulukkokoordinaattiy.setCellValueFactory(new PropertyValueFactory<>("koordinaattiy"));
-        taulukkokuvio.setCellValueFactory(new PropertyValueFactory<>("kuvio"));
-        taulukkosijainti.setCellValueFactory(new PropertyValueFactory<>("sijainti"));
-        taulukkomerkki.setCellValueFactory(new PropertyValueFactory<>("merkki"));
-        taulukkosyotto.setCellValueFactory(new PropertyValueFactory<>("syotto"));
-        taulukkojakso.setCellValueFactory(new PropertyValueFactory<>("jakso"));
-        taulukkojoukkue.setCellValueFactory(new PropertyValueFactory<>("joukkue"));
-        taulukkolyoja.setCellValueFactory(new PropertyValueFactory<>("lyoja"));
-        taulukkotyyppi.setCellValueFactory(new PropertyValueFactory<>("tyyppi"));
-        taulukkoOttelunID.setCellValueFactory(new PropertyValueFactory<>("ottelunID"));
-        taulukkovuoropari.setCellValueFactory(new PropertyValueFactory<>("vuoropari"));
-        taulukkoetenija.setCellValueFactory(new PropertyValueFactory<>("etenija"));
-        taulukkoulkopelijoukkue.setCellValueFactory(new PropertyValueFactory<>("ulkopelijoukkue"));
-        taulukkoulkopelaaja.setCellValueFactory(new PropertyValueFactory<>("ulkopelisuorittaja"));
-        taulukkoulkopelipaikka.setCellValueFactory(new PropertyValueFactory<>("ulkopelipaikka"));
-        taulukkolyontinumero.setCellValueFactory(new PropertyValueFactory<>("lyontinumero"));
-        taulukkovaaraalla.setCellValueFactory(new PropertyValueFactory<>("vaaraAlla"));
-        taulukkolyonti.setCellValueFactory(new PropertyValueFactory<>("lyonti"));
-        taulukkojuoksut.setCellValueFactory(new PropertyValueFactory<>("juoksut"));
-        taulukkolapilyonti.setCellValueFactory(new PropertyValueFactory<>("lapilyonti"));
-        taulukkokunnari.setCellValueFactory(new PropertyValueFactory<>("kunnari"));
-        taulukkoulkopelivirhe.setCellValueFactory(new PropertyValueFactory<>("ulkopelivirhe"));
-        taulukkoEtenijaLaatu.setCellValueFactory(new PropertyValueFactory<>("etenijanlaatu"));
-        taulukkoJuoksunTodennakoisyys.setCellValueFactory(new PropertyValueFactory<>("juoksutodennakoisyys"));
-        taulukkoTilanne.setCellValueFactory(new PropertyValueFactory<>("tilanne"));
-    }
-
-    @FXML
-    private void sulje() {
-        System.exit(0);
-    }
-
     private void valikot() {
+
+        tempoToolTip.setText("""
+                Ulkopelisuorituksen tempo\s
+                - Pysäytys: Pelaaja pysäyttää pallon\s
+                - Ali: Normaalia suoritusta hitaampi \s
+                - Peli: Normaali suoritus \s
+                - Yli: Normaalia suoritusta kovempi\s
+                ja virheen mahdollisuus on suuri
+                """);
         kuvio.getItems().addAll("oulu", "pertsa", "ristivitonen", "kaannettypertsa", "tahko", "tahko2", "sailytys",
                 "karvauskahdella", "karvausyhdella", "muu"
         );
@@ -273,6 +248,12 @@ public class PesapalloxrController {
         merkki.getSelectionModel().selectFirst();
 
         //
+
+        kumuranTyyppi.getItems().addAll("","matala", "korkea");
+        kumuranTyyppi.getSelectionModel().selectFirst();
+
+        palojenMaara.getItems().addAll(0,1,2);
+        palojenMaara.getSelectionModel().selectFirst();
 
         syotto.getItems().addAll("perus", "puolikorkea", "tolppa", "matala", "lautasväärä", "taktinen väärä/linkku");
         syotto.getSelectionModel().selectFirst();
@@ -332,6 +313,361 @@ public class PesapalloxrController {
 
         ulkopelitempocombobox.getItems().addAll("pysäytys", "ali", "peli", "yli");
         ulkopelitempocombobox.getSelectionModel().selectFirst();
+
+
+    }
+
+    @FXML
+    private void taulukkoValinta(){
+
+        taulukkoxr.getSelectionModel().clearSelection();
+
+    }
+
+    private void taulukontiedot() {
+
+        taulukkoxr.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        ContextMenu taulukkoContextMenu = new ContextMenu();
+        MenuItem taulukkopoista = new MenuItem("Poista");
+
+        taulukkoContextMenu.getItems().addAll(taulukkopoista);
+
+        taulukkoxr.setContextMenu(taulukkoContextMenu);
+
+        taulukkoxr.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode().equals(KeyCode.DELETE) & (taulukkoxr.getSelectionModel() != null)) {
+                poistarivi();
+            }
+        });
+
+        taulukkoxr.setOnContextMenuRequested(event -> {
+            taulukkoContextMenu.show(taulukkoxr, event.getScreenX(), event.getScreenY());
+        });
+
+        taulukkopoista.setOnAction(event -> {
+            if (taulukkoxr.getSelectionModel() != null) {
+                poistarivi();
+            }
+        });
+
+        taulukkoContextMenu.setOnHidden(windowEvent -> taulukkoValinta());
+
+
+        taulukkokoordinaattix.setCellValueFactory(new PropertyValueFactory<>("koordinaattix"));
+        taulukkokoordinaattiy.setCellValueFactory(new PropertyValueFactory<>("koordinaattiy"));
+        taulukkokuvio.setCellValueFactory(new PropertyValueFactory<>("kuvio"));
+        taulukkosijainti.setCellValueFactory(new PropertyValueFactory<>("sijainti"));
+        taulukkomerkki.setCellValueFactory(new PropertyValueFactory<>("merkki"));
+        taulukkosyotto.setCellValueFactory(new PropertyValueFactory<>("syotto"));
+        taulukkojakso.setCellValueFactory(new PropertyValueFactory<>("jakso"));
+        taulukkojoukkue.setCellValueFactory(new PropertyValueFactory<>("joukkue"));
+        taulukkolyoja.setCellValueFactory(new PropertyValueFactory<>("lyoja"));
+        taulukkotyyppi.setCellValueFactory(new PropertyValueFactory<>("tyyppi"));
+        taulukkoOttelunID.setCellValueFactory(new PropertyValueFactory<>("ottelunID"));
+        taulukkovuoropari.setCellValueFactory(new PropertyValueFactory<>("vuoropari"));
+        taulukkoetenija.setCellValueFactory(new PropertyValueFactory<>("etenija"));
+        taulukkoulkopelijoukkue.setCellValueFactory(new PropertyValueFactory<>("ulkopelijoukkue"));
+        taulukkoulkopelaaja.setCellValueFactory(new PropertyValueFactory<>("ulkopelisuorittaja"));
+        taulukkoulkopelipaikka.setCellValueFactory(new PropertyValueFactory<>("ulkopelipaikka"));
+        taulukkolyontinumero.setCellValueFactory(new PropertyValueFactory<>("lyontinumero"));
+        taulukkovaaraalla.setCellValueFactory(new PropertyValueFactory<>("vaaraAlla"));
+        taulukkolyonti.setCellValueFactory(new PropertyValueFactory<>("lyonti"));
+        taulukkojuoksut.setCellValueFactory(new PropertyValueFactory<>("juoksut"));
+        taulukkolapilyonti.setCellValueFactory(new PropertyValueFactory<>("lapilyonti"));
+        taulukkokunnari.setCellValueFactory(new PropertyValueFactory<>("kunnari"));
+        taulukkoulkopelivirhe.setCellValueFactory(new PropertyValueFactory<>("ulkopelivirhe"));
+        taulukkoEtenijaLaatu.setCellValueFactory(new PropertyValueFactory<>("etenijanlaatu"));
+        taulukkoJuoksunTodennakoisyys.setCellValueFactory(new PropertyValueFactory<>("juoksutodennakoisyys"));
+        taulukkoTilanne.setCellValueFactory(new PropertyValueFactory<>("tilanne"));
+
+    }
+
+    private void taulukkomuokkaus() {
+        taulukkokuvio.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkovuoropari.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        taulukkojuoksut.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        taulukkosijainti.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkomerkki.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkosyotto.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkojakso.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkosyotto.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkojoukkue.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkolyoja.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkotyyppi.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkoetenija.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkoEtenijaLaatu.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkoulkopelijoukkue.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkoulkopelaaja.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkoulkopelipaikka.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkoTilanne.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkovaaraalla.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkolyontinumero.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        taulukkolyonti.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkoulkopelivirhe.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkolapilyonti.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkokunnari.setCellFactory(TextFieldTableCell.forTableColumn());
+    }
+
+    private void sarakkeidenmuokkaus() {
+
+        taulukkojakso.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get(lyontitiedotStringCellEditEvent.getTablePosition().getRow())
+                        .setJakso(lyontitiedotStringCellEditEvent.getNewValue());
+            }
+        });
+
+        taulukkovuoropari.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, Integer> lyontitiedotIntegerCellEditEvent) {
+                lyontitiedotIntegerCellEditEvent.getTableView().getItems().get(
+                                lyontitiedotIntegerCellEditEvent.getTablePosition().getRow()).
+                        setVuoropari(lyontitiedotIntegerCellEditEvent.getNewValue());
+            }
+        });
+
+        taulukkolyontinumero.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, Integer> lyontitiedotIntegerCellEditEvent) {
+                lyontitiedotIntegerCellEditEvent.getTableView().getItems().get(
+                                lyontitiedotIntegerCellEditEvent.getTablePosition().getRow()).
+                        setLyontinumero(lyontitiedotIntegerCellEditEvent.getNewValue());
+            }
+        });
+
+        taulukkojuoksut.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, Integer> lyontitiedotIntegerCellEditEvent) {
+                lyontitiedotIntegerCellEditEvent.getTableView().getItems().get(
+                                lyontitiedotIntegerCellEditEvent.getTablePosition().getRow()).
+                        setJuoksut(lyontitiedotIntegerCellEditEvent.getNewValue());
+            }
+        });
+
+        taulukkokuvio.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()
+                                ).
+                        setKuvio(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkolyonti.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()
+                                ).
+                        setLyonti(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkoetenija.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()
+                                ).
+                        setEtenija(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkoulkopelijoukkue.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()
+                                ).
+                        setUlkopelijoukkue(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkoulkopelaaja.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()
+                                ).
+                        setUlkopelisuorittaja(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkovaaraalla.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()
+                                ).
+                        setVaaraAlla(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkoulkopelipaikka.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()
+                                ).
+                        setUlkopelipaikka(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkoEtenijaLaatu.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()
+                                ).
+                        setEtenijanlaatu(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkoEtenijaLaatu.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()
+                                ).
+                        setEtenijanlaatu(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkosijainti.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
+                        setSijainti(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkoulkopelivirhe.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
+                        setUlkopelivirhe(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkolapilyonti.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
+                        setLapilyonti(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+
+
+        taulukkomerkki.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
+                        setMerkki(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkosyotto.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
+                        setSyotto(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkojakso.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
+                        setJakso(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkojoukkue.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
+                        setJoukkue(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkolyoja.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
+                        setLyoja(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkotyyppi.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
+                        setTyyppi(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkokunnari.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
+                        setKunnari(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+
+
     }
 
     private void xrmap() {
@@ -431,313 +767,209 @@ public class PesapalloxrController {
     }
 
     private void pelaajienSijaintiLisays() {
-        SijaintiMapX.put("kaannettypertsal", 21.00);
-        SijaintiMapX.put("oulul", 21.00);
-        SijaintiMapX.put("pertsal", 21.00);
-        SijaintiMapX.put("ristivitonenl", 21.00);
-        SijaintiMapX.put("tahkol", 21.00);
-        SijaintiMapX.put("tahko2l", 21.00);
-        SijaintiMapX.put("sailytysl", 21.00);
-        SijaintiMapX.put("karvauskahdellal", 21.00);
-        SijaintiMapX.put("karvausyhdellal", 21.00);
-        SijaintiMapX.put("muul", 21.00);
+        miestenSijaintiMapX.put("kaannettypertsal", 21.00);
+        miestenSijaintiMapX.put("oulul", 21.00);
+        miestenSijaintiMapX.put("pertsal", 21.00);
+        miestenSijaintiMapX.put("ristivitonenl", 21.00);
+        miestenSijaintiMapX.put("tahkol", 21.00);
+        miestenSijaintiMapX.put("tahko2l", 21.00);
+        miestenSijaintiMapX.put("sailytysl", 21.00);
+        miestenSijaintiMapX.put("karvauskahdellal", 21.00);
+        miestenSijaintiMapX.put("karvausyhdellal", 21.00);
+        miestenSijaintiMapX.put("muul", 21.00);
 
-        SijaintiMapX.put("kaannettypertsa3v", 3.0);
-        SijaintiMapX.put("oulu3v", 0.0);
-        SijaintiMapX.put("pertsa3v", 3.0);
-        SijaintiMapX.put("ristivitonen3v", 3.0);
-        SijaintiMapX.put("tahko3v", 0.0);
-        SijaintiMapX.put("tahko23v", 3.0);
-        SijaintiMapX.put("sailytys3v", 0.0);
-        SijaintiMapX.put("karvauskahdella3v", 0.0);
-        SijaintiMapX.put("karvausyhdella3v", 0.0);
-        SijaintiMapX.put("muu3v", 0.0);
+        miestenSijaintiMapX.put("kaannettypertsa3v", 3.0);
+        miestenSijaintiMapX.put("oulu3v", 0.0);
+        miestenSijaintiMapX.put("pertsa3v", 3.0);
+        miestenSijaintiMapX.put("ristivitonen3v", 3.0);
+        miestenSijaintiMapX.put("tahko3v", 0.0);
+        miestenSijaintiMapX.put("tahko23v", 3.0);
+        miestenSijaintiMapX.put("sailytys3v", 0.0);
+        miestenSijaintiMapX.put("karvauskahdella3v", 0.0);
+        miestenSijaintiMapX.put("karvausyhdella3v", 0.0);
+        miestenSijaintiMapX.put("muu3v", 0.0);
 
-        SijaintiMapX.put("kaannettypertsa1v", 28.0);
-        SijaintiMapX.put("oulu1v", 19.1);
-        SijaintiMapX.put("pertsa1v", 19.0);
-        SijaintiMapX.put("ristivitonen1v", 25.5);
-        SijaintiMapX.put("tahko1v", 13.0);
-        SijaintiMapX.put("tahko21v", 17.5);
-        SijaintiMapX.put("sailytys1v", 15.5);
-        SijaintiMapX.put("karvauskahdella1v", 14.0);
-        SijaintiMapX.put("karvausyhdella1v", 14.0);
-        SijaintiMapX.put("muu1v", 42.0);
-
-
-        SijaintiMapX.put("kaannettypertsaS", 38.5);
-        SijaintiMapX.put("ouluS", 41.0);
-        SijaintiMapX.put("pertsaS", 38.5);
-        SijaintiMapX.put("ristivitonenS", 42.0);
-        SijaintiMapX.put("tahkoS", 38.5);
-        SijaintiMapX.put("tahko2S", 31.5);
-        SijaintiMapX.put("sailytysS", 30.5);
-        SijaintiMapX.put("karvauskahdellaS", 30.5);
-        SijaintiMapX.put("karvausyhdellaS", 41.0);
-        SijaintiMapX.put("muuS", 0.0);
+        miestenSijaintiMapX.put("kaannettypertsa1v", 28.0);
+        miestenSijaintiMapX.put("oulu1v", 19.1);
+        miestenSijaintiMapX.put("pertsa1v", 19.0);
+        miestenSijaintiMapX.put("ristivitonen1v", 25.5);
+        miestenSijaintiMapX.put("tahko1v", 13.0);
+        miestenSijaintiMapX.put("tahko21v", 17.5);
+        miestenSijaintiMapX.put("sailytys1v", 15.5);
+        miestenSijaintiMapX.put("karvauskahdella1v", 14.0);
+        miestenSijaintiMapX.put("karvausyhdella1v", 14.0);
+        miestenSijaintiMapX.put("muu1v", 42.0);
 
 
-        SijaintiMapX.put("kaannettypertsa3p", 6.5);
-        SijaintiMapX.put("oulu3p", 6.5);
-        SijaintiMapX.put("pertsa3p", 6.5);
-        SijaintiMapX.put("ristivitonen3p", 6.5);
-        SijaintiMapX.put("tahko3p", 17.5);
-        SijaintiMapX.put("tahko23p", 6.5);
-        SijaintiMapX.put("sailytys3p", 17.0);
-        SijaintiMapX.put("karvauskahdella3p", 6.5);
-        SijaintiMapX.put("karvausyhdella3p", 6.5);
-        SijaintiMapX.put("muu3p", 0.0);
+        miestenSijaintiMapX.put("kaannettypertsaS", 38.5);
+        miestenSijaintiMapX.put("ouluS", 41.0);
+        miestenSijaintiMapX.put("pertsaS", 38.5);
+        miestenSijaintiMapX.put("ristivitonenS", 42.0);
+        miestenSijaintiMapX.put("tahkoS", 38.5);
+        miestenSijaintiMapX.put("tahko2S", 31.5);
+        miestenSijaintiMapX.put("sailytysS", 30.5);
+        miestenSijaintiMapX.put("karvauskahdellaS", 30.5);
+        miestenSijaintiMapX.put("karvausyhdellaS", 41.0);
+        miestenSijaintiMapX.put("muuS", 0.0);
 
-        SijaintiMapX.put("kaannettypertsa2p", 19.0);
-        SijaintiMapX.put("oulu2p", 26.0);
-        SijaintiMapX.put("pertsa2p", 26.0);
-        SijaintiMapX.put("ristivitonen2p", 19.0);
-        SijaintiMapX.put("tahko2p", 26.0);
-        SijaintiMapX.put("tahko22p", 24.5);
-        SijaintiMapX.put("sailytys2p", 26.0);
-        SijaintiMapX.put("karvauskahdella2p", 26.0);
-        SijaintiMapX.put("karvausyhdella2p", 26.0);
-        SijaintiMapX.put("muu2p", 21.0);
 
-        SijaintiMapX.put("kaannettypertsa2v", 35.0);
-        SijaintiMapX.put("oulu2v", 35.0);
-        SijaintiMapX.put("pertsa2v", 35.0);
-        SijaintiMapX.put("ristivitonen2v", 35.0);
-        SijaintiMapX.put("tahko2v", 35.0);
-        SijaintiMapX.put("tahko22v", 42.0);
-        SijaintiMapX.put("sailytys2v", 42.0);
-        SijaintiMapX.put("karvauskahdella2v", 36.5);
-        SijaintiMapX.put("karvausyhdella2v", 35.0);
-        SijaintiMapX.put("muu2v", 42.0);
+        miestenSijaintiMapX.put("kaannettypertsa3p", 6.5);
+        miestenSijaintiMapX.put("oulu3p", 6.5);
+        miestenSijaintiMapX.put("pertsa3p", 6.5);
+        miestenSijaintiMapX.put("ristivitonen3p", 6.5);
+        miestenSijaintiMapX.put("tahko3p", 17.5);
+        miestenSijaintiMapX.put("tahko23p", 6.5);
+        miestenSijaintiMapX.put("sailytys3p", 17.0);
+        miestenSijaintiMapX.put("karvauskahdella3p", 6.5);
+        miestenSijaintiMapX.put("karvausyhdella3p", 6.5);
+        miestenSijaintiMapX.put("muu3p", 0.0);
 
-        SijaintiMapX.put("kaannettypertsa3k", 14.0);
-        SijaintiMapX.put("oulu3k", 14.0);
-        SijaintiMapX.put("pertsa3k", 14.0);
-        SijaintiMapX.put("ristivitonen3k", 14.0);
-        SijaintiMapX.put("tahko3k", 14.0);
-        SijaintiMapX.put("tahko23k", 14.0);
-        SijaintiMapX.put("sailytys3k", 14.0);
-        SijaintiMapX.put("karvauskahdella3k", 14.0);
-        SijaintiMapX.put("karvausyhdella3k", 14.0);
-        SijaintiMapX.put("muu3k", 0.0);
+        miestenSijaintiMapX.put("kaannettypertsa2p", 19.0);
+        miestenSijaintiMapX.put("oulu2p", 26.0);
+        miestenSijaintiMapX.put("pertsa2p", 26.0);
+        miestenSijaintiMapX.put("ristivitonen2p", 19.0);
+        miestenSijaintiMapX.put("tahko2p", 26.0);
+        miestenSijaintiMapX.put("tahko22p", 24.5);
+        miestenSijaintiMapX.put("sailytys2p", 26.0);
+        miestenSijaintiMapX.put("karvauskahdella2p", 26.0);
+        miestenSijaintiMapX.put("karvausyhdella2p", 26.0);
+        miestenSijaintiMapX.put("muu2p", 21.0);
 
-        SijaintiMapX.put("kaannettypertsa2k", 30.0);
-        SijaintiMapX.put("oulu2k", 30.0);
-        SijaintiMapX.put("pertsa2k", 30.0);
-        SijaintiMapX.put("ristivitonen2k", 30.0);
-        SijaintiMapX.put("tahko2k", 30.0);
-        SijaintiMapX.put("tahko22k", 30.0);
-        SijaintiMapX.put("sailytys2k", 30.0);
-        SijaintiMapX.put("karvauskahdella2k", 30.0);
-        SijaintiMapX.put("karvausyhdella2k", 30.0);
-        SijaintiMapX.put("muu2k", 0.0);
+        miestenSijaintiMapX.put("kaannettypertsa2v", 35.0);
+        miestenSijaintiMapX.put("oulu2v", 35.0);
+        miestenSijaintiMapX.put("pertsa2v", 35.0);
+        miestenSijaintiMapX.put("ristivitonen2v", 35.0);
+        miestenSijaintiMapX.put("tahko2v", 35.0);
+        miestenSijaintiMapX.put("tahko22v", 42.0);
+        miestenSijaintiMapX.put("sailytys2v", 42.0);
+        miestenSijaintiMapX.put("karvauskahdella2v", 36.5);
+        miestenSijaintiMapX.put("karvausyhdella2v", 35.0);
+        miestenSijaintiMapX.put("muu2v", 42.0);
+
+        miestenSijaintiMapX.put("kaannettypertsa3k", 14.0);
+        miestenSijaintiMapX.put("oulu3k", 14.0);
+        miestenSijaintiMapX.put("pertsa3k", 14.0);
+        miestenSijaintiMapX.put("ristivitonen3k", 14.0);
+        miestenSijaintiMapX.put("tahko3k", 14.0);
+        miestenSijaintiMapX.put("tahko23k", 14.0);
+        miestenSijaintiMapX.put("sailytys3k", 14.0);
+        miestenSijaintiMapX.put("karvauskahdella3k", 14.0);
+        miestenSijaintiMapX.put("karvausyhdella3k", 14.0);
+        miestenSijaintiMapX.put("muu3k", 0.0);
+
+        miestenSijaintiMapX.put("kaannettypertsa2k", 30.0);
+        miestenSijaintiMapX.put("oulu2k", 30.0);
+        miestenSijaintiMapX.put("pertsa2k", 30.0);
+        miestenSijaintiMapX.put("ristivitonen2k", 30.0);
+        miestenSijaintiMapX.put("tahko2k", 30.0);
+        miestenSijaintiMapX.put("tahko22k", 30.0);
+        miestenSijaintiMapX.put("sailytys2k", 30.0);
+        miestenSijaintiMapX.put("karvauskahdella2k", 30.0);
+        miestenSijaintiMapX.put("karvausyhdella2k", 30.0);
+        miestenSijaintiMapX.put("muu2k", 0.0);
     }
 
     private void miestensijantiy() {
-        SijaintiMapY.put("kaannettypertsal", -1.5);
-        SijaintiMapY.put("oulul", -1.5);
-        SijaintiMapY.put("pertsal", -1.5);
-        SijaintiMapY.put("ristivitonenl", -1.5);
-        SijaintiMapY.put("tahkol", -1.5);
-        SijaintiMapY.put("tahko2l", -1.5);
-        SijaintiMapY.put("sailytysl", -1.5);
-        SijaintiMapY.put("karvauskahdellal", -1.5);
-        SijaintiMapY.put("karvausyhdellal", -1.5);
-        SijaintiMapY.put("muul", -1.5);
+        miestenSijaintiMapY.put("kaannettypertsal", -1.5);
+        miestenSijaintiMapY.put("oulul", -1.5);
+        miestenSijaintiMapY.put("pertsal", -1.5);
+        miestenSijaintiMapY.put("ristivitonenl", -1.5);
+        miestenSijaintiMapY.put("tahkol", -1.5);
+        miestenSijaintiMapY.put("tahko2l", -1.5);
+        miestenSijaintiMapY.put("sailytysl", -1.5);
+        miestenSijaintiMapY.put("karvauskahdellal", -1.5);
+        miestenSijaintiMapY.put("karvausyhdellal", -1.5);
+        miestenSijaintiMapY.put("muul", -1.5);
 
-        SijaintiMapY.put("kaannettypertsa3v", 33.5);
-        SijaintiMapY.put("oulu3v", 38.5);
-        SijaintiMapY.put("pertsa3v", 33.5);
-        SijaintiMapY.put("ristivitonen3v", 033.5);
-        SijaintiMapY.put("tahko3v", 41.5);
-        SijaintiMapY.put("tahko23v", 33.5);
-        SijaintiMapY.put("sailytys3v", 40.5);
-        SijaintiMapY.put("karvauskahdella3v", 40.5);
-        SijaintiMapY.put("karvausyhdella3v", 40.5);
-        SijaintiMapY.put("muu3v", 38.5);
+        miestenSijaintiMapY.put("kaannettypertsa3v", 33.5);
+        miestenSijaintiMapY.put("oulu3v", 38.5);
+        miestenSijaintiMapY.put("pertsa3v", 33.5);
+        miestenSijaintiMapY.put("ristivitonen3v", 033.5);
+        miestenSijaintiMapY.put("tahko3v", 41.5);
+        miestenSijaintiMapY.put("tahko23v", 33.5);
+        miestenSijaintiMapY.put("sailytys3v", 40.5);
+        miestenSijaintiMapY.put("karvauskahdella3v", 40.5);
+        miestenSijaintiMapY.put("karvausyhdella3v", 40.5);
+        miestenSijaintiMapY.put("muu3v", 38.5);
 
-        SijaintiMapY.put("kaannettypertsa1v", 38.5);
-        SijaintiMapY.put("oulu1v", 25.5);
-        SijaintiMapY.put("pertsa1v", 38.5);
-        SijaintiMapY.put("ristivitonen1v", 25.5);
-        SijaintiMapY.put("tahko1v", 30.0);
-        SijaintiMapY.put("tahko21v", 40.5);
-        SijaintiMapY.put("sailytys1v", 26.0);
-        SijaintiMapY.put("karvauskahdella1v", 18.0);
-        SijaintiMapY.put("karvausyhdella1v", 18.0);
-        SijaintiMapY.put("muu1v", 55.0);
-
-
-        SijaintiMapY.put("kaannettypertsaS", 33.5);
-        SijaintiMapY.put("ouluS", 35.5);
-        SijaintiMapY.put("pertsaS", 33.5);
-        SijaintiMapY.put("ristivitonenS", 38.5);
-        SijaintiMapY.put("tahkoS", 33.5);
-        SijaintiMapY.put("tahko2S", 28.5);
-        SijaintiMapY.put("sailytysS", 28.5);
-        SijaintiMapY.put("karvauskahdellaS", 18.0);
-        SijaintiMapY.put("karvausyhdellaS", 35.5);
-        SijaintiMapY.put("muuS", 50.0);
+        miestenSijaintiMapY.put("kaannettypertsa1v", 38.5);
+        miestenSijaintiMapY.put("oulu1v", 25.5);
+        miestenSijaintiMapY.put("pertsa1v", 38.5);
+        miestenSijaintiMapY.put("ristivitonen1v", 25.5);
+        miestenSijaintiMapY.put("tahko1v", 30.0);
+        miestenSijaintiMapY.put("tahko21v", 40.5);
+        miestenSijaintiMapY.put("sailytys1v", 26.0);
+        miestenSijaintiMapY.put("karvauskahdella1v", 18.0);
+        miestenSijaintiMapY.put("karvausyhdella1v", 18.0);
+        miestenSijaintiMapY.put("muu1v", 55.0);
 
 
-        SijaintiMapY.put("kaannettypertsa3p", 50.0);
-        SijaintiMapY.put("oulu3p", 48.0);
-        SijaintiMapY.put("pertsa3p", 48.0);
-        SijaintiMapY.put("ristivitonen3p", 48.0);
-        SijaintiMapY.put("tahko3p", 52.0);
-        SijaintiMapY.put("tahko23p", 48.5);
-        SijaintiMapY.put("sailytys3p", 49.5);
-        SijaintiMapY.put("karvauskahdella3p", 48.0);
-        SijaintiMapY.put("karvausyhdella3p", 48.0);
-        SijaintiMapY.put("muu3p", 75.0);
-
-        SijaintiMapY.put("kaannettypertsa2p", 55.0);
-        SijaintiMapY.put("oulu2p", 55.0);
-        SijaintiMapY.put("pertsa2p", 55.0);
-        SijaintiMapY.put("ristivitonen2p", 55.0);
-        SijaintiMapY.put("tahko2p", 41.5);
-        SijaintiMapY.put("tahko22p", 53.5);
-        SijaintiMapY.put("sailytys2p", 47.5);
-        SijaintiMapY.put("karvauskahdella2p", 57.5);
-        SijaintiMapY.put("karvausyhdella2p", 57.5);
-        SijaintiMapY.put("muu2p", 85.0);
-
-        SijaintiMapY.put("kaannettypertsa2v", 52.0);
-        SijaintiMapY.put("oulu2v", 48.0);
-        SijaintiMapY.put("pertsa2v", 48.0);
-        SijaintiMapY.put("ristivitonen2v", 52.0);
-        SijaintiMapY.put("tahko2v", 50.0);
-        SijaintiMapY.put("tahko22v", 41.5);
-        SijaintiMapY.put("sailytys2v", 38.5);
-        SijaintiMapY.put("karvauskahdella2v", 48.0);
-        SijaintiMapY.put("karvausyhdella2v", 48.0);
-        SijaintiMapY.put("muu2v", 60.0);
-
-        SijaintiMapY.put("kaannettypertsa3k", 82.0);
-        SijaintiMapY.put("oulu3k", 82.0);
-        SijaintiMapY.put("pertsa3k", 82.0);
-        SijaintiMapY.put("ristivitonen3k", 82.0);
-        SijaintiMapY.put("tahko3k", 82.0);
-        SijaintiMapY.put("tahko23k", 82.0);
-        SijaintiMapY.put("sailytys3k", 82.0);
-        SijaintiMapY.put("karvauskahdella3k", 82.0);
-        SijaintiMapY.put("karvausyhdella3k", 82.0);
-        SijaintiMapY.put("muu3k", 96.0);
-
-        SijaintiMapY.put("kaannettypertsa2k", 82.0);
-        SijaintiMapY.put("oulu2k", 82.0);
-        SijaintiMapY.put("pertsa2k", 82.0);
-        SijaintiMapY.put("ristivitonen2k", 82.0);
-        SijaintiMapY.put("tahko2k", 82.0);
-        SijaintiMapY.put("tahko22k", 82.0);
-        SijaintiMapY.put("sailytys2k", 82.0);
-        SijaintiMapY.put("karvauskahdella2k", 82.0);
-        SijaintiMapY.put("karvausyhdella2k", 82.0);
-        SijaintiMapY.put("muu2k", 96.0);
-    }
-
-    private void taulukkomuokkaus() {
-        taulukkokuvio.setCellFactory(TextFieldTableCell.forTableColumn());
-        taulukkosijainti.setCellFactory(TextFieldTableCell.forTableColumn());
-        taulukkomerkki.setCellFactory(TextFieldTableCell.forTableColumn());
-        taulukkosyotto.setCellFactory(TextFieldTableCell.forTableColumn());
-        taulukkojakso.setCellFactory(TextFieldTableCell.forTableColumn());
-        taulukkosyotto.setCellFactory(TextFieldTableCell.forTableColumn());
-        taulukkojoukkue.setCellFactory(TextFieldTableCell.forTableColumn());
-        taulukkolyoja.setCellFactory(TextFieldTableCell.forTableColumn());
-        taulukkotyyppi.setCellFactory(TextFieldTableCell.forTableColumn());
-
-    }
-
-    private void sarakkeidenmuokkaus() {
-        taulukkokuvio.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
-                lyontitiedotStringCellEditEvent.getTableView().getItems().get
-                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()
-                                ).
-                        setKuvio(
-                                lyontitiedotStringCellEditEvent.getNewValue()
-                        );
-            }
-        });
-        taulukkosijainti.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
-                lyontitiedotStringCellEditEvent.getTableView().getItems().get
-                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
-                        setSijainti(
-                                lyontitiedotStringCellEditEvent.getNewValue()
-                        );
-            }
-        });
+        miestenSijaintiMapY.put("kaannettypertsaS", 33.5);
+        miestenSijaintiMapY.put("ouluS", 35.5);
+        miestenSijaintiMapY.put("pertsaS", 33.5);
+        miestenSijaintiMapY.put("ristivitonenS", 38.5);
+        miestenSijaintiMapY.put("tahkoS", 33.5);
+        miestenSijaintiMapY.put("tahko2S", 28.5);
+        miestenSijaintiMapY.put("sailytysS", 28.5);
+        miestenSijaintiMapY.put("karvauskahdellaS", 18.0);
+        miestenSijaintiMapY.put("karvausyhdellaS", 35.5);
+        miestenSijaintiMapY.put("muuS", 50.0);
 
 
-        taulukkomerkki.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
-                lyontitiedotStringCellEditEvent.getTableView().getItems().get
-                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
-                        setMerkki(
-                                lyontitiedotStringCellEditEvent.getNewValue()
-                        );
-            }
-        });
+        miestenSijaintiMapY.put("kaannettypertsa3p", 50.0);
+        miestenSijaintiMapY.put("oulu3p", 48.0);
+        miestenSijaintiMapY.put("pertsa3p", 48.0);
+        miestenSijaintiMapY.put("ristivitonen3p", 48.0);
+        miestenSijaintiMapY.put("tahko3p", 52.0);
+        miestenSijaintiMapY.put("tahko23p", 48.5);
+        miestenSijaintiMapY.put("sailytys3p", 49.5);
+        miestenSijaintiMapY.put("karvauskahdella3p", 48.0);
+        miestenSijaintiMapY.put("karvausyhdella3p", 48.0);
+        miestenSijaintiMapY.put("muu3p", 75.0);
 
-        taulukkosyotto.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
-                lyontitiedotStringCellEditEvent.getTableView().getItems().get
-                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
-                        setSyotto(
-                                lyontitiedotStringCellEditEvent.getNewValue()
-                        );
-            }
-        });
+        miestenSijaintiMapY.put("kaannettypertsa2p", 55.0);
+        miestenSijaintiMapY.put("oulu2p", 55.0);
+        miestenSijaintiMapY.put("pertsa2p", 55.0);
+        miestenSijaintiMapY.put("ristivitonen2p", 55.0);
+        miestenSijaintiMapY.put("tahko2p", 41.5);
+        miestenSijaintiMapY.put("tahko22p", 53.5);
+        miestenSijaintiMapY.put("sailytys2p", 47.5);
+        miestenSijaintiMapY.put("karvauskahdella2p", 57.5);
+        miestenSijaintiMapY.put("karvausyhdella2p", 57.5);
+        miestenSijaintiMapY.put("muu2p", 85.0);
 
-        taulukkojakso.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
-                lyontitiedotStringCellEditEvent.getTableView().getItems().get
-                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
-                        setJakso(
-                                lyontitiedotStringCellEditEvent.getNewValue()
-                        );
-            }
-        });
+        miestenSijaintiMapY.put("kaannettypertsa2v", 52.0);
+        miestenSijaintiMapY.put("oulu2v", 48.0);
+        miestenSijaintiMapY.put("pertsa2v", 48.0);
+        miestenSijaintiMapY.put("ristivitonen2v", 52.0);
+        miestenSijaintiMapY.put("tahko2v", 50.0);
+        miestenSijaintiMapY.put("tahko22v", 41.5);
+        miestenSijaintiMapY.put("sailytys2v", 38.5);
+        miestenSijaintiMapY.put("karvauskahdella2v", 48.0);
+        miestenSijaintiMapY.put("karvausyhdella2v", 48.0);
+        miestenSijaintiMapY.put("muu2v", 60.0);
 
-        taulukkojoukkue.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
-                lyontitiedotStringCellEditEvent.getTableView().getItems().get
-                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
-                        setJoukkue(
-                                lyontitiedotStringCellEditEvent.getNewValue()
-                        );
-            }
-        });
+        miestenSijaintiMapY.put("kaannettypertsa3k", 82.0);
+        miestenSijaintiMapY.put("oulu3k", 82.0);
+        miestenSijaintiMapY.put("pertsa3k", 82.0);
+        miestenSijaintiMapY.put("ristivitonen3k", 82.0);
+        miestenSijaintiMapY.put("tahko3k", 82.0);
+        miestenSijaintiMapY.put("tahko23k", 82.0);
+        miestenSijaintiMapY.put("sailytys3k", 82.0);
+        miestenSijaintiMapY.put("karvauskahdella3k", 82.0);
+        miestenSijaintiMapY.put("karvausyhdella3k", 82.0);
+        miestenSijaintiMapY.put("muu3k", 96.0);
 
-        taulukkolyoja.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
-                lyontitiedotStringCellEditEvent.getTableView().getItems().get
-                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
-                        setLyoja(
-                                lyontitiedotStringCellEditEvent.getNewValue()
-                        );
-            }
-        });
-
-        taulukkotyyppi.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
-                lyontitiedotStringCellEditEvent.getTableView().getItems().get
-                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
-                        setTyyppi(
-                                lyontitiedotStringCellEditEvent.getNewValue()
-                        );
-            }
-        });
+        miestenSijaintiMapY.put("kaannettypertsa2k", 82.0);
+        miestenSijaintiMapY.put("oulu2k", 82.0);
+        miestenSijaintiMapY.put("pertsa2k", 82.0);
+        miestenSijaintiMapY.put("ristivitonen2k", 82.0);
+        miestenSijaintiMapY.put("tahko2k", 82.0);
+        miestenSijaintiMapY.put("tahko22k", 82.0);
+        miestenSijaintiMapY.put("sailytys2k", 82.0);
+        miestenSijaintiMapY.put("karvauskahdella2k", 82.0);
+        miestenSijaintiMapY.put("karvausyhdella2k", 82.0);
+        miestenSijaintiMapY.put("muu2k", 96.0);
     }
 
     @FXML
@@ -760,11 +992,6 @@ public class PesapalloxrController {
         graphicsContext.strokeLine(550, 472.5, 362.5, 690); // Kakkosraja
 
         graphicsContext.strokeLine(152, 415.480, 550, 415.480); // 2-3 väli
-
-        //graphicsContext.clearRect(152,428, 450, 2);
-
-        //graphicsContext.strokeLine(620, 430, 600, 430);
-        //graphicsContext.strokeLine(130, 430, 150, 430);
 
         graphicsContext.strokeLine(192, 592.5, 550, 415.480); // 1-2 väli
 
@@ -793,22 +1020,16 @@ public class PesapalloxrController {
 
         graphicsContext.strokeLine(152, 428.3268, 550, 428.3268); // 2-3 väli
 
-        //graphicsContext.clearRect(152,428, 450, 2);
-
-        //graphicsContext.strokeLine(620, 430, 600, 430);
-        //graphicsContext.strokeLine(130, 430, 150, 430);
-
         graphicsContext.strokeLine(190, 592.5, 550, 428.3268); // 1-2 väli
 
         graphicsContext.strokeLine(150, 554, 290, 690); // Kotijuoksuviiva
 
-        //graphicsContext.fillOval(270, 125, 10, 10); // Kolmoskoppari
+        graphicsContext.fillOval(278, 125, 10, 10); // Kolmoskoppari
 
 
-        //graphicsContext.fillOval(480, 125, 10, 10); // Kakkoskoppari
+        graphicsContext.fillOval(435, 125, 10, 10); // Kakkoskoppari
 
     }
-
 
     @FXML
     private void lyonti(MouseEvent event) {
@@ -828,12 +1049,9 @@ public class PesapalloxrController {
         GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
         graphicsContext.setFill(Color.RED);
 
-        if (vierasjoukkue.isSelected() | vierasjoukkueToggle.isSelected()) {
+        if (vierasjoukkueToggle.isSelected()) {
             graphicsContext.setFill(Color.BLUE);
         }
-
-        //System.out.print((event.getX()/150-1)*12 + "\n");
-        //System.out.print((event.getY()/690-1)*-86.71265+ "\n" );
 
         graphicsContext.fillOval(mouseX, mouseY, 5, 5);
 
@@ -858,8 +1076,8 @@ public class PesapalloxrController {
         double x = Double.parseDouble(koordinaattix.getText());
         double y = Double.parseDouble(koordinaattiy.getText());
 
-        Double ulkopelaajaX = SijaintiMapX.get(kuvioxr + ulkopelaaja);
-        Double ulkopelaajaY = SijaintiMapY.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaX = miestenSijaintiMapX.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaY = miestenSijaintiMapY.get(kuvioxr + ulkopelaaja);
 
         double etaisyys = Math.sqrt(Math.pow(x - ulkopelaajaX, 2) + Math.pow(y - ulkopelaajaY, 2));
 
@@ -874,8 +1092,8 @@ public class PesapalloxrController {
         double xLaskettu = (x - 150) / 9.5238;
         double yLaskettu = (690 - y) / 6.7967;
 
-        Double ulkopelaajaX = SijaintiMapX.get(kuvioxr + ulkopelaaja);
-        Double ulkopelaajaY = SijaintiMapY.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaX = miestenSijaintiMapX.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaY = miestenSijaintiMapY.get(kuvioxr + ulkopelaaja);
 
         double etaisyys = Math.sqrt(Math.pow(xLaskettu - ulkopelaajaX, 2) + Math.pow(yLaskettu - ulkopelaajaY, 2));
 
@@ -895,8 +1113,8 @@ public class PesapalloxrController {
         double xLaskettu = (x - 150) / 11.111;
         double yLaskettu = (690 - y) / 7.95731;
 
-        Double ulkopelaajaX = SijaintiMapX.get(kuvioxr + ulkopelaaja);
-        Double ulkopelaajaY = SijaintiMapY.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaX = miestenSijaintiMapX.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaY = miestenSijaintiMapY.get(kuvioxr + ulkopelaaja);
 
         double etaisyys = Math.sqrt(Math.pow(xLaskettu - ulkopelaajaX, 2) + Math.pow(yLaskettu - ulkopelaajaY, 2));
 
@@ -934,6 +1152,10 @@ public class PesapalloxrController {
 
         String sijainti = haesijanti(y);
 
+        Double juoksutodennakoisyys = laskeJuoksuTodennakoisyysMiehet();
+
+        laskeTodennakoisyysLapi();
+
         String kuvioxr = kuvio.getValue();
         String tyyppixr = tyyppi.getValue();
         String merrkixr = merkki.getValue();
@@ -941,6 +1163,7 @@ public class PesapalloxrController {
         String lyojaxr = lyoja.getText();
         String joukkuexr = joukkue.getText();
         String jaksoxr = jakso.getValue();
+
         Integer vuoroparixr = vuoropari.getValue();
         String ulkopelixr = ulkopelipaikka.getValue();
         String ulkopelivirhexr = ulkopelivirhe.getValue();
@@ -950,11 +1173,10 @@ public class PesapalloxrController {
         Integer juoksutxr = juoksut.getValue();
         String lapilyontixr = lapilyonti.getValue();
         Integer lyontinumeroxr = lyontinumero.getValue();
+
         String ulkopelijoukkuexr = ulkopelijoukkue.getText();
         String etenijaxr = etenija.getText();
         String etenijalaatuxr = etenijalaatucombobox.getValue();
-        //Integer otteluID = Integer.valueOf(idottelu.getText());
-        Double juoksutodennakoisyys = laskeJuoksuTodennakoisyysMiehet();
         String kunnarixr = kunnari.getValue();
         String tilanne = tilannecombobox.getValue();
         String ulkopelisuoritusxr = ulkopelisuorituscombobox.getValue();
@@ -966,14 +1188,14 @@ public class PesapalloxrController {
                 merrkixr, syottoxr, lyojaxr,
                 joukkuexr, jaksoxr, vuoroparixr,
                 OTTELUID, ulkopelixr, ulkopelivirhexr,
-                ulkopelisuorittjaxr, ulkopelisuoritusxr, vaaraallaxr, lyontixr,
-                juoksutxr, lapilyontixr, lyontinumeroxr, ulkopelijoukkuexr,
-                etenijaxr, etenijalaatuxr, juoksutodennakoisyys, kunnarixr, tilanne
+                ulkopelisuorittjaxr, ulkopelisuoritusxr,
+                vaaraallaxr, lyontixr, juoksutxr,
+                lapilyontixr, lyontinumeroxr, ulkopelijoukkuexr,
+                etenijaxr, etenijalaatuxr, juoksutodennakoisyys,
+                kunnarixr, tilanne
         );
 
         taulukkoxr.getItems().addAll(tiedot);
-
-        laskeTodennakoisyysLapi();
 
     }
 
@@ -982,7 +1204,6 @@ public class PesapalloxrController {
         laskeJuoksuTodennakoisyysMiehet();
         laskeTodennakoisyysLapi();
     }
-
 
     @FXML
     private double laskeJuoksuTodennakoisyysMiehet() {
@@ -1006,8 +1227,8 @@ public class PesapalloxrController {
         String sijainti = haesijanti(y);
         Double sijanti = miestenXrMap.get(sijainti);
 
-        Double ulkopelaajaX = SijaintiMapX.get(kuvioxr + ulkopelaaja);
-        Double ulkopelaajaY = SijaintiMapY.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaX = miestenSijaintiMapX.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaY = miestenSijaintiMapY.get(kuvioxr + ulkopelaaja);
 
         double etaisyys = Math.sqrt(Math.pow(x - ulkopelaajaX, 2) + Math.pow(y - ulkopelaajaY, 2));
 
@@ -1039,8 +1260,8 @@ public class PesapalloxrController {
         double x = Double.parseDouble(koordinaattix.getText());
         double y = Double.parseDouble(koordinaattiy.getText());
 
-        Double ulkopelaajaX = SijaintiMapX.get(kuvioxr + ulkopelaaja);
-        Double ulkopelaajaY = SijaintiMapY.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaX = miestenSijaintiMapX.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaY = miestenSijaintiMapY.get(kuvioxr + ulkopelaaja);
 
         double etaisyys = Math.sqrt(Math.pow(x - ulkopelaajaX, 2) + Math.pow(y - ulkopelaajaY, 2));
 
@@ -1278,7 +1499,6 @@ public class PesapalloxrController {
         if (vieraslyojat.getValue() == null) {
             return;
         }
-
         lyoja.setText(vieraslyojat.getValue().getNimi());
         joukkue.setText(vieraslyojat.getValue().getJoukkue());
         sisajoukkeuid.setText(String.valueOf(vieraslyojat.getValue().getJoukkueID()));
@@ -1299,11 +1519,9 @@ public class PesapalloxrController {
         if (vierasulkopelaajat.getValue() == null) {
             return;
         }
-
         ulkopelisuorittaja.setText(vierasulkopelaajat.getValue().getNimi());
         ulkopelijoukkue.setText(vierasulkopelaajat.getValue().getJoukkue());
         ulkojoukkueid.setText(String.valueOf(vierasulkopelaajat.getValue().getJoukkueID()));
-
     }
 
     @FXML
@@ -1311,7 +1529,6 @@ public class PesapalloxrController {
         if (kotietenija.getValue() == null) {
             return;
         }
-
         etenija.setText(kotietenija.getValue().getNimi());
     }
 
@@ -1320,7 +1537,6 @@ public class PesapalloxrController {
         if (vierasetenija.getValue() == null) {
             return;
         }
-
         etenija.setText(vierasetenija.getValue().getNimi());
     }
 
@@ -1330,6 +1546,7 @@ public class PesapalloxrController {
 
         taulukkoxr.getItems().remove(poistettava);
 
+        taulukkoxr.getSelectionModel().clearSelection();
     }
 
     public class HaeOtteluThread extends Thread {
