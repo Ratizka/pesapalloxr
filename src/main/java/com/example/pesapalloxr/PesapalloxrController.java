@@ -3,9 +3,7 @@ package com.example.pesapalloxr;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.Canvas;
@@ -45,9 +43,12 @@ public class PesapalloxrController {
     private final Map<String, Double> miestenSijaintiMapX = new HashMap<>();
     private final Map<String, Double> miestenSijaintiMapY = new HashMap<>();
 
-    @FXML private ComboBox<String> kumuranTyyppi;
-    @FXML private ComboBox<Integer> palojenMaara;
-    @FXML private Tooltip tempoToolTip;
+    @FXML
+    private ComboBox<String> kumuranTyyppi;
+    @FXML
+    private ComboBox<Integer> palojenMaara;
+    @FXML
+    private Tooltip tempoToolTip;
     @FXML
     private TextField lyonninEtaisyysulkopelaajasta;
     @FXML
@@ -249,10 +250,10 @@ public class PesapalloxrController {
 
         //
 
-        kumuranTyyppi.getItems().addAll("","matala", "korkea");
+        kumuranTyyppi.getItems().addAll("", "matala", "korkea");
         kumuranTyyppi.getSelectionModel().selectFirst();
 
-        palojenMaara.getItems().addAll(0,1,2);
+        palojenMaara.getItems().addAll(0, 1, 2);
         palojenMaara.getSelectionModel().selectFirst();
 
         syotto.getItems().addAll("perus", "puolikorkea", "tolppa", "matala", "lautasväärä", "taktinen väärä/linkku");
@@ -318,7 +319,7 @@ public class PesapalloxrController {
     }
 
     @FXML
-    private void taulukkoValinta(){
+    private void taulukkoValinta() {
 
         taulukkoxr.getSelectionModel().clearSelection();
 
@@ -588,7 +589,6 @@ public class PesapalloxrController {
         });
 
 
-
         taulukkomerkki.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
@@ -665,7 +665,6 @@ public class PesapalloxrController {
                         );
             }
         });
-
 
 
     }
