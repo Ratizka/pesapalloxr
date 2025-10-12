@@ -3,19 +3,13 @@ module com.example.pesapalloxr {
     requires javafx.fxml;
     requires javafx.web;
 
-    requires org.controlsfx.controls;
-    requires com.dlsc.formsfx;
-    requires net.synedra.validatorfx;
-    requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.bootstrapfx.core;
-    requires eu.hansolo.tilesfx;
-    requires com.almasb.fxgl.all;
     requires java.desktop;
     requires java.sql;
     requires org.apache.commons.csv;
     requires java.net.http;
     requires org.json;
-    requires com.fasterxml.jackson.annotation;
+    requires jdk.crypto.ec;
+    requires org.jfxtras.styles.jmetro;
 
     opens com.example.pesapalloxr to javafx.fxml;
     exports com.example.pesapalloxr;

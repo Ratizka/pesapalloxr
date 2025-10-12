@@ -1,0 +1,314 @@
+{
+  "msumalli": [
+    {
+      "arvo": -3.2454,
+      "avain": "(Intercept)"
+    },
+    {
+      "arvo": 0.0000,
+      "avain": "koppi"
+    },
+    {
+      "arvo": 0.167,
+      "avain": "kumura"
+    },
+    {
+      "arvo": 0.5212,
+      "avain": "nappi"
+    },
+    {
+      "arvo": 0.4973,
+      "avain": "pomppu"
+    },
+    {
+      "arvo": 0.319,
+      "avain": "pussari"
+    },
+    {
+      "arvo": -0.0738,
+      "avain": "pystari/viisto"
+    },
+    {
+      "arvo": 0.342,
+      "avain": "vaakamaila"
+    },
+    {
+      "arvo": 0.3372,
+      "avain": "varsi"
+    },
+    {
+      "arvo": 0.000,
+      "avain": "vääräpois"
+    },
+    {
+      "arvo": 0.1563,
+      "avain": "kulma"
+    },
+    {
+      "arvo": 0.3692,
+      "avain": "lento"
+    },
+    {
+      "arvo": 1.3096,
+      "avain": "vapaa"
+    },
+    {
+      "arvo": 0.2832,
+      "avain": "karvauskahdella"
+    },
+    {
+      "arvo": 0.1265,
+      "avain": "karvausyhdella"
+    },
+    {
+      "arvo": -0.043,
+      "avain": "oulu"
+    },
+    {
+      "arvo": -0.2636,
+      "avain": "pertsa"
+    },
+    {
+      "arvo": 0.5389,
+      "avain": "ristivitonen"
+    },
+    {
+      "arvo": -0.9532,
+      "avain": "sailytys"
+    },
+    {
+      "arvo": -0.3116,
+      "avain": "tahko"
+    },
+    {
+      "arvo": -0.0175,
+      "avain": "tahko2"
+    },
+    {
+      "arvo": 0.000,
+      "avain": "kaannettypertsa"
+    },
+    {
+      "arvo": 0.000,
+      "avain": "etulyhyt"
+    },
+    {
+      "arvo": 0.5572,
+      "avain": "etupitkä"
+    },
+    {
+      "arvo": 1.4257,
+      "avain": "linja"
+    },
+    {
+      "arvo": 1.5387,
+      "avain": "takakenttä"
+    },
+    {
+      "arvo": 0.4473,
+      "avain": "huippu"
+    },
+    {
+      "arvo": 0.0844,
+      "avain": "huono"
+    },
+    {
+      "arvo": 0.2599,
+      "avain": "hyvä"
+    },
+    {
+      "arvo": 0.2216,
+      "avain": "keskiverto"
+    },
+    {
+      "arvo": 0.000,
+      "avain": "heikko"
+    },
+    {
+      "arvo": 0.0602,
+      "avain": "1v"
+    },
+    {
+      "arvo": 0.0836,
+      "avain": "2k"
+    },
+    {
+      "arvo": 0.1373,
+      "avain": "2p"
+    },
+    {
+      "arvo": 0.0991,
+      "avain": "2v"
+    },
+    {
+      "arvo": 0.0982,
+      "avain": "3k"
+    },
+    {
+      "arvo": 0.0892,
+      "avain": "3p"
+    },
+    {
+      "arvo": 0.0629,
+      "avain": "3v"
+    },
+    {
+      "arvo": 0.1758,
+      "avain": "l"
+    },
+    {
+      "arvo": 0.0647,
+      "avain": "s"
+    }
+  ],
+  "msulapilyontimalli": [
+    {
+      "arvo": -4.2888,
+      "avain": "(Intercept)"
+    },
+    {
+      "arvo": 0.0000,
+      "avain": "koppi"
+    },
+    {
+      "arvo": 1.009,
+      "avain": "kumura"
+    },
+    {
+      "arvo": -18.705,
+      "avain": "nappi"
+    },
+    {
+      "arvo": -1.085,
+      "avain": "pomppu"
+    },
+    {
+      "arvo": -15.6926,
+      "avain": "pussari"
+    },
+    {
+      "arvo": 0.8231,
+      "avain": "pystari/viisto"
+    },
+    {
+      "arvo": 1.4051,
+      "avain": "vaakamaila"
+    },
+    {
+      "arvo": -17.6026,
+      "avain": "varsi"
+    },
+    {
+      "arvo": 0.000,
+      "avain": "vääräpois"
+    },
+    {
+      "arvo": 0.000,
+      "avain": "kulma"
+    },
+    {
+      "arvo": 0.0000,
+      "avain": "lento"
+    },
+    {
+      "arvo": 1.2311,
+      "avain": "vapaa"
+    },
+    {
+      "arvo": -18.3585,
+      "avain": "karvauskahdella"
+    },
+    {
+      "arvo": -0.5641,
+      "avain": "karvausyhdella"
+    },
+    {
+      "arvo": -0.9083,
+      "avain": "oulu"
+    },
+    {
+      "arvo": -0.6067,
+      "avain": "pertsa"
+    },
+    {
+      "arvo": -0.2164,
+      "avain": "ristivitonen"
+    },
+    {
+      "arvo": 0.0861,
+      "avain": "sailytys"
+    },
+    {
+      "arvo": -1.1786,
+      "avain": "tahko"
+    },
+    {
+      "arvo": -0.5092,
+      "avain": "tahko2"
+    },
+    {
+      "arvo": 0.000,
+      "avain": "kaannettypertsa"
+    },
+    {
+      "arvo": 0.381,
+      "avain": "huippu"
+    },
+    {
+      "arvo": 0.656,
+      "avain": "huono"
+    },
+    {
+      "arvo": 0.2562,
+      "avain": "hyvä"
+    },
+    {
+      "arvo": 0.2097,
+      "avain": "keskiverto"
+    },
+    {
+      "arvo": 0.000,
+      "avain": "heikko"
+    },
+    {
+      "arvo": -1.4413,
+      "avain": "1v"
+    },
+    {
+      "arvo": -0.0078,
+      "avain": "2k"
+    },
+    {
+      "arvo": -0.1566,
+      "avain": "2p"
+    },
+    {
+      "arvo": 0.0173,
+      "avain": "2v"
+    },
+    {
+      "arvo": 0.0066,
+      "avain": "3k"
+    },
+    {
+      "arvo": -0.0267,
+      "avain": "3p"
+    },
+    {
+      "arvo": 0.1694,
+      "avain": "3v"
+    },
+    {
+      "arvo": -23.0556,
+      "avain": "l"
+    },
+    {
+      "arvo": 0.104,
+      "avain": "s"
+    }
+  ],
+  "nsumalli": [
+    {
+    }
+  ]
+}
