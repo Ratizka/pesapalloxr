@@ -6,7 +6,7 @@ voidaan lisätä muut tilanteet. Ohjelmisto on beta-vaiheessa, kun menee sen ohi
 
 ### Käyttö
 
-Lataa zip-kansio Releases kohdasta ja pura haluttuun paikkaan. Avaa kansio ja sieltä bin ja Kaynnista.
+Lataa zip-kansio Releases kohdasta ja pura haluttuun paikkaan. Avaa kansio ja sieltä bin.bat ja Kaynnista.
 
 Tulossa rakenna itse ohjelmisto
 
