@@ -133,8 +133,8 @@
                         <configuration>
                             <mainClass>com.example.pesapalloxr/com.example.pesapalloxr.App</mainClass>
                             <launcher>Kaynnista</launcher>
-                            <jlinkZipName>Pesäpallokerääjä</jlinkZipName>
-                            <jlinkImageName>Pesäpallokerääjä</jlinkImageName>
+                            <jlinkZipName>Pesäpalloxr</jlinkZipName>
+                            <jlinkImageName>Pesäpalloxr</jlinkImageName>
                             <noManPages>true</noManPages>
                             <stripDebug>true</stripDebug>
                             <compress>2</compress>

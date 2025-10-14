@@ -2,12 +2,11 @@
 
 | Ominaisuus                              | Mihin liittyy | Valmius |
 |-----------------------------------------|---------------|---------|
-| Läpilyöntimalli                         |               | 50      |
-| Naisten malli                           |               |         |
-| Vapaan lyönnin yrityksen todennäköisyys |               |         |
-| Kartan puhdistaminen                    |               |         |
-| Lyöntien puhdistaminen                  |               |         |
-| Ottelun jatkaminen                      |               |         |
-| Mallin lisäys Json- tai csv-tiedosta    |               |         |
-|                                         |               |         |
-|                                         |               |         |
+| Naisten mallit                          |               | 0       |
+| Vapaan lyönnin yrityksen todennäköisyys |               | 25      |
+| Lyöntien puhdistaminen kartasta         |               | 0       |
+| Lyöntien uudelleen lisäys               |               | 0       |
+| Luokan muokkaus (työn alla)             |               | 0       |
+| Ottelun jatkaminen                      |               | 0       |
+| Dokumentointi (työn alla)               |               | 0       |
+| Mallin lisäys Json- tai csv-tiedosta    |               | 100     |

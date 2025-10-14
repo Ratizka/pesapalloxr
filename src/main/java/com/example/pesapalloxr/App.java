@@ -24,7 +24,7 @@ public class App extends Application {
         scene.getStylesheets().add(getClass().getResource("/stylesheet/style.css").toExternalForm());
 
         jMetro.setScene(scene);
-        stage.setTitle("Juoksuodottama");
+        stage.setTitle("Pesäpalloxr");
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();

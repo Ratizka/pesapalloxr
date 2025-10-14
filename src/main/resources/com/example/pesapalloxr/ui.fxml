@@ -88,7 +88,7 @@
                     <TextField fx:id="koordinaattix" editable="false" text="21.0" GridPane.rowIndex="11" />
                     <TextField fx:id="koordinaattiy" editable="false" text="43.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                     <TextField fx:id="sijaintitext" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="11" />
-                    <TextField fx:id="joukkue" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <TextField fx:id="sisapelijoukkue" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                     <TextField fx:id="ulkopelijoukkue" GridPane.rowIndex="9" />
 
                     <ComboBox fx:id="kuvio" onAction="#kuvioAction" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -182,7 +182,7 @@
                 <MenuItem mnemonicParsing="false" onAction="#sulje" text="Sulje" />
             </Menu>
             <Menu mnemonicParsing="false" text="Näytä">
-                <MenuItem mnemonicParsing="false" text="Action 1"/>
+                <MenuItem mnemonicParsing="false" text="Näytä ulkopelaajat"/>
             </Menu>
             <Menu mnemonicParsing="false" text="Sarja">
                 <RadioMenuItem fx:id="menuItemMiehet" mnemonicParsing="false" onAction="#miestenkentta" selected="true" text="Miehet">
