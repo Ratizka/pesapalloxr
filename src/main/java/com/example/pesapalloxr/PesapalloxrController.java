@@ -54,6 +54,8 @@ public class PesapalloxrController {
     private final Map<String, Double> miestenSijaintiMapY = new HashMap<>();
 
     @FXML
+    private Canvas lyontiCanvas;
+    @FXML
     private ComboBox<String> kumuranTyyppi;
     @FXML
     private ComboBox<Integer> palojenMaara;
@@ -92,7 +94,7 @@ public class PesapalloxrController {
     @FXML
     private ComboBox<String> etenijalaatucombobox;
     @FXML
-    private ComboBox<Pelaajat> kotietenija;
+    private ComboBox<Pelaajat> etenijat;
     @FXML
     private ComboBox<Pelaajat> vierasetenija;
     @FXML
@@ -102,13 +104,11 @@ public class PesapalloxrController {
     @FXML
     private ComboBox<String> ulkopelipaikka;
     @FXML
-    private ComboBox<Pelaajat> kotilyojat;
-    @FXML
-    private ComboBox<Pelaajat> vieraslyojat;
+    private ComboBox<Pelaajat> lyojat;
     @FXML
     private TextField ottelunid;
     @FXML
-    private ComboBox<Pelaajat> kotiulkopelaajat;
+    private ComboBox<Pelaajat> ulkopelaajat;
     @FXML
     private ComboBox<Pelaajat> vierasulkopelaajat;
     @FXML
@@ -221,12 +221,13 @@ public class PesapalloxrController {
 
         // UI
         resoluutio();
-        pesapallokentta();
+        //miestenkentta();
         valikot();
         taulukontiedot();
         taulukkomuokkaus();
         sarakkeidenmuokkaus();
         taulukonOminaisuuksia();
+        ulkopelikuvio();
     }
 
     @FXML
@@ -329,7 +330,17 @@ public class PesapalloxrController {
         ulkopelitempocombobox.getItems().addAll("pysäytys", "ali", "peli", "yli");
         ulkopelitempocombobox.getSelectionModel().selectFirst();
 
+        lyojat.getItems().addAll(new Pelaajat(1, 1, "Koti", 1, "Koti"),
+                new Pelaajat(1, 2, "Vieras", 2, "Vieras"));
+        lyojat.getSelectionModel().selectFirst();
 
+        etenijat.getItems().addAll(new Pelaajat(1, 1, "Koti", 1, "Koti"),
+                new Pelaajat(1, 2, "Vieras", 2, "Vieras"));
+        etenijat.getSelectionModel().selectFirst();
+
+        ulkopelaajat.getItems().addAll(new Pelaajat(1, 1, "Koti", 1, "Koti"),
+                new Pelaajat(1, 2, "Vieras", 2, "Vieras"));
+        ulkopelaajat.getSelectionModel().selectFirst();
     }
 
     @FXML
@@ -979,7 +990,7 @@ public class PesapalloxrController {
     }
 
     @FXML
-    private void pesapallokentta() {
+    private void miestenkentta() {
         GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
         graphicsContext.clearRect(0, 0, kentta.getWidth(), kentta.getHeight());
         graphicsContext.setFill(Color.BLACK);
@@ -1002,11 +1013,303 @@ public class PesapalloxrController {
 
         graphicsContext.strokeLine(150, 554, 290, 690); // Kotijuoksuviiva
 
-        graphicsContext.fillOval(278, 125, 10, 10); // Kolmoskoppari
+    }
+
+    @FXML
+    private void kuvioAction() {
+        ulkopelikuvio();
+        laskeEtaisyys();
+    }
+
+    @FXML
+    private void ulkopelikuvio() {
+        miestenkentta();
+
+        if (kuvio.getValue().equals("oulu")) {
+            oulu();
+        } else if (kuvio.getValue().equals("ristivitonen")) {
+            ristiVitonen();
+        } else if (kuvio.getValue().equals("tahko")) {
+            tahkoKuvio();
+        } else if (kuvio.getValue().equals("tahko2")) {
+            kaannettyTahkoKuvio();
+        } else if (kuvio.getValue().equals("pertsa")) {
+            pertsa();
+        } else if (kuvio.getValue().equals("kaannettypertsa")) {
+            kaannettyPertsa();
+        } else if (kuvio.getValue().equals("karvauskahdella")) {
+            karvausKahdella();
+        } else if (kuvio.getValue().equals("karvausyhdella")) {
+            karvausYhdella();
+        } else if (kuvio.getValue().equals("sailytys")) {
+            sailytys();
+        } else {
+            muu();
+        }
+    }
+
+    @FXML
+    private void oulu() {
+        GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
+
+        graphicsContext.setFill(Color.DARKMAGENTA);
+        //graphicsContext.setStroke(Color.BROWN);
+
+        graphicsContext.fillOval(278, 127, 10, 10); // Kolmoskoppari
+
+        graphicsContext.fillOval(435, 127, 10, 10); // Kakkoskoppari
+
+        graphicsContext.fillOval(145, 423, 10, 10); // 3v
+
+        graphicsContext.fillOval(327, 521, 10, 10); // 1v
+
+        graphicsContext.fillOval(535, 443, 10, 10); // Sieppari
+
+        graphicsContext.fillOval(217, 350, 10, 10); // 3p
+
+        graphicsContext.fillOval(400, 311, 10, 10); // 2p
+
+        graphicsContext.fillOval(478, 358, 10, 10); // 2v
+    }
+
+    @FXML
+    private void ristiVitonen() {
+        GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
+
+        graphicsContext.setFill(Color.DARKMAGENTA);
+        //graphicsContext.setStroke(Color.BROWN);
+
+        graphicsContext.fillOval(278, 127, 10, 10); // Kolmoskoppari
+
+        graphicsContext.fillOval(435, 127, 10, 10); // Kakkoskoppari
+
+        graphicsContext.fillOval(174, 457, 10, 10); // 3v
+
+        graphicsContext.fillOval(388, 512, 10, 10); // 1v
+
+        graphicsContext.fillOval(545, 423, 10, 10); // Sieppari
+
+        graphicsContext.fillOval(207, 359, 10, 10); // 3p
+
+        graphicsContext.fillOval(326, 311, 10, 10); // 2p
+
+        graphicsContext.fillOval(478, 331, 10, 10); // 2v
+    }
+
+    @FXML
+    private void tahkoKuvio() {
+        GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
+        graphicsContext.clearRect(0, 0, kentta.getWidth(), kentta.getHeight());
+        graphicsContext.setFill(Color.BLACK);
+        graphicsContext.setStroke(Color.BLACK);
+        graphicsContext.setLineWidth(2.0);
 
 
-        graphicsContext.fillOval(435, 125, 10, 10); // Kakkoskoppari
+        graphicsContext.strokeLine(150, 37.5, 550, 37.5); // Takaraja
+        graphicsContext.strokeLine(150, 37.5, 150, 554); // Kolmosjatke
+        graphicsContext.strokeLine(550, 37.5, 550, 472.5); // Kakkosjatke
+        graphicsContext.strokeLine(275, 690, 400, 690); // Kotipesä
 
+        graphicsContext.strokeLine(150, 472.5, 337.5, 690); // Kolmosraja
+
+        graphicsContext.strokeLine(550, 472.5, 362.5, 690); // Kakkosraja
+
+        graphicsContext.strokeLine(152, 428.3268, 550, 428.3268); // 2-3 väli
+
+        graphicsContext.strokeLine(190, 592.5, 550, 428.3268); // 1-2 väli
+
+        graphicsContext.strokeLine(150, 554, 290, 690); // Kotijuoksuviiva
+
+        graphicsContext.setFill(Color.DARKMAGENTA);
+        //graphicsContext.setStroke(Color.BROWN);
+
+        graphicsContext.fillOval(278, 127, 10, 10); // Kolmoskoppari
+
+        graphicsContext.fillOval(435, 127, 10, 10); // Kakkoskoppari
+
+        graphicsContext.fillOval(145, 402, 10, 10); // 3v
+
+        graphicsContext.fillOval(268, 481, 10, 10); // 1v
+
+        graphicsContext.fillOval(511, 457, 10, 10); // Sieppari
+
+        graphicsContext.fillOval(312, 331, 10, 10); // 3p
+
+        graphicsContext.fillOval(393, 403, 10, 10); // 2p
+
+        graphicsContext.fillOval(478, 345, 10, 10); // 2v
+
+    }
+
+    @FXML
+    private void kaannettyTahkoKuvio() {
+        GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
+
+        graphicsContext.setFill(Color.DARKMAGENTA);
+        //graphicsContext.setStroke(Color.BROWN);
+
+        graphicsContext.fillOval(278, 127, 10, 10); // Kolmoskoppari
+
+        graphicsContext.fillOval(435, 127, 10, 10); // Kakkoskoppari
+
+        graphicsContext.fillOval(173, 457, 10, 10); // 3v
+
+        graphicsContext.fillOval(312, 410, 10, 10); // 1v
+
+        graphicsContext.fillOval(445, 491, 10, 10); // Sieppari
+
+        graphicsContext.fillOval(207, 355, 10, 10); // 3p
+
+        graphicsContext.fillOval(378, 321, 10, 10); // 2p
+
+        graphicsContext.fillOval(545, 403, 10, 10); // 2v
+
+
+        //graphicsContext.fillOval(435, 125, 10, 10); // 3p
+
+    }
+
+    @FXML
+    private void kaannettyPertsa() {
+        GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
+
+        graphicsContext.setFill(Color.DARKMAGENTA);
+
+        graphicsContext.fillOval(278, 127, 10, 10); // Kolmoskoppari
+
+        graphicsContext.fillOval(435, 127, 10, 10); // Kakkoskoppari
+
+        graphicsContext.fillOval(173, 457, 10, 10); // 3v
+
+        graphicsContext.fillOval(412, 423, 10, 10); // 1v
+
+        graphicsContext.fillOval(512, 457, 10, 10); // Sieppari
+
+        graphicsContext.fillOval(207, 345, 10, 10); // 3p
+
+        graphicsContext.fillOval(326, 311, 10, 10); // 2p
+
+        graphicsContext.fillOval(478, 331, 10, 10); // 2v
+
+
+    }
+
+    @FXML
+    private void pertsa() {
+        GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
+
+        graphicsContext.setFill(Color.DARKMAGENTA);
+
+        graphicsContext.fillOval(278, 127, 10, 10); // Kolmoskoppari
+
+        graphicsContext.fillOval(435, 127, 10, 10); // Kakkoskoppari
+
+        graphicsContext.fillOval(173, 457, 10, 10); // 3v
+
+        graphicsContext.fillOval(326, 423, 10, 10); // 1v
+
+        graphicsContext.fillOval(512, 457, 10, 10); // Sieppari
+
+        graphicsContext.fillOval(207, 359, 10, 10); // 3p
+
+        graphicsContext.fillOval(392, 311, 10, 10); // 2p
+
+        graphicsContext.fillOval(478, 359, 10, 10); // 2v
+
+    }
+
+    @FXML
+    private void karvausKahdella() {
+        GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
+
+        graphicsContext.setFill(Color.DARKMAGENTA);
+        //graphicsContext.setStroke(Color.BROWN);
+
+        graphicsContext.fillOval(278, 127, 10, 10); // Kolmoskoppari
+
+        graphicsContext.fillOval(435, 127, 10, 10); // Kakkoskoppari
+
+        graphicsContext.fillOval(145, 410, 10, 10); // 3v
+
+        graphicsContext.fillOval(278, 563, 10, 10); // 1v
+
+        graphicsContext.fillOval(435, 563, 10, 10); // Sieppari
+
+        graphicsContext.fillOval(207, 359, 10, 10); // 3p
+
+        graphicsContext.fillOval(392, 294, 10, 10); // 2p
+
+        graphicsContext.fillOval(493, 359, 10, 10); // 2v
+    }
+
+    @FXML
+    private void karvausYhdella() {
+        GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
+
+        graphicsContext.setFill(Color.DARKMAGENTA);
+
+        graphicsContext.fillOval(278, 127, 10, 10); // Kolmoskoppari
+
+        graphicsContext.fillOval(435, 127, 10, 10); // Kakkoskoppari
+
+        graphicsContext.fillOval(145, 410, 10, 10); // 3v
+
+        graphicsContext.fillOval(278, 563, 10, 10); // 1v
+
+        graphicsContext.fillOval(535, 443, 10, 10); // Sieppari
+
+        graphicsContext.fillOval(207, 359, 10, 10); // 3p
+
+        graphicsContext.fillOval(392, 294, 10, 10); // 2p
+
+        graphicsContext.fillOval(493, 359, 10, 10); // 2v
+    }
+
+    @FXML
+    private void sailytys() {
+        GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
+
+        graphicsContext.setFill(Color.DARKMAGENTA);
+
+        graphicsContext.fillOval(278, 127, 10, 10); // Kolmoskoppari
+
+        graphicsContext.fillOval(435, 127, 10, 10); // Kakkoskoppari
+
+        graphicsContext.fillOval(145, 410, 10, 10); // 3v
+
+        graphicsContext.fillOval(293, 508, 10, 10); // 1v
+
+        graphicsContext.fillOval(435, 491, 10, 10); // Sieppari
+
+        graphicsContext.fillOval(307, 349, 10, 10); // 3p
+
+        graphicsContext.fillOval(392, 362, 10, 10); // 2p
+
+        graphicsContext.fillOval(545, 423, 10, 10); // 2v
+    }
+
+    @FXML
+    private void muu() {
+        GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
+
+        graphicsContext.setFill(Color.DARKMAGENTA);
+        //graphicsContext.setStroke(Color.BROWN);
+
+        graphicsContext.fillOval(145, 33, 10, 10); // Kolmoskoppari
+
+        graphicsContext.fillOval(545, 33, 10, 10); // Kakkoskoppari
+
+        graphicsContext.fillOval(145, 410, 10, 10); // 3v
+
+        graphicsContext.fillOval(145, 311, 10, 10); // 1v
+
+        graphicsContext.fillOval(545, 410, 10, 10); // Sieppari
+
+        graphicsContext.fillOval(145, 175, 10, 10); // 3p
+
+        graphicsContext.fillOval(345, 107, 10, 10); // 2p
+
+        graphicsContext.fillOval(545, 277, 10, 10); // 2v
     }
 
     @FXML
@@ -1022,7 +1325,7 @@ public class PesapalloxrController {
         double xMetri = event.getX();
         double yMetri = event.getY();
 
-        GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
+        GraphicsContext graphicsContext = lyontiCanvas.getGraphicsContext2D();
         graphicsContext.setFill(Color.RED);
 
         if (vierasjoukkueToggle.isSelected()) {
@@ -1130,14 +1433,14 @@ public class PesapalloxrController {
         String tyyppixr = tyyppi.getValue();
         String merrkixr = merkki.getValue();
         String syottoxr = syotto.getValue();
-        String lyojaxr = lyoja.getText();
+        String lyojaxr = lyojat.getValue().getNimi();
         String joukkuexr = joukkue.getText();
         String jaksoxr = jakso.getValue();
 
         Integer vuoroparixr = vuoropari.getValue();
         String ulkopelixr = ulkopelipaikka.getValue();
         String ulkopelivirhexr = ulkopelivirhe.getValue();
-        String ulkopelisuorittjaxr = ulkopelisuorittaja.getText();
+        String ulkopelisuorittjaxr = ulkopelaajat.getValue().getNimi();
         String vaaraallaxr = vaaraalla.getValue();
         String lyontixr = lyonticombobox.getValue();
         Integer juoksutxr = juoksut.getValue();
@@ -1145,7 +1448,7 @@ public class PesapalloxrController {
         Integer lyontinumeroxr = lyontinumero.getValue();
 
         String ulkopelijoukkuexr = ulkopelijoukkue.getText();
-        String etenijaxr = etenija.getText();
+        String etenijaxr = etenijat.getValue().getNimi();
         String etenijalaatuxr = etenijalaatucombobox.getValue();
         String kunnarixr = kunnari.getValue();
         String tilanne = tilannecombobox.getValue();
@@ -1396,18 +1699,17 @@ public class PesapalloxrController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                lyojat.setItems(kotilyojatlista);
 
-                kotilyojat.setItems(kotilyojatlista);
+                lyojat.getSelectionModel().selectFirst();
 
-                kotilyojat.getSelectionModel().selectFirst();
+                ulkopelaajat.setItems(kotilyojatlista);
 
-                kotiulkopelaajat.setItems(kotilyojatlista);
+                ulkopelaajat.getSelectionModel().selectFirst();
 
-                kotiulkopelaajat.getSelectionModel().selectFirst();
+                etenijat.setItems(kotilyojatlista);
 
-                kotietenija.setItems(kotilyojatlista);
-
-                kotietenija.getSelectionModel().selectFirst();
+                etenijat.getSelectionModel().selectFirst();
             }
         });
     }
@@ -1421,6 +1723,12 @@ public class PesapalloxrController {
         int vierasjoukkueID = jsonObject.getJSONObject("away").getInt("sport_club_id");
 
         String vierasjoukkue = jsonObject.getJSONObject("away").getString("name");
+
+        vieraslyojatlista.add(
+                new Pelaajat(
+                        0, 0, " ",
+                        vierasjoukkueID, vierasjoukkue
+                ));
 
         int vieraspelaajapituus = vieraspelaajalista.length();
 
@@ -1438,32 +1746,39 @@ public class PesapalloxrController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                vieraslyojat.setItems(vieraslyojatlista);
+                lyojat.getItems().addAll(vieraslyojatlista);
 
-                vieraslyojat.getSelectionModel().selectFirst();
+                //lyojat.getSelectionModel().selectFirst();
 
-                vierasetenija.setItems(vieraslyojatlista);
+                //etenijat.setItems(vieraslyojatlista);
 
-                vierasetenija.getSelectionModel().selectFirst();
+                //vierasetenija.getSelectionModel().selectFirst();
 
-                vierasulkopelaajat.setItems(vieraslyojatlista);
+                //vierasulkopelaajat.setItems(vieraslyojatlista);
 
-                vierasulkopelaajat.getSelectionModel().selectFirst();
+                //vierasulkopelaajat.getSelectionModel().selectFirst();
             }
         });
 
     }
 
     @FXML
-    private void kotilyoja() {
-        if (kotilyojat.getValue() == null) {
+    private void sisapelijoukkue() {
+        if (lyojat.getValue() == null) {
             return;
         }
-        lyoja.setText(kotilyojat.getValue().getNimi());
-        joukkue.setText(kotilyojat.getValue().getJoukkue());
-        sisajoukkeuid.setText(String.valueOf(kotilyojat.getValue().getJoukkueID()));
+        joukkue.setText(lyojat.getValue().getJoukkue());
     }
 
+    @FXML
+    private void sisapelijoukkueEtenija() {
+        if (lyojat.getValue() == null) {
+            return;
+        }
+        joukkue.setText(etenijat.getValue().getJoukkue());
+    }
+
+    /*
     @FXML
     private void vieraslyoja() {
         if (vieraslyojat.getValue() == null) {
@@ -1474,14 +1789,16 @@ public class PesapalloxrController {
         sisajoukkeuid.setText(String.valueOf(vieraslyojat.getValue().getJoukkueID()));
     }
 
+     */
+
     @FXML
-    private void kotiulkopelaaja() {
-        if (kotiulkopelaajat.getValue() == null) {
+    private void ulkopelijoukkue() {
+        if (ulkopelaajat.getValue() == null) {
             return;
         }
-        ulkopelisuorittaja.setText(kotiulkopelaajat.getValue().getNimi());
-        ulkopelijoukkue.setText(kotiulkopelaajat.getValue().getJoukkue());
-        ulkojoukkueid.setText(String.valueOf(kotiulkopelaajat.getValue().getJoukkueID()));
+        //ulkopelisuorittaja.setText(ulkopelaajat.getValue().getNimi());
+        ulkopelijoukkue.setText(ulkopelaajat.getValue().getJoukkue());
+        //ulkojoukkueid.setText(String.valueOf(ulkopelaajat.getValue().getJoukkueID()));
     }
 
     @FXML
@@ -1489,17 +1806,18 @@ public class PesapalloxrController {
         if (vierasulkopelaajat.getValue() == null) {
             return;
         }
-        ulkopelisuorittaja.setText(vierasulkopelaajat.getValue().getNimi());
+        //ulkopelisuorittaja.setText(vierasulkopelaajat.getValue().getNimi());
         ulkopelijoukkue.setText(vierasulkopelaajat.getValue().getJoukkue());
-        ulkojoukkueid.setText(String.valueOf(vierasulkopelaajat.getValue().getJoukkueID()));
+        //ulkojoukkueid.setText(String.valueOf(vierasulkopelaajat.getValue().getJoukkueID()));
     }
 
+    /*
     @FXML
     private void kotietenijalisays() {
-        if (kotietenija.getValue() == null) {
+        if (etenijat.getValue() == null) {
             return;
         }
-        etenija.setText(kotietenija.getValue().getNimi());
+        etenija.setText(etenijat.getValue().getNimi());
     }
 
     @FXML
@@ -1509,6 +1827,8 @@ public class PesapalloxrController {
         }
         etenija.setText(vierasetenija.getValue().getNimi());
     }
+
+     */
 
     @FXML
     private void poistarivi() {
