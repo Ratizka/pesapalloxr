@@ -40,7 +40,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '21'
-          distribution: 'corretto'
+          distribution: 'liberica'
           java-package: jdk+fx
           cache: 'maven'
       - name: "Build with Maven"
