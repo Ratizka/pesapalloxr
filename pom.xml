@@ -10,6 +10,7 @@
     <version>1.0</version>
     <name>pesapalloxr</name>
 
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.10.0</junit.version>
@@ -126,22 +127,16 @@
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
-                <executions>
-                    <execution>
-                        <!-- Default configuration for running with: mvn clean javafx:run -->
-                        <id>default-cli</id>
+
                         <configuration>
                             <mainClass>com.example.pesapalloxr/com.example.pesapalloxr.App</mainClass>
                             <launcher>Kaynnista</launcher>
-                            <jlinkZipName>Pesäpalloxr</jlinkZipName>
-                            <jlinkImageName>Pesäpalloxr</jlinkImageName>
+                            <jlinkZipName>Pesäpalloxr 0.1</jlinkZipName>
+                            <jlinkImageName>Pesäpalloxr 0.1</jlinkImageName>
                             <noManPages>true</noManPages>
                             <stripDebug>true</stripDebug>
                             <compress>2</compress>
-                            <noHeaderFiles>true</noHeaderFiles>
                         </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
