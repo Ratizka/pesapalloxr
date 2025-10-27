@@ -8,6 +8,15 @@ voidaan lisätä muut tilanteet. Ohjelmisto on beta-vaiheessa, kun menee sen ohi
 
 Lataa zip-kansio Releases kohdasta ja pura haluttuun paikkaan. Avaa kansio ja sieltä bin ja Kaynnista.bat.
 
+#### Windows
+
+Lataa zip-kansio Releases kohdasta ja pura haluttuun paikkaan. Avaa kansio ja sieltä bin ja Kaynnista.
+
+#### Muut
+
+Koitan tehdä asennuspakettia jokaiselle käyttöjärjestelmälle Windows, Mac ja Linux-pohjaiselle. Tällä hetkellä muut
+käyttöjärjestelmät voivat kloonata repon ja rakentaa itse ohjelmiston.
+
 Tulossa rakenna itse ohjelmisto
 
 ### Mallit ja merkkaus
@@ -32,6 +41,11 @@ lyönti alla olevien ohjeiden mukaan.
 Poikkeuksena ovat kopparit. Koppareilla merkataan ulkopelisuorituksen kohdalla kiinniottokohtaan. Kopparin pysäyttäessä
 kohtaan, jossa lyönti on käynyt maahan. Poikkeuksena jatkelyönnit, jolloin ne voi merkata kiinniottokohtaan tai edellä
 mainitulla tavalla.
+
+### Dokumentointi
+
+Dokumentointi-kansiosta löytyy tulevat ominaisuukset ja mahdolliset tarkemmat käyttöohjeet ohjelmistolle ja
+merkkaukselle.
 
 ### UKK
 
