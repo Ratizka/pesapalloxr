@@ -2,11 +2,18 @@
 
 Pesäpalloxr on pesäpalloon luotu kerääjä kotiutustilanteita varten. Käyttäjä voi merkata lyönnnin, jonka avulla
 lasketaan todennäköisyys juoksulle ja kuinka todennäköisesti se menee läpi. Riippuen kysynnästä ja ajasta kerääjään
-voidaan lisätä muut tilanteet. Ohjelmisto on beta-vaiheessa, kun menee sen ohi versionumero alkaa numerolla yksi.
+voidaan lisätä muut tilanteet. Ohjelmisto on beta-vaiheessa, kun beta loppuu, versionumero alkaa numerolla yksi.
 
 ### Käyttö
 
+#### Windows
+
 Lataa zip-kansio Releases kohdasta ja pura haluttuun paikkaan. Avaa kansio ja sieltä bin ja Kaynnista.
+
+#### Muut
+
+Koitan tehdä asennuspakettia jokaiselle käyttöjärjestelmälle Windows, Mac ja Linux-pohjaiselle. Tällä hetkellä muut
+käyttöjärjestelmät voivat kloonata repon ja rakentaa itse ohjelmiston.
 
 Tulossa rakenna itse ohjelmisto
 
@@ -32,6 +39,11 @@ lyönti alla olevien ohjeiden mukaan.
 Poikkeuksena ovat kopparit. Koppareilla merkataan ulkopelisuorituksen kohdalla kiinniottokohtaan. Kopparin pysäyttäessä
 kohtaan, jossa lyönti on käynyt maahan. Poikkeuksena jatkelyönnit, jolloin ne voi merkata kiinniottokohtaan tai edellä
 mainitulla tavalla.
+
+### Dokumentointi
+
+Dokumentointi-kansiosta löytyy tulevat ominaisuukset ja mahdolliset tarkemmat käyttöohjeet ohjelmistolle ja
+merkkaukselle.
 
 ### UKK
 
