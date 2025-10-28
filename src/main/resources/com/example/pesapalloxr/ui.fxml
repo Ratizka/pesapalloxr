@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.input.KeyCodeCombination?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+
 <BorderPane fx:id="ui" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pesapalloxr.PesapalloxrController">
     <center>
         <ScrollPane>
@@ -174,6 +191,7 @@
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="Tiedosto">
                 <MenuItem mnemonicParsing="false" text="Asetukset" />
+            <MenuItem mnemonicParsing="false" text="Avaa" />
                 <MenuItem mnemonicParsing="false" onAction="#tallennacsvtiedostoon" text="Tallenna">
                     <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
@@ -182,7 +200,9 @@
                 <MenuItem mnemonicParsing="false" onAction="#sulje" text="Sulje" />
             </Menu>
             <Menu mnemonicParsing="false" text="Näytä">
-                <MenuItem mnemonicParsing="false" text="Näytä ulkopelaajat"/>
+                <MenuItem mnemonicParsing="false" text="Näytä ulkopelaajat" />
+            <MenuItem mnemonicParsing="false" text="Poista lyönti" />
+            <MenuItem mnemonicParsing="false" text="Uusi kartta" />
             </Menu>
             <Menu mnemonicParsing="false" text="Sarja">
                 <RadioMenuItem fx:id="menuItemMiehet" mnemonicParsing="false" onAction="#miestenkentta" selected="true" text="Miehet">
