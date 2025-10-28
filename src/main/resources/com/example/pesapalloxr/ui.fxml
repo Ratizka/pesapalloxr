@@ -191,7 +191,7 @@
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="Tiedosto">
                 <MenuItem mnemonicParsing="false" text="Asetukset" />
-            <MenuItem mnemonicParsing="false" text="Avaa" />
+            <MenuItem mnemonicParsing="false" text="Avaa" onAction="#avaaOttelu"/>
                 <MenuItem mnemonicParsing="false" onAction="#tallennacsvtiedostoon" text="Tallenna">
                     <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
