@@ -1609,7 +1609,7 @@ public class PesapalloxrController {
     private void avaaOttelu() {
         try {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Tallenna tiedostoon");
+            fileChooser.setTitle("Avaa tiedosto");
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("CSV", "*.csv")
             );
@@ -1635,8 +1635,6 @@ public class PesapalloxrController {
             ).setSkipHeaderRecord(true).get();
 
             CSVParser parse = CSVParser.parse(fileReader, format);
-
-            System.out.println();
 
             for (CSVRecord i: parse) {
                 Integer otteluid = Integer.valueOf(
@@ -1692,6 +1690,9 @@ public class PesapalloxrController {
             taulukkoxr.getItems().addAll(data);
 
 
+            parse.close();
+
+            fileReader.close();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
