@@ -20,11 +20,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.util.converter.IntegerStringConverter;
 import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.commons.csv.CSVRecord;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
@@ -1348,14 +1351,14 @@ public class PesapalloxrController {
 
         String kuvioxr = kuvio.getValue();
         String tyyppixr = tyyppi.getValue();
-        String merrkixr = merkki.getValue();
+        String merkkixr = merkki.getValue();
         String syottoxr = syotto.getValue();
         String lyojaxr = lyojat.getValue().getNimi();
-        String joukkuexr = sisapelijoukkue.getText();
+        String sisapelijoukkuexr = sisapelijoukkue.getText();
         String jaksoxr = jakso.getValue();
 
         Integer vuoroparixr = vuoropari.getValue();
-        String ulkopelixr = ulkopelipaikka.getValue();
+        String ulkopelipaikkaxr = ulkopelipaikka.getValue();
         String ulkopelivirhexr = ulkopelivirhe.getValue();
         String ulkopelisuorittjaxr = ulkopelaajat.getValue().getNimi();
         String vaaraallaxr = vaaraalla.getValue();
@@ -1375,9 +1378,9 @@ public class PesapalloxrController {
         Lyontitiedot tiedot = new Lyontitiedot(
                 x, y,
                 sijainti, kuvioxr, tyyppixr,
-                merrkixr, syottoxr, lyojaxr,
-                joukkuexr, jaksoxr, vuoroparixr,
-                OTTELUID, ulkopelixr, ulkopelivirhexr,
+                merkkixr, syottoxr, lyojaxr,
+                sisapelijoukkuexr, jaksoxr, vuoroparixr,
+                OTTELUID, ulkopelipaikkaxr, ulkopelivirhexr,
                 ulkopelisuorittjaxr, ulkopelisuoritusxr,
                 vaaraallaxr, lyontixr, juoksutxr,
                 lapilyontixr, lyontinumeroxr, ulkopelijoukkuexr,
@@ -1542,7 +1545,7 @@ public class PesapalloxrController {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Tallenna tiedostoon");
             fileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("CSV", ".csv")
+                    new FileChooser.ExtensionFilter("CSV", "*.csv")
             );
 
             File tiedosto = fileChooser.showSaveDialog(null);
@@ -1561,7 +1564,8 @@ public class PesapalloxrController {
                     "ulkopelijoukkue", "ulkopelisuoritus", "ulkopelisuorittaja", "ulkopelipaikka", "ulkopelivirhe",
                     "koordinaattix", "koordinaattiy", "kuvio",
                     "tyyppi", "merkki", "sijainti", "syotto",
-                    "vaaraAlla", "lyonti", "juoksut", "lapilyonti", "lyontinumero", "juoksutodennakoisyys"
+                    "vaaraAlla", "lyonti", "juoksut", "lapilyonti", "lyontinumero", "juoksutodennakoisyys",
+                    "kunnari", "tilanne"
             ).get();
 
             CSVPrinter printer = format.print(writer);
@@ -1599,8 +1603,10 @@ public class PesapalloxrController {
                         datum.getLapilyonti(),
                         datum.getLyontinumero(),
 
+                        datum.getJuoksutodennakoisyys(),
+                        datum.getKunnari(),
+                        datum.getTilanne()
 
-                        datum.getJuoksutodennakoisyys()
                 );
             }
 
@@ -1609,6 +1615,100 @@ public class PesapalloxrController {
             writer.close();
         } catch (IOException ioexception) {
             System.err.print(ioexception.getMessage());
+        }
+    }
+
+    @FXML
+    private void avaaOttelu() {
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Avaa tiedosto");
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("CSV", "*.csv")
+            );
+
+            File tiedosto = fileChooser.showOpenDialog(null);
+
+            if (tiedosto == null) {
+                return;
+            }
+
+            FileReader fileReader = new FileReader(tiedosto.getAbsolutePath());
+
+            List<Lyontitiedot> data = new ArrayList<>();
+
+            CSVFormat format = CSVFormat.Builder.create().setHeader(
+                    "otteluID", "jakso", "vuoropari",
+                    "sisajoukkue", "lyoja", "etenija", "etenijanlaatu",
+                    "ulkopelijoukkue", "ulkopelisuoritus", "ulkopelisuorittaja", "ulkopelipaikka", "ulkopelivirhe",
+                    "koordinaattix", "koordinaattiy", "kuvio",
+                    "tyyppi", "merkki", "sijainti", "syotto",
+                    "vaaraAlla", "lyonti", "juoksut", "lapilyonti", "lyontinumero", "juoksutodennakoisyys",
+                    "kunnari", "tilanne"
+            ).setSkipHeaderRecord(true).get();
+
+            CSVParser parse = CSVParser.parse(fileReader, format);
+
+            for (CSVRecord i: parse) {
+                Integer otteluid = Integer.valueOf(
+                        i.get("otteluID")
+                );
+                String jakso = i.get("jakso");
+                Integer vuoropari = Integer.valueOf(
+                        i.get("vuoropari")
+                );
+                String sisajoukkue = i.get("sisajoukkue");
+                String lyoja = i.get("lyoja");
+                String etenija = i.get("etenija");
+                String etenijalaatu = i.get("etenijanlaatu");
+                String ulkopelijoukkue = i.get("ulkopelijoukkue");
+                String ulkopelisuoritus = i.get("ulkopelisuoritus");
+                String ulkopelisuorittaja = i.get("ulkopelisuorittaja");
+                String ulkopelipaikka = i.get("ulkopelipaikka");
+                String ulkopelivirhe = i.get("ulkopelivirhe");
+
+                Double koordinaattix = Double.valueOf(i.get("koordinaattix"));
+                Double koordinaattiy = Double.valueOf(i.get("koordinaattiy"));
+
+                String kuvio = i.get("kuvio");
+                String tyyppi = i.get("tyyppi");
+                String merkki = i.get("merkki");
+                String sijainti = i.get("sijainti");
+                String syotto = i.get("syotto");
+                String vaaraAlla = i.get("vaaraAlla");
+                String lyonti = i.get("lyonti");
+                Integer juoksut = Integer.valueOf(i.get("juoksut"));
+
+                String lapilyonti = i.get("lapilyonti");
+
+                Integer lyontinumero = Integer.valueOf(i.get("lyontinumero"));
+                Double juoksutodennakoisyys = Double.valueOf(i.get("juoksutodennakoisyys"));
+                String kunnari = i.get("kunnari");
+                String tilanne = i.get("tilanne");
+
+                data.add(new Lyontitiedot(
+                        koordinaattix, koordinaattiy,
+                        sijainti, kuvio, tyyppi,
+                        merkki, syotto, lyoja,
+                        sisajoukkue, jakso, vuoropari,
+                        otteluid, ulkopelipaikka, ulkopelivirhe,
+                        ulkopelisuorittaja, ulkopelisuoritus,
+                        vaaraAlla, lyonti, juoksut,
+                        lapilyonti, lyontinumero, ulkopelijoukkue,
+                        etenija, etenijalaatu, juoksutodennakoisyys,
+                        kunnari, tilanne
+                ));
+            }
+
+            taulukkoxr.getItems().addAll(data);
+
+
+            parse.close();
+
+            fileReader.close();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

@@ -191,19 +191,28 @@
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="Tiedosto">
                 <MenuItem mnemonicParsing="false" text="Asetukset" />
-            <MenuItem mnemonicParsing="false" text="Avaa" />
+
+                <MenuItem mnemonicParsing="false" text="Avaa" onAction="#avaaOttelu">
+                    <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                    </accelerator>
+                </MenuItem>
+
                 <MenuItem mnemonicParsing="false" onAction="#tallennacsvtiedostoon" text="Tallenna">
                     <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                     </accelerator>
                 </MenuItem>
+
                 <MenuItem mnemonicParsing="false" onAction="#sulje" text="Sulje" />
             </Menu>
+
             <Menu mnemonicParsing="false" text="Näytä">
                 <MenuItem mnemonicParsing="false" text="Näytä ulkopelaajat" />
-            <MenuItem mnemonicParsing="false" text="Poista lyönti" />
-            <MenuItem mnemonicParsing="false" text="Uusi kartta" />
+                <MenuItem mnemonicParsing="false" text="Poista lyönti" />
+                <MenuItem mnemonicParsing="false" text="Uusi kartta" />
             </Menu>
+
             <Menu mnemonicParsing="false" text="Sarja">
                 <RadioMenuItem fx:id="menuItemMiehet" mnemonicParsing="false" onAction="#miestenkentta" selected="true" text="Miehet">
                     <toggleGroup>
