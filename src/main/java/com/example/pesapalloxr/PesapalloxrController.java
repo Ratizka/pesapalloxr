@@ -49,9 +49,18 @@ public class PesapalloxrController {
 
     private final Map<String, Double> miestenXrMap = new HashMap<>();
     private final Map<String, Double> miestenXLapiMap = new HashMap<>();
-    //private final Map<String, Double> naistenXrMap = new HashMap<>();
+
+    private final Map<String, Double> naistenXrMap = new HashMap<>();
+    private final Map<String, Double> naistenXrLapiMap = new HashMap<>();
+
     private final Map<String, Double> miestenSijaintiMapX = new HashMap<>();
     private final Map<String, Double> miestenSijaintiMapY = new HashMap<>();
+
+    private final Map<String, Double> naistenSijaintiMapX = new HashMap<>();
+    private final Map<String, Double> naistenSijaintiMapY = new HashMap<>();
+
+    public RadioMenuItem menuItemMiehet;
+    public RadioMenuItem menuItemNaiset;
 
     @FXML
     private Canvas lyontiCanvas;
@@ -198,8 +207,6 @@ public class PesapalloxrController {
 
         // Map
         malli();
-        miestenSijaintiX();
-        miestenSijantiY();
 
         // UI
         resoluutio();
@@ -692,6 +699,11 @@ public class PesapalloxrController {
 
         xrmap(jsonObject);
         miestenXlapilyontiMap(jsonObject);
+        msuSijaintiMap(jsonObject);
+
+        xrMallinsuMap(jsonObject);
+        nsuSijaintiMap(jsonObject);
+        naistenXRlapilyontiMap(jsonObject);
     }
 
     private JSONObject lataamallit() {
@@ -738,212 +750,85 @@ public class PesapalloxrController {
 
     }
 
-    private void miestenSijaintiX() {
-        miestenSijaintiMapX.put("kaannettypertsal", 21.00);
-        miestenSijaintiMapX.put("oulul", 21.00);
-        miestenSijaintiMapX.put("pertsal", 21.00);
-        miestenSijaintiMapX.put("ristivitonenl", 21.00);
-        miestenSijaintiMapX.put("tahkol", 21.00);
-        miestenSijaintiMapX.put("tahko2l", 21.00);
-        miestenSijaintiMapX.put("sailytysl", 21.00);
-        miestenSijaintiMapX.put("karvauskahdellal", 21.00);
-        miestenSijaintiMapX.put("karvausyhdellal", 21.00);
-        miestenSijaintiMapX.put("muul", 21.00);
+    private void xrMallinsuMap(JSONObject jsonObject) {
 
-        miestenSijaintiMapX.put("kaannettypertsa3v", 3.0);
-        miestenSijaintiMapX.put("oulu3v", 0.0);
-        miestenSijaintiMapX.put("pertsa3v", 3.0);
-        miestenSijaintiMapX.put("ristivitonen3v", 3.0);
-        miestenSijaintiMapX.put("tahko3v", 0.0);
-        miestenSijaintiMapX.put("tahko23v", 3.0);
-        miestenSijaintiMapX.put("sailytys3v", 0.0);
-        miestenSijaintiMapX.put("karvauskahdella3v", 0.0);
-        miestenSijaintiMapX.put("karvausyhdella3v", 0.0);
-        miestenSijaintiMapX.put("muu3v", 0.0);
+        JSONArray nsumalli = jsonObject.getJSONArray("nsumalli");
 
-        miestenSijaintiMapX.put("kaannettypertsa1v", 28.0);
-        miestenSijaintiMapX.put("oulu1v", 19.1);
-        miestenSijaintiMapX.put("pertsa1v", 19.0);
-        miestenSijaintiMapX.put("ristivitonen1v", 25.5);
-        miestenSijaintiMapX.put("tahko1v", 13.0);
-        miestenSijaintiMapX.put("tahko21v", 17.5);
-        miestenSijaintiMapX.put("sailytys1v", 15.5);
-        miestenSijaintiMapX.put("karvauskahdella1v", 14.0);
-        miestenSijaintiMapX.put("karvausyhdella1v", 14.0);
-        miestenSijaintiMapX.put("muu1v", 42.0);
+        int pituus = nsumalli.length();
 
+        for (int i = 0; i < pituus; i++) {
+            naistenXrMap.put(
+                    nsumalli.getJSONObject(i).getString("avain"),
+                    nsumalli.getJSONObject(i).getDouble("arvo")
+            );
 
-        miestenSijaintiMapX.put("kaannettypertsas", 38.5);
-        miestenSijaintiMapX.put("oulus", 41.0);
-        miestenSijaintiMapX.put("pertsas", 38.5);
-        miestenSijaintiMapX.put("ristivitonens", 42.0);
-        miestenSijaintiMapX.put("tahkos", 38.5);
-        miestenSijaintiMapX.put("tahko2s", 31.5);
-        miestenSijaintiMapX.put("sailytyss", 30.5);
-        miestenSijaintiMapX.put("karvauskahdellas", 30.5);
-        miestenSijaintiMapX.put("karvausyhdellas", 41.0);
-        miestenSijaintiMapX.put("muus", 0.0);
+        }
 
-
-        miestenSijaintiMapX.put("kaannettypertsa3p", 6.5);
-        miestenSijaintiMapX.put("oulu3p", 6.5);
-        miestenSijaintiMapX.put("pertsa3p", 6.5);
-        miestenSijaintiMapX.put("ristivitonen3p", 6.5);
-        miestenSijaintiMapX.put("tahko3p", 17.5);
-        miestenSijaintiMapX.put("tahko23p", 6.5);
-        miestenSijaintiMapX.put("sailytys3p", 17.0);
-        miestenSijaintiMapX.put("karvauskahdella3p", 6.5);
-        miestenSijaintiMapX.put("karvausyhdella3p", 6.5);
-        miestenSijaintiMapX.put("muu3p", 0.0);
-
-        miestenSijaintiMapX.put("kaannettypertsa2p", 19.0);
-        miestenSijaintiMapX.put("oulu2p", 26.0);
-        miestenSijaintiMapX.put("pertsa2p", 26.0);
-        miestenSijaintiMapX.put("ristivitonen2p", 19.0);
-        miestenSijaintiMapX.put("tahko2p", 26.0);
-        miestenSijaintiMapX.put("tahko22p", 24.5);
-        miestenSijaintiMapX.put("sailytys2p", 26.0);
-        miestenSijaintiMapX.put("karvauskahdella2p", 26.0);
-        miestenSijaintiMapX.put("karvausyhdella2p", 26.0);
-        miestenSijaintiMapX.put("muu2p", 21.0);
-
-        miestenSijaintiMapX.put("kaannettypertsa2v", 35.0);
-        miestenSijaintiMapX.put("oulu2v", 35.0);
-        miestenSijaintiMapX.put("pertsa2v", 35.0);
-        miestenSijaintiMapX.put("ristivitonen2v", 35.0);
-        miestenSijaintiMapX.put("tahko2v", 35.0);
-        miestenSijaintiMapX.put("tahko22v", 42.0);
-        miestenSijaintiMapX.put("sailytys2v", 42.0);
-        miestenSijaintiMapX.put("karvauskahdella2v", 36.5);
-        miestenSijaintiMapX.put("karvausyhdella2v", 35.0);
-        miestenSijaintiMapX.put("muu2v", 42.0);
-
-        miestenSijaintiMapX.put("kaannettypertsa3k", 14.0);
-        miestenSijaintiMapX.put("oulu3k", 14.0);
-        miestenSijaintiMapX.put("pertsa3k", 14.0);
-        miestenSijaintiMapX.put("ristivitonen3k", 14.0);
-        miestenSijaintiMapX.put("tahko3k", 14.0);
-        miestenSijaintiMapX.put("tahko23k", 14.0);
-        miestenSijaintiMapX.put("sailytys3k", 14.0);
-        miestenSijaintiMapX.put("karvauskahdella3k", 14.0);
-        miestenSijaintiMapX.put("karvausyhdella3k", 14.0);
-        miestenSijaintiMapX.put("muu3k", 0.0);
-
-        miestenSijaintiMapX.put("kaannettypertsa2k", 30.0);
-        miestenSijaintiMapX.put("oulu2k", 30.0);
-        miestenSijaintiMapX.put("pertsa2k", 30.0);
-        miestenSijaintiMapX.put("ristivitonen2k", 30.0);
-        miestenSijaintiMapX.put("tahko2k", 30.0);
-        miestenSijaintiMapX.put("tahko22k", 30.0);
-        miestenSijaintiMapX.put("sailytys2k", 30.0);
-        miestenSijaintiMapX.put("karvauskahdella2k", 30.0);
-        miestenSijaintiMapX.put("karvausyhdella2k", 30.0);
-        miestenSijaintiMapX.put("muu2k", 0.0);
     }
 
-    private void miestenSijantiY() {
-        miestenSijaintiMapY.put("kaannettypertsal", -1.5);
-        miestenSijaintiMapY.put("oulul", -1.5);
-        miestenSijaintiMapY.put("pertsal", -1.5);
-        miestenSijaintiMapY.put("ristivitonenl", -1.5);
-        miestenSijaintiMapY.put("tahkol", -1.5);
-        miestenSijaintiMapY.put("tahko2l", -1.5);
-        miestenSijaintiMapY.put("sailytysl", -1.5);
-        miestenSijaintiMapY.put("karvauskahdellal", -1.5);
-        miestenSijaintiMapY.put("karvausyhdellal", -1.5);
-        miestenSijaintiMapY.put("muul", -1.5);
+    private void naistenXRlapilyontiMap(JSONObject jsonObject) {
+        JSONArray nsulapilyontimalli = jsonObject.getJSONArray("nsulapilyontimalli");
 
-        miestenSijaintiMapY.put("kaannettypertsa3v", 33.5);
-        miestenSijaintiMapY.put("oulu3v", 38.5);
-        miestenSijaintiMapY.put("pertsa3v", 33.5);
-        miestenSijaintiMapY.put("ristivitonen3v", 033.5);
-        miestenSijaintiMapY.put("tahko3v", 41.5);
-        miestenSijaintiMapY.put("tahko23v", 33.5);
-        miestenSijaintiMapY.put("sailytys3v", 40.5);
-        miestenSijaintiMapY.put("karvauskahdella3v", 40.5);
-        miestenSijaintiMapY.put("karvausyhdella3v", 40.5);
-        miestenSijaintiMapY.put("muu3v", 38.5);
+        int pituus = nsulapilyontimalli.length();
 
-        miestenSijaintiMapY.put("kaannettypertsa1v", 38.5);
-        miestenSijaintiMapY.put("oulu1v", 25.5);
-        miestenSijaintiMapY.put("pertsa1v", 38.5);
-        miestenSijaintiMapY.put("ristivitonen1v", 25.5);
-        miestenSijaintiMapY.put("tahko1v", 30.0);
-        miestenSijaintiMapY.put("tahko21v", 40.5);
-        miestenSijaintiMapY.put("sailytys1v", 26.0);
-        miestenSijaintiMapY.put("karvauskahdella1v", 18.0);
-        miestenSijaintiMapY.put("karvausyhdella1v", 18.0);
-        miestenSijaintiMapY.put("muu1v", 55.0);
+        for (int i = 0; i < pituus; i++) {
+            naistenXrLapiMap.put(
+                    nsulapilyontimalli.getJSONObject(i).getString("avain"),
+                    nsulapilyontimalli.getJSONObject(i).getDouble("arvo")
+            );
 
+        }
 
-        miestenSijaintiMapY.put("kaannettypertsas", 33.5);
-        miestenSijaintiMapY.put("oulus", 35.5);
-        miestenSijaintiMapY.put("pertsas", 33.5);
-        miestenSijaintiMapY.put("ristivitonens", 38.5);
-        miestenSijaintiMapY.put("tahkos", 33.5);
-        miestenSijaintiMapY.put("tahko2s", 28.5);
-        miestenSijaintiMapY.put("sailytyss", 28.5);
-        miestenSijaintiMapY.put("karvauskahdellas", 18.0);
-        miestenSijaintiMapY.put("karvausyhdellas", 35.5);
-        miestenSijaintiMapY.put("muus", 50.0);
-
-
-        miestenSijaintiMapY.put("kaannettypertsa3p", 50.0);
-        miestenSijaintiMapY.put("oulu3p", 48.0);
-        miestenSijaintiMapY.put("pertsa3p", 48.0);
-        miestenSijaintiMapY.put("ristivitonen3p", 48.0);
-        miestenSijaintiMapY.put("tahko3p", 52.0);
-        miestenSijaintiMapY.put("tahko23p", 48.5);
-        miestenSijaintiMapY.put("sailytys3p", 49.5);
-        miestenSijaintiMapY.put("karvauskahdella3p", 48.0);
-        miestenSijaintiMapY.put("karvausyhdella3p", 48.0);
-        miestenSijaintiMapY.put("muu3p", 75.0);
-
-        miestenSijaintiMapY.put("kaannettypertsa2p", 55.0);
-        miestenSijaintiMapY.put("oulu2p", 55.0);
-        miestenSijaintiMapY.put("pertsa2p", 55.0);
-        miestenSijaintiMapY.put("ristivitonen2p", 55.0);
-        miestenSijaintiMapY.put("tahko2p", 41.5);
-        miestenSijaintiMapY.put("tahko22p", 53.5);
-        miestenSijaintiMapY.put("sailytys2p", 47.5);
-        miestenSijaintiMapY.put("karvauskahdella2p", 57.5);
-        miestenSijaintiMapY.put("karvausyhdella2p", 57.5);
-        miestenSijaintiMapY.put("muu2p", 85.0);
-
-        miestenSijaintiMapY.put("kaannettypertsa2v", 52.0);
-        miestenSijaintiMapY.put("oulu2v", 48.0);
-        miestenSijaintiMapY.put("pertsa2v", 48.0);
-        miestenSijaintiMapY.put("ristivitonen2v", 52.0);
-        miestenSijaintiMapY.put("tahko2v", 50.0);
-        miestenSijaintiMapY.put("tahko22v", 41.5);
-        miestenSijaintiMapY.put("sailytys2v", 38.5);
-        miestenSijaintiMapY.put("karvauskahdella2v", 48.0);
-        miestenSijaintiMapY.put("karvausyhdella2v", 48.0);
-        miestenSijaintiMapY.put("muu2v", 60.0);
-
-        miestenSijaintiMapY.put("kaannettypertsa3k", 82.0);
-        miestenSijaintiMapY.put("oulu3k", 82.0);
-        miestenSijaintiMapY.put("pertsa3k", 82.0);
-        miestenSijaintiMapY.put("ristivitonen3k", 82.0);
-        miestenSijaintiMapY.put("tahko3k", 82.0);
-        miestenSijaintiMapY.put("tahko23k", 82.0);
-        miestenSijaintiMapY.put("sailytys3k", 82.0);
-        miestenSijaintiMapY.put("karvauskahdella3k", 82.0);
-        miestenSijaintiMapY.put("karvausyhdella3k", 82.0);
-        miestenSijaintiMapY.put("muu3k", 96.0);
-
-        miestenSijaintiMapY.put("kaannettypertsa2k", 82.0);
-        miestenSijaintiMapY.put("oulu2k", 82.0);
-        miestenSijaintiMapY.put("pertsa2k", 82.0);
-        miestenSijaintiMapY.put("ristivitonen2k", 82.0);
-        miestenSijaintiMapY.put("tahko2k", 82.0);
-        miestenSijaintiMapY.put("tahko22k", 82.0);
-        miestenSijaintiMapY.put("sailytys2k", 82.0);
-        miestenSijaintiMapY.put("karvauskahdella2k", 82.0);
-        miestenSijaintiMapY.put("karvausyhdella2k", 82.0);
-        miestenSijaintiMapY.put("muu2k", 96.0);
     }
 
+    private void msuSijaintiMap(JSONObject jsonObject) {
+
+        JSONArray upMiehet = jsonObject.getJSONArray("msusijainnitup");
+
+        int pituus = upMiehet.length();
+
+        for (int i = 0; i < pituus; i++) {
+            String nimi = upMiehet.getJSONObject(i).getString("ulkopelikuvio")
+                    + upMiehet.getJSONObject(i).getString("pelipaikka");
+
+            miestenSijaintiMapX.put(
+                    nimi,
+                    upMiehet.getJSONObject(i).getDouble("x")
+            );
+
+            miestenSijaintiMapY.put(
+                    nimi,
+                    upMiehet.getJSONObject(i).getDouble("y")
+            );
+
+        }
+
+    }
+
+    private void nsuSijaintiMap(JSONObject jsonObject) {
+
+        JSONArray upNaiset = jsonObject.getJSONArray("nsusijainnitup");
+
+        int pituus = upNaiset.length();
+
+        for (int i = 0; i < pituus; i++) {
+            String nimi = upNaiset.getJSONObject(i).getString("ulkopelikuvio")
+                    + upNaiset.getJSONObject(i).getString("pelipaikka");
+
+            naistenSijaintiMapX.put(
+                    nimi,
+                    upNaiset.getJSONObject(i).getDouble("x")
+            );
+
+            naistenSijaintiMapY.put(
+                    nimi,
+                    upNaiset.getJSONObject(i).getDouble("y")
+            );
+
+        }
+
+    }
+    
     @FXML
     private void naistenkentta() {
 
@@ -1316,17 +1201,31 @@ public class PesapalloxrController {
 
         graphicsContext.fillOval(mouseX, mouseY, 5, 5);
 
-        lyonninSijaintiMetreissaMiestenRajat(xMetri, yMetri);
+        if (menuItemMiehet.isSelected()){
+            lyonninSijaintiMetreissaMiestenRajat(xMetri, yMetri);
 
+        } else {
+            lyonninSijaintiMetreissaNaistenRajat(xMetri, yMetri);
+        }
 
     }
 
     @FXML
     private void laskeEtaisyys() {
+
+        if (menuItemMiehet.isSelected()){
+            miehet();
+        }else {
+            naiset();
+        }
+
+    }
+
+    private void miehet() {
         String kuvioxr = kuvio.getValue();
         String ulkopelaaja = ulkopelipaikka.getValue();
 
-        sijaintitext.setText(haesijanti(YKOORDINAATTI));
+        sijaintitext.setText(haeSijaintiMiehet(YKOORDINAATTI));
 
         Double ulkopelaajaX = miestenSijaintiMapX.get(kuvioxr + ulkopelaaja);
         Double ulkopelaajaY = miestenSijaintiMapY.get(kuvioxr + ulkopelaaja);
@@ -1334,7 +1233,20 @@ public class PesapalloxrController {
         double etaisyys = Math.sqrt(Math.pow(XKOORDINAATTI - ulkopelaajaX, 2) + Math.pow(YKOORDINAATTI - ulkopelaajaY, 2));
 
         lyonninEtaisyysulkopelaajasta.setText(String.format(Locale.US, "%.2f", etaisyys));
+    }
 
+    private void naiset() {
+        String kuvioxr = kuvio.getValue();
+        String ulkopelaaja = ulkopelipaikka.getValue();
+
+        sijaintitext.setText(haeSijaintiNaiset(YKOORDINAATTI));
+
+        Double ulkopelaajaX = naistenSijaintiMapX.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaY = naistenSijaintiMapY.get(kuvioxr + ulkopelaaja);
+
+        double etaisyys = Math.sqrt(Math.pow(XKOORDINAATTI - ulkopelaajaX, 2) + Math.pow(YKOORDINAATTI - ulkopelaajaY, 2));
+
+        lyonninEtaisyysulkopelaajasta.setText(String.format(Locale.US, "%.2f", etaisyys));
     }
 
     @FXML
@@ -1348,7 +1260,7 @@ public class PesapalloxrController {
         XKOORDINAATTI = xLaskettu;
         YKOORDINAATTI = yLaskettu;
 
-        sijaintitext.setText(haesijanti(yLaskettu));
+        sijaintitext.setText(haeSijaintiMiehet(yLaskettu));
 
         Double ulkopelaajaX = miestenSijaintiMapX.get(kuvioxr + ulkopelaaja);
         Double ulkopelaajaY = miestenSijaintiMapY.get(kuvioxr + ulkopelaaja);
@@ -1371,8 +1283,11 @@ public class PesapalloxrController {
         double xLaskettu = (x - 150) / 11.111;
         double yLaskettu = (690 - y) / 7.95731;
 
-        Double ulkopelaajaX = miestenSijaintiMapX.get(kuvioxr + ulkopelaaja);
-        Double ulkopelaajaY = miestenSijaintiMapY.get(kuvioxr + ulkopelaaja);
+        XKOORDINAATTI = xLaskettu;
+        YKOORDINAATTI = yLaskettu;
+
+        Double ulkopelaajaX = naistenSijaintiMapX.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaY = naistenSijaintiMapY.get(kuvioxr + ulkopelaaja);
 
         double etaisyys = Math.sqrt(Math.pow(xLaskettu - ulkopelaajaX, 2) + Math.pow(yLaskettu - ulkopelaajaY, 2));
 
@@ -1381,10 +1296,13 @@ public class PesapalloxrController {
         koordinaattix.setText(String.format(Locale.US, "%.2f", xLaskettu));
         koordinaattiy.setText(String.format(Locale.US, "%.2f", yLaskettu));
 
+        sijaintitext.setText(haeSijaintiNaiset(yLaskettu));
+
+
     }
 
     @FXML
-    private String haesijanti(Double y) {
+    private String haeSijaintiMiehet(Double y) {
         if (y <= 7.5) {
             return "etulyhyt";
         }
@@ -1401,11 +1319,28 @@ public class PesapalloxrController {
     }
 
     @FXML
+    private String haeSijaintiNaiset(Double y) {
+        if (y <= 6.5) {
+            return "etulyhyt";
+        }
+        if (y > 6.5 && y < 24) {
+            return "etupitkä";
+        }
+        if (y >= 24 && y < 53) {
+            return "linja";
+        }
+        if (y >= 53) {
+            return "takakenttä";
+        }
+        return "linja";
+    }
+
+    @FXML
     private void lyontitiedot() {
         double x = XKOORDINAATTI;
         double y = YKOORDINAATTI;
 
-        String sijainti = haesijanti(y);
+        String sijainti = haeSijaintiMiehet(y);
 
         Double juoksutodennakoisyys = laskeJuoksuTodennakoisyysMiehet();
 
@@ -1456,8 +1391,57 @@ public class PesapalloxrController {
 
     @FXML
     private void laskeTodennakoisyydet() {
+
+        if (menuItemMiehet.isSelected()){
+            todennakoisyydetMiehet();
+        }
+        else {
+            todennakoisyydetNaiset();
+        }
+    }
+
+    private void todennakoisyydetMiehet() {
         laskeJuoksuTodennakoisyysMiehet();
         laskeTodennakoisyysLapi();
+    }
+
+    private void todennakoisyydetNaiset() {
+        laskeJuoksuTodennakoisyysNaiset();
+        laskeTodennakoisyysLapiNaiset();
+    }
+
+    @FXML
+    private double laskeJuoksuTodennakoisyysNaiset() {
+        double x = XKOORDINAATTI;
+        double y = YKOORDINAATTI;
+
+        String kuvioxr = kuvio.getValue();
+        String tyyppixr = tyyppi.getValue();
+        String merkkixr = merkki.getValue();
+        String etenijalaatuxr = etenijalaatucombobox.getValue();
+        String ulkopelaaja = ulkopelipaikka.getValue();
+        String sijainti = haeSijaintiNaiset(y);
+
+        Double intercept = naistenXrMap.get("(Intercept)");
+        Double kuvio = naistenXrMap.get(kuvioxr);
+        Double tyyppi = naistenXrMap.get(tyyppixr);
+        Double merkki = naistenXrMap.get(merkkixr);
+        Double etenijalaatu = naistenXrMap.get(etenijalaatuxr);
+        Double ulkopelaajaxr = naistenXrMap.get(ulkopelaaja);
+        Double sijanti = naistenXrMap.get(sijainti);
+
+        Double ulkopelaajaX = naistenSijaintiMapX.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaY = naistenSijaintiMapY.get(kuvioxr + ulkopelaaja);
+
+        double etaisyys = Math.sqrt(Math.pow(x - ulkopelaajaX, 2) + Math.pow(y - ulkopelaajaY, 2));
+
+        double juoksutn = 1 / (1 + Math.exp(-(intercept + kuvio + tyyppi + merkki + etenijalaatu + sijanti + ulkopelaajaxr * etaisyys)));
+
+        lyonninEtaisyysulkopelaajasta.setText(String.format(Locale.US, "%.2f", etaisyys));
+
+        juoksuodottama.setText(String.format(Locale.US, "%.4f", juoksutn));
+
+        return juoksutn;
     }
 
     @FXML
@@ -1470,7 +1454,7 @@ public class PesapalloxrController {
         String merkkixr = merkki.getValue();
         String etenijalaatuxr = etenijalaatucombobox.getValue();
         String ulkopelaaja = ulkopelipaikka.getValue();
-        String sijainti = haesijanti(y);
+        String sijainti = haeSijaintiMiehet(y);
 
         Double intercept = miestenXrMap.get("(Intercept)");
         Double kuvio = miestenXrMap.get(kuvioxr);
@@ -1514,6 +1498,35 @@ public class PesapalloxrController {
 
         Double ulkopelaajaX = miestenSijaintiMapX.get(kuvioxr + ulkopelaaja);
         Double ulkopelaajaY = miestenSijaintiMapY.get(kuvioxr + ulkopelaaja);
+
+        double etaisyys = Math.sqrt(Math.pow(x - ulkopelaajaX, 2) + Math.pow(y - ulkopelaajaY, 2));
+
+        double juoksutn = 1 / (1 + Math.exp(-(intercept + kuvio + tyyppi + merkki + etenijalaatu + ulkopelaajaxr * etaisyys)));
+
+        lapilyontiolettama.setText(String.format(Locale.US, "%.4f", juoksutn));
+
+    }
+
+    @FXML
+    private void laskeTodennakoisyysLapiNaiset() {
+        double x = XKOORDINAATTI;
+        double y = YKOORDINAATTI;
+
+        Double intercept = naistenXrLapiMap.get("(Intercept)");
+        String kuvioxr = kuvio.getValue();
+        String tyyppixr = tyyppi.getValue();
+        String merkkixr = merkki.getValue();
+        String etenijalaatuxr = etenijalaatucombobox.getValue();
+        String ulkopelaaja = ulkopelipaikka.getValue();
+
+        Double kuvio = naistenXrLapiMap.get(kuvioxr);
+        Double tyyppi = naistenXrLapiMap.get(tyyppixr);
+        Double merkki = naistenXrLapiMap.get(merkkixr);
+        Double etenijalaatu = naistenXrLapiMap.get(etenijalaatuxr);
+        Double ulkopelaajaxr = naistenXrLapiMap.get(ulkopelaaja);
+
+        Double ulkopelaajaX = naistenSijaintiMapX.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaY = naistenSijaintiMapY.get(kuvioxr + ulkopelaaja);
 
         double etaisyys = Math.sqrt(Math.pow(x - ulkopelaajaX, 2) + Math.pow(y - ulkopelaajaY, 2));
 
@@ -1609,8 +1622,7 @@ public class PesapalloxrController {
             HttpClient client = HttpClient.newHttpClient();
 
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create(ilma)).GET().headers(
-                            "Content-Type", "application/json",
-                            "User-Agent", " Mozilla/5.0 (Windows NT 11.0; Win64; x64; rv:143.0) Gecko/20100101 Firefox/143.0")
+                            "Content-Type", "application/json")
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
