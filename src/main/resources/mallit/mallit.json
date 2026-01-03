@@ -940,6 +940,10 @@
             "avain": "kaannettypertsa"
         },
         {
+            "arvo": 1.000,
+            "avain": "muu"
+        },
+        {
             "arvo": 0.000,
             "avain": "etulyhyt"
         },
@@ -1016,6 +1020,14 @@
         {
             "arvo": -4.1026,
             "avain": "(Intercept)"
+        },
+        {
+            "arvo": 0.0,
+            "avain": "koppi"
+        },
+        {
+            "arvo": 0.0,
+            "avain": "pomppu"
         },
         {
             "arvo": 0.6608,
@@ -1212,7 +1224,7 @@
             "ulkopelikuvio": "kaannettypertsa",
             "pelipaikka": "3v",
             "x": 2.5714,
-            "y": 29
+            "y": 30
         },
         {
             "ulkopelikuvio": "oulu",
@@ -1224,7 +1236,7 @@
             "ulkopelikuvio": "pertsa",
             "pelipaikka": "3v",
             "x": 2.5714,
-            "y": 29
+            "y": 30
         },
         {
             "ulkopelikuvio": "ristivitonen",
@@ -1242,7 +1254,7 @@
             "ulkopelikuvio": "tahko2",
             "pelipaikka": "3v",
             "x": 2.5714,
-            "y": 29
+            "y": 30
         },
         {
             "ulkopelikuvio": "sailytys",
@@ -1392,7 +1404,7 @@
             "ulkopelikuvio": "kaannettypertsa",
             "pelipaikka": "1v",
             "x": 24,
-            "y": 32.8854
+            "y": 35
         },
         {
             "ulkopelikuvio": "oulu",
@@ -1403,8 +1415,8 @@
         {
             "ulkopelikuvio": "pertsa",
             "pelipaikka": "1v",
-            "x": 16.2857,
-            "y": 32.8854
+            "x": 16.5,
+            "y": 35
         },
         {
             "ulkopelikuvio": "ristivitonen",
@@ -1571,8 +1583,8 @@
         {
             "ulkopelikuvio": "kaannettypertsa",
             "pelipaikka": "s",
-            "x": 33,
-            "y": 28.6146
+            "x": 33.5,
+            "y": 30
         },
         {
             "ulkopelikuvio": "oulu",
@@ -1584,7 +1596,7 @@
             "ulkopelikuvio": "pertsa",
             "pelipaikka": "s",
             "x": 33,
-            "y": 29
+            "y": 30
         },
         {
             "ulkopelikuvio": "ristivitonen",
@@ -1596,7 +1608,7 @@
             "ulkopelikuvio": "tahko",
             "pelipaikka": "s",
             "x": 33,
-            "y": 28.6146
+            "y": 30
         },
         {
             "ulkopelikuvio": "tahko2",

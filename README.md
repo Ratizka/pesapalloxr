@@ -4,10 +4,6 @@ Pesäpalloxr on pesäpalloon luotu kerääjä kotiutustilanteita varten. Käytt�
 lasketaan todennäköisyys juoksulle ja kuinka todennäköisesti se menee läpi. Riippuen kysynnästä ja ajasta kerääjään
 voidaan lisätä muut tilanteet. Ohjelmisto on beta-vaiheessa, kun menee sen ohi versionumero alkaa numerolla yksi.
 
-### Käyttö
-
-Lataa zip-kansio Releases kohdasta ja pura haluttuun paikkaan. Avaa kansio ja sieltä bin ja Kaynnista.bat.
-
 #### Windows
 
 Lataa zip-kansio Releases kohdasta ja pura haluttuun paikkaan. Avaa kansio ja sieltä bin ja Kaynnista.

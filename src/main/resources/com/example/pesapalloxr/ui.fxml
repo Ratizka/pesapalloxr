@@ -72,7 +72,7 @@
                     <Label prefWidth="100.0" text="Lyöjä" GridPane.columnIndex="2" />
                     <Label prefHeight="17.0" prefWidth="137.0" text="Vuoropari" GridPane.columnIndex="5" />
                     <Label prefHeight="17.0" prefWidth="107.0" text="Etenijä" GridPane.columnIndex="3" />
-                    <Label prefHeight="17.0" prefWidth="114.0" text="Läpillyönti" GridPane.rowIndex="6" />
+                    <Label prefHeight="17.0" prefWidth="114.0" text="Läpilyönti" GridPane.rowIndex="6" />
                     <Label prefHeight="17.0" prefWidth="154.0" text="Kunnari" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                     <Label prefHeight="17.0" prefWidth="164.0" text="Väärä alla" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                     <Label prefHeight="17.0" prefWidth="269.0" text="Lyönnin nro" GridPane.columnIndex="3" GridPane.rowIndex="2" />
@@ -112,7 +112,7 @@
                     <ComboBox fx:id="tyyppi" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                     <ComboBox fx:id="merkki" prefWidth="150.0" GridPane.rowIndex="5" />
                     <ComboBox fx:id="syotto" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                    <ComboBox fx:id="lyonticombobox" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                    <ComboBox fx:id="lopputuloscombobox" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
                     <ComboBox fx:id="ulkopelivirhe" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="9" />
                     <ComboBox fx:id="juoksut" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                     <ComboBox fx:id="ulkopelipaikka" onAction="#laskeEtaisyys" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
@@ -149,7 +149,7 @@
                     <ComboBox fx:id="palojenMaara" prefWidth="150.0" GridPane.rowIndex="3" />
                     <Label prefHeight="17.0" prefWidth="186.0" text="Palojen määrä" GridPane.rowIndex="2" />
                <Label prefHeight="17.0" prefWidth="202.0" text="Kuvion vaihdot" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-               <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+               <ComboBox fx:id="kuvionvaihdot" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
 
                 </GridPane>
 
@@ -214,12 +214,12 @@
             </Menu>
 
             <Menu mnemonicParsing="false" text="Sarja">
-                <RadioMenuItem fx:id="menuItemMiehet" mnemonicParsing="false" onAction="#miestenkentta" selected="true" text="Miehet">
+                <RadioMenuItem fx:id="menuItemMiehet" mnemonicParsing="false" onAction="#miestenKuviot" selected="true" text="Miehet">
                     <toggleGroup>
                         <ToggleGroup fx:id="sarja" />
                     </toggleGroup>
                 </RadioMenuItem>
-                <RadioMenuItem fx:id="menuItemNaiset" mnemonicParsing="false" onAction="#naistenkentta" text="Naiset" toggleGroup="$sarja" />
+                <RadioMenuItem fx:id="menuItemNaiset" mnemonicParsing="false" onAction="#naistenKuviot" text="Naiset" toggleGroup="$sarja" />
             </Menu>
             <Menu mnemonicParsing="false" text="Joukkue">
                 <RadioMenuItem fx:id="vierasjoukkueToggle" mnemonicParsing="false" text="Vierasjoukkue" />
