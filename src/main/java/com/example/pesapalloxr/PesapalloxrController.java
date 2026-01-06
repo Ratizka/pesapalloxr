@@ -1990,7 +1990,7 @@ public class PesapalloxrController {
                     "ulkopelijoukkue", "ulkopelijoukkueid", "ulkopelisuorittaja", "ulkopelaajaID",
                     "ulkopelipaikka", "ulkopelisuoritus", "ulkopelivirhe", "ulkopelitempo",
                     "kuvio", "vaaraAlla", "merkki", "karkaus", "syotto", "lyonnintyyppi",
-                    "saumakorkeus", "kumurankorkeus", "suunta", "koodrinaattix", "koordinaattiy",
+                    "saumakorkeus", "kumurankorkeus", "suunta", "koordinaattix", "koordinaattiy",
                     "sijainti", "lopputulos", "juoksut", "lapilyonti", "kunnari", "juoksutodennakoisyys", "lapilyontitn"
             ).setSkipHeaderRecord(true).get();
 
@@ -2004,59 +2004,71 @@ public class PesapalloxrController {
                 Integer vuoropari = Integer.valueOf(
                         i.get("vuoropari")
                 );
+
+                String tilanne = i.get("tilanne");
+                Integer palot = Integer.valueOf(i.get("palot"));
+                Integer lyontinumero = Integer.valueOf(i.get("lyontinumero"));
+
                 String sisajoukkue = i.get("sisajoukkue");
                 Integer sisajoukkueid = Integer.valueOf(i.get("sisajoukkueid"));
-
                 String lyoja = i.get("lyoja");
+                Integer lyojaid = Integer.valueOf(i.get("lyojaID"));
+
                 String etenija = i.get("etenija");
                 String etenijalaatu = i.get("etenijanlaatu");
+
                 String ulkopelijoukkue = i.get("ulkopelijoukkue");
-                String ulkopelisuoritus = i.get("ulkopelisuoritus");
+                Integer ulkopelijoukkueid = Integer.valueOf(i.get("ulkopelijoukkueid"));
+
                 String ulkopelisuorittaja = i.get("ulkopelisuorittaja");
+                Integer ulkopelaajaID = Integer.valueOf(i.get("ulkopelaajaID"));
+
                 String ulkopelipaikka = i.get("ulkopelipaikka");
+                String ulkopelisuoritus = i.get("ulkopelisuoritus");
                 String ulkopelivirhe = i.get("ulkopelivirhe");
+                String ulkopelitempo = i.get("ulkopelitempo");
 
                 Double koordinaattix = Double.valueOf(i.get("koordinaattix"));
                 Double koordinaattiy = Double.valueOf(i.get("koordinaattiy"));
 
                 String kuvio = i.get("kuvio");
-                String tyyppi = i.get("tyyppi");
-                String merkki = i.get("merkki");
-                String sijainti = i.get("sijainti");
-                String syotto = i.get("syotto");
                 String vaaraAlla = i.get("vaaraAlla");
-                String lyonti = i.get("lyonti");
+                String merkki = i.get("merkki");
+                String karkaus = i.get("karkaus");
+                String syotto = i.get("syotto");
+
+
+                String lyonnintyyppi = i.get("lyonnintyyppi");
+                String saumakorkeus = i.get("saumakorkeus");
+                String kumurankorkeus = i.get("kumurankorkeus");
+
+                String sijainti = i.get("sijainti");
+                String lopputulos = i.get("lopputulos");
                 Integer juoksut = Integer.valueOf(i.get("juoksut"));
-
                 String lapilyonti = i.get("lapilyonti");
-
-                Integer lyontinumero = Integer.valueOf(i.get("lyontinumero"));
-                Double juoksutodennakoisyys = Double.valueOf(i.get("juoksutodennakoisyys"));
                 String kunnari = i.get("kunnari");
-                String tilanne = i.get("tilanne");
 
-                /*
+                Double juoksutodennakoisyys = Double.valueOf(i.get("juoksutodennakoisyys"));
+                Double lapilyontitn = Double.valueOf(i.get("lapilyontitn"));
+
+
                 data.add(new Lyontitiedot(
-                x, y,
-                sijainti, kuvioxr, lyontityyppi,
-                merkkixr, syottoxr, lyojaxr, lyojaID,
-                sisapelijoukkuexr, sisajoukkue, jaksoxr, vuoroparixr,
-                OTTELUID, ulkopelipaikkaxr, ulkopelivirhexr,
-                ulkopelisuorittjaxr, ulkopelaajaID, ulkopelisuoritusxr,
-                vaaraallaxr, lopputulos, juoksutxr,
-                lapilyontixr, lyontinumeroxr, ulkopelijoukkuexr, ulkopelijoukkueid,
-                etenijaxr, etenijalaatuxr, juoksutodennakoisyys,
-                kunnarixr, tilanne, palot, suunta, kumurankorkeus, saumakorkeus, karkaus, ulkopelitempo, lapilyontitn
+                koordinaattix, koordinaattiy,
+                sijainti, kuvio, lyonnintyyppi,
+                merkki, syotto, lyoja, lyojaid,
+                sisajoukkue, sisajoukkueid ,jakso, vuoropari,
+                otteluid, ulkopelipaikka, ulkopelivirhe,
+                ulkopelisuorittaja, ulkopelaajaID, ulkopelisuoritus,
+                vaaraAlla, lopputulos, juoksut,
+                lapilyonti, lyontinumero, ulkopelijoukkue, ulkopelijoukkueid,
+                etenija, etenijalaatu, juoksutodennakoisyys,
+                kunnari, tilanne, palot, sijainti, kumurankorkeus, saumakorkeus, karkaus, ulkopelitempo, lapilyontitn
                 ));
 
-                 */
             }
 
-            /*
             taulukkoxr.getItems().addAll(data);
 
-
-             */
             parse.close();
 
             fileReader.close();
@@ -2064,8 +2076,10 @@ public class PesapalloxrController {
         } catch (IOException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }  finally {
-            fileReader.close();
-            parse.close();
+            if (fileReader != null | parse != null) {
+                fileReader.close();
+                parse.close();
+            }
         }
     }
 
