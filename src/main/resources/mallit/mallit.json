@@ -1,316 +1,1704 @@
 {
-  "msumalli": [
-    {
-      "arvo": -3.2454,
-      "avain": "(Intercept)"
-    },
-    {
-      "arvo": 0.0000,
-      "avain": "koppi"
-    },
-    {
-      "arvo": 0.167,
-      "avain": "kumura"
-    },
-    {
-      "arvo": 0.5212,
-      "avain": "nappi"
-    },
-    {
-      "arvo": 0.4973,
-      "avain": "pomppu"
-    },
-    {
-      "arvo": 0.319,
-      "avain": "pussari"
-    },
-    {
-      "arvo": -0.0738,
-      "avain": "pystari/viisto"
-    },
-    {
-      "arvo": 0.342,
-      "avain": "vaakamaila"
-    },
-    {
-      "arvo": 0.3372,
-      "avain": "varsi"
-    },
-    {
-      "arvo": 0.000,
-      "avain": "vääräpois"
-    },
-    {
-      "arvo": 0.1563,
-      "avain": "kulma"
-    },
-    {
-      "arvo": 0.3692,
-      "avain": "lento"
-    },
-    {
-      "arvo": 1.3096,
-      "avain": "vapaa"
-    },
-    {
-      "arvo": 0.2832,
-      "avain": "karvauskahdella"
-    },
-    {
-      "arvo": 0.1265,
-      "avain": "karvausyhdella"
-    },
-    {
-      "arvo": -0.043,
-      "avain": "oulu"
-    },
-    {
-      "arvo": -0.2636,
-      "avain": "pertsa"
-    },
-    {
-      "arvo": 0.5389,
-      "avain": "ristivitonen"
-    },
-    {
-      "arvo": -0.9532,
-      "avain": "sailytys"
-    },
-    {
-      "arvo": -0.3116,
-      "avain": "tahko"
-    },
-    {
-      "arvo": -0.0175,
-      "avain": "tahko2"
-    },
-    {
-      "arvo": 0.000,
-      "avain": "kaannettypertsa"
-    },
-    {
-      "arvo": 0.000,
-      "avain": "etulyhyt"
-    },
-    {
-      "arvo": 0.5572,
-      "avain": "etupitkä"
-    },
-    {
-      "arvo": 1.4257,
-      "avain": "linja"
-    },
-    {
-      "arvo": 1.5387,
-      "avain": "takakenttä"
-    },
-    {
-      "arvo": 0.4473,
-      "avain": "huippu"
-    },
-    {
-      "arvo": 0.0844,
-      "avain": "huono"
-    },
-    {
-      "arvo": 0.2599,
-      "avain": "hyvä"
-    },
-    {
-      "arvo": 0.2216,
-      "avain": "keskiverto"
-    },
-    {
-      "arvo": 0.000,
-      "avain": "heikko"
-    },
-    {
-      "arvo": 0.0602,
-      "avain": "1v"
-    },
-    {
-      "arvo": 0.0836,
-      "avain": "2k"
-    },
-    {
-      "arvo": 0.1373,
-      "avain": "2p"
-    },
-    {
-      "arvo": 0.0991,
-      "avain": "2v"
-    },
-    {
-      "arvo": 0.0982,
-      "avain": "3k"
-    },
-    {
-      "arvo": 0.0892,
-      "avain": "3p"
-    },
-    {
-      "arvo": 0.0629,
-      "avain": "3v"
-    },
-    {
-      "arvo": 0.1758,
-      "avain": "l"
-    },
-    {
-      "arvo": 0.0647,
-      "avain": "s"
-    }
-  ],
-  "msulapilyontimalli": [
-    {
-      "arvo": -4.2888,
-      "avain": "(Intercept)"
-    },
-    {
-      "arvo": 0.0000,
-      "avain": "koppi"
-    },
-    {
-      "arvo": 1.009,
-      "avain": "kumura"
-    },
-    {
-      "arvo": -18.705,
-      "avain": "nappi"
-    },
-    {
-      "arvo": -1.085,
-      "avain": "pomppu"
-    },
-    {
-      "arvo": -15.6926,
-      "avain": "pussari"
-    },
-    {
-      "arvo": 0.8231,
-      "avain": "pystari/viisto"
-    },
-    {
-      "arvo": 1.4051,
-      "avain": "vaakamaila"
-    },
-    {
-      "arvo": -17.6026,
-      "avain": "varsi"
-    },
-    {
-      "arvo": 0.000,
-      "avain": "vääräpois"
-    },
-    {
-      "arvo": 0.000,
-      "avain": "kulma"
-    },
-    {
-      "arvo": 0.0000,
-      "avain": "lento"
-    },
-    {
-      "arvo": 1.2311,
-      "avain": "vapaa"
-    },
-    {
-      "arvo": -18.3585,
-      "avain": "karvauskahdella"
-    },
-    {
-      "arvo": -0.5641,
-      "avain": "karvausyhdella"
-    },
-    {
-      "arvo": -0.9083,
-      "avain": "oulu"
-    },
-    {
-      "arvo": -0.6067,
-      "avain": "pertsa"
-    },
-    {
-      "arvo": -0.2164,
-      "avain": "ristivitonen"
-    },
-    {
-      "arvo": 0.0861,
-      "avain": "sailytys"
-    },
-    {
-      "arvo": -1.1786,
-      "avain": "tahko"
-    },
-    {
-      "arvo": -0.5092,
-      "avain": "tahko2"
-    },
-    {
-      "arvo": 0.000,
-      "avain": "kaannettypertsa"
-    },
-    {
-      "arvo": 0.381,
-      "avain": "huippu"
-    },
-    {
-      "arvo": 0.656,
-      "avain": "huono"
-    },
-    {
-      "arvo": 0.2562,
-      "avain": "hyvä"
-    },
-    {
-      "arvo": 0.2097,
-      "avain": "keskiverto"
-    },
-    {
-      "arvo": 0.000,
-      "avain": "heikko"
-    },
-    {
-      "arvo": -1.4413,
-      "avain": "1v"
-    },
-    {
-      "arvo": -0.0078,
-      "avain": "2k"
-    },
-    {
-      "arvo": -0.1566,
-      "avain": "2p"
-    },
-    {
-      "arvo": 0.0173,
-      "avain": "2v"
-    },
-    {
-      "arvo": 0.0066,
-      "avain": "3k"
-    },
-    {
-      "arvo": -0.0267,
-      "avain": "3p"
-    },
-    {
-      "arvo": 0.1694,
-      "avain": "3v"
-    },
-    {
-      "arvo": -23.0556,
-      "avain": "l"
-    },
-    {
-      "arvo": 0.104,
-      "avain": "s"
-    }
-  ],
-  "msuvapaat": [],
-  "msusijainnit":[],
-  "nsumalli": [],
-  "nsulapilyontimalli":[],
-  "nsuvapaat": [],
-  "nsusijannit": []
+    "msumalli": [
+        {
+            "arvo": -3.2454,
+            "avain": "(Intercept)"
+        },
+        {
+            "arvo": 0.0000,
+            "avain": "koppi"
+        },
+        {
+            "arvo": 0.167,
+            "avain": "kumura"
+        },
+        {
+            "arvo": 0.5212,
+            "avain": "nappi"
+        },
+        {
+            "arvo": 0.4973,
+            "avain": "pomppu"
+        },
+        {
+            "arvo": 0.319,
+            "avain": "pussari"
+        },
+        {
+            "arvo": -0.0738,
+            "avain": "pystari/viisto"
+        },
+        {
+            "arvo": 0.342,
+            "avain": "vaakamaila"
+        },
+        {
+            "arvo": 0.3372,
+            "avain": "varsi"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "vääräpois"
+        },
+        {
+            "arvo": 0.1563,
+            "avain": "kulma"
+        },
+        {
+            "arvo": 0.3692,
+            "avain": "lento"
+        },
+        {
+            "arvo": 1.3096,
+            "avain": "vapaa"
+        },
+        {
+            "arvo": 0.2832,
+            "avain": "karvauskahdella"
+        },
+        {
+            "arvo": 0.1265,
+            "avain": "karvausyhdella"
+        },
+        {
+            "arvo": -0.043,
+            "avain": "oulu"
+        },
+        {
+            "arvo": -0.2636,
+            "avain": "pertsa"
+        },
+        {
+            "arvo": 0.5389,
+            "avain": "ristivitonen"
+        },
+        {
+            "arvo": -0.9532,
+            "avain": "sailytys"
+        },
+        {
+            "arvo": -0.3116,
+            "avain": "tahko"
+        },
+        {
+            "arvo": -0.0175,
+            "avain": "tahko2"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "kaannettypertsa"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "etulyhyt"
+        },
+        {
+            "arvo": 0.5572,
+            "avain": "etupitkä"
+        },
+        {
+            "arvo": 1.4257,
+            "avain": "linja"
+        },
+        {
+            "arvo": 1.5387,
+            "avain": "takakenttä"
+        },
+        {
+            "arvo": 0.4473,
+            "avain": "huippu"
+        },
+        {
+            "arvo": 0.0844,
+            "avain": "huono"
+        },
+        {
+            "arvo": 0.2599,
+            "avain": "hyvä"
+        },
+        {
+            "arvo": 0.2216,
+            "avain": "keskiverto"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "heikko"
+        },
+        {
+            "arvo": 0.0602,
+            "avain": "1v"
+        },
+        {
+            "arvo": 0.0836,
+            "avain": "2k"
+        },
+        {
+            "arvo": 0.1373,
+            "avain": "2p"
+        },
+        {
+            "arvo": 0.0991,
+            "avain": "2v"
+        },
+        {
+            "arvo": 0.0982,
+            "avain": "3k"
+        },
+        {
+            "arvo": 0.0892,
+            "avain": "3p"
+        },
+        {
+            "arvo": 0.0629,
+            "avain": "3v"
+        },
+        {
+            "arvo": 0.1758,
+            "avain": "l"
+        },
+        {
+            "arvo": 0.0647,
+            "avain": "s"
+        }
+    ],
+    "msulapilyontimalli": [
+        {
+            "arvo": -4.2888,
+            "avain": "(Intercept)"
+        },
+        {
+            "arvo": 0.0000,
+            "avain": "koppi"
+        },
+        {
+            "arvo": 1.009,
+            "avain": "kumura"
+        },
+        {
+            "arvo": -18.705,
+            "avain": "nappi"
+        },
+        {
+            "arvo": -1.085,
+            "avain": "pomppu"
+        },
+        {
+            "arvo": -15.6926,
+            "avain": "pussari"
+        },
+        {
+            "arvo": 0.8231,
+            "avain": "pystari/viisto"
+        },
+        {
+            "arvo": 1.4051,
+            "avain": "vaakamaila"
+        },
+        {
+            "arvo": -17.6026,
+            "avain": "varsi"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "vääräpois"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "kulma"
+        },
+        {
+            "arvo": 0.0000,
+            "avain": "lento"
+        },
+        {
+            "arvo": 1.2311,
+            "avain": "vapaa"
+        },
+        {
+            "arvo": -18.3585,
+            "avain": "karvauskahdella"
+        },
+        {
+            "arvo": -0.5641,
+            "avain": "karvausyhdella"
+        },
+        {
+            "arvo": -0.9083,
+            "avain": "oulu"
+        },
+        {
+            "arvo": -0.6067,
+            "avain": "pertsa"
+        },
+        {
+            "arvo": -0.2164,
+            "avain": "ristivitonen"
+        },
+        {
+            "arvo": 0.0861,
+            "avain": "sailytys"
+        },
+        {
+            "arvo": -1.1786,
+            "avain": "tahko"
+        },
+        {
+            "arvo": -0.5092,
+            "avain": "tahko2"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "kaannettypertsa"
+        },
+        {
+            "arvo": 0.381,
+            "avain": "huippu"
+        },
+        {
+            "arvo": 0.656,
+            "avain": "huono"
+        },
+        {
+            "arvo": 0.2562,
+            "avain": "hyvä"
+        },
+        {
+            "arvo": 0.2097,
+            "avain": "keskiverto"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "heikko"
+        },
+        {
+            "arvo": -1.4413,
+            "avain": "1v"
+        },
+        {
+            "arvo": -0.0078,
+            "avain": "2k"
+        },
+        {
+            "arvo": -0.1566,
+            "avain": "2p"
+        },
+        {
+            "arvo": 0.0173,
+            "avain": "2v"
+        },
+        {
+            "arvo": 0.0066,
+            "avain": "3k"
+        },
+        {
+            "arvo": -0.0267,
+            "avain": "3p"
+        },
+        {
+            "arvo": 0.1694,
+            "avain": "3v"
+        },
+        {
+            "arvo": -23.0556,
+            "avain": "l"
+        },
+        {
+            "arvo": 0.104,
+            "avain": "s"
+        }
+    ],
+    "msuvapaat": [],
+    "msusijainnitup": [
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "l",
+            "x": 21,
+            "y": -1.5
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "l",
+            "x": 21,
+            "y": -1.5
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "l",
+            "x": 21,
+            "y": -1.5
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "l",
+            "x": 21,
+            "y": -1.5
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "l",
+            "x": 21,
+            "y": -1.5
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "l",
+            "x": 21,
+            "y": -1.5
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "l",
+            "x": 21,
+            "y": -1.5
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "l",
+            "x": 21,
+            "y": -1.5
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "l",
+            "x": 21,
+            "y": -1.5
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "l",
+            "x": 21,
+            "y": -1.5
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "3v",
+            "x": 3,
+            "y": 33.5
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "3v",
+            "x": 0,
+            "y": 38.5
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "3v",
+            "x": 3,
+            "y": 33.5
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "3v",
+            "x": 3,
+            "y": 33.5
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "3v",
+            "x": 0,
+            "y": 41.5
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "3v",
+            "x": 3,
+            "y": 33.5
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "3v",
+            "x": 0,
+            "y": 40.5
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "3v",
+            "x": 0,
+            "y": 40.5
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "3v",
+            "x": 0,
+            "y": 40.5
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "3v",
+            "x": 0,
+            "y": 38.5
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "3k",
+            "x": 14,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "3k",
+            "x": 14,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "3k",
+            "x": 14,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "3k",
+            "x": 14,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "3k",
+            "x": 14,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "3k",
+            "x": 14,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "3k",
+            "x": 14,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "3k",
+            "x": 14,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "3k",
+            "x": 14,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "3k",
+            "x": 0,
+            "y": 96
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "2k",
+            "x": 30,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "2k",
+            "x": 30,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "2k",
+            "x": 30,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "2k",
+            "x": 30,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "2k",
+            "x": 30,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "2k",
+            "x": 30,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "2k",
+            "x": 30,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "2k",
+            "x": 30,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "2k",
+            "x": 30,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "2k",
+            "x": 42,
+            "y": 96
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "1v",
+            "x": 28,
+            "y": 38.5
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "1v",
+            "x": 19.1,
+            "y": 25.5
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "1v",
+            "x": 19,
+            "y": 38.5
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "1v",
+            "x": 25.5,
+            "y": 25.5
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "1v",
+            "x": 13,
+            "y": 30
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "1v",
+            "x": 17.5,
+            "y": 40.5
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "1v",
+            "x": 15.5,
+            "y": 26
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "1v",
+            "x": 14,
+            "y": 18
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "1v",
+            "x": 14,
+            "y": 18
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "1v",
+            "x": 0,
+            "y": 55
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "3p",
+            "x": 6.5,
+            "y": 50
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "3p",
+            "x": 6.5,
+            "y": 48
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "3p",
+            "x": 6.5,
+            "y": 48
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "3p",
+            "x": 6.5,
+            "y": 48
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "3p",
+            "x": 17.5,
+            "y": 52
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "3p",
+            "x": 6.5,
+            "y": 48.5
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "3p",
+            "x": 17,
+            "y": 49.5
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "3p",
+            "x": 6.5,
+            "y": 48
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "3p",
+            "x": 6.5,
+            "y": 48
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "3p",
+            "x": 0,
+            "y": 75
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "2p",
+            "x": 19,
+            "y": 55
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "2p",
+            "x": 26,
+            "y": 55
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "2p",
+            "x": 26,
+            "y": 55
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "2p",
+            "x": 19,
+            "y": 55
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "2p",
+            "x": 26,
+            "y": 41.5
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "2p",
+            "x": 24.5,
+            "y": 53.5
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "2p",
+            "x": 26,
+            "y": 47.5
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "2p",
+            "x": 26,
+            "y": 57.5
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "2p",
+            "x": 26,
+            "y": 57.5
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "2p",
+            "x": 21,
+            "y": 85
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "s",
+            "x": 38.5,
+            "y": 33.5
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "s",
+            "x": 41,
+            "y": 35.5
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "s",
+            "x": 38.5,
+            "y": 33.5
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "s",
+            "x": 42,
+            "y": 38.5
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "s",
+            "x": 38.5,
+            "y": 33.5
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "s",
+            "x": 31.5,
+            "y": 28.5
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "s",
+            "x": 30.5,
+            "y": 28.5
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "s",
+            "x": 30.5,
+            "y": 18
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "s",
+            "x": 41,
+            "y": 35.5
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "s",
+            "x": 41,
+            "y": 41
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "2v",
+            "x": 35,
+            "y": 52
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "2v",
+            "x": 35,
+            "y": 48
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "2v",
+            "x": 35,
+            "y": 48
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "2v",
+            "x": 35,
+            "y": 52
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "2v",
+            "x": 35,
+            "y": 50
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "2v",
+            "x": 42,
+            "y": 41.5
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "2v",
+            "x": 42,
+            "y": 38.5
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "2v",
+            "x": 36.5,
+            "y": 48
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "2v",
+            "x": 35,
+            "y": 48
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "2v",
+            "x": 42,
+            "y": 60
+        }
+    ],
+    "nsumalli": [
+        {
+            "arvo": -1.5531,
+            "avain": "(Intercept)"
+        },
+        {
+            "arvo": 0.0000,
+            "avain": "koppi"
+        },
+        {
+            "arvo": 0.0000,
+            "avain": "pomppu"
+        },
+        {
+            "arvo": -0.6745,
+            "avain": "kumura"
+        },
+        {
+            "arvo": -0.3992,
+            "avain": "nappi"
+        },
+        {
+            "arvo": -0.964,
+            "avain": "pussari"
+        },
+        {
+            "arvo": -0.966,
+            "avain": "pystari/viisto"
+        },
+        {
+            "arvo": -0.6802,
+            "avain": "vaakamaila"
+        },
+        {
+            "arvo": -1.0458,
+            "avain": "varsi"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "vääräpois"
+        },
+        {
+            "arvo": 0.30,
+            "avain": "kulma"
+        },
+        {
+            "arvo": 0.6124,
+            "avain": "lento"
+        },
+        {
+            "arvo": 1.4433,
+            "avain": "vapaa"
+        },
+        {
+            "arvo": 0.3446,
+            "avain": "karvauskahdella"
+        },
+        {
+            "arvo": -1.4119,
+            "avain": "karvausyhdella"
+        },
+        {
+            "arvo": -0.8614,
+            "avain": "oulu"
+        },
+        {
+            "arvo": -0.7149,
+            "avain": "pertsa"
+        },
+        {
+            "arvo": -0.6556,
+            "avain": "ristivitonen"
+        },
+        {
+            "arvo": -1.0607,
+            "avain": "sailytys"
+        },
+        {
+            "arvo": -0.47,
+            "avain": "tahko"
+        },
+        {
+            "arvo": -0.5161,
+            "avain": "tahko2"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "kaannettypertsa"
+        },
+        {
+            "arvo": 1.000,
+            "avain": "muu"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "etulyhyt"
+        },
+        {
+            "arvo": 0.4283,
+            "avain": "etupitkä"
+        },
+        {
+            "arvo": 1.5625,
+            "avain": "linja"
+        },
+        {
+            "arvo": 1.0922,
+            "avain": "takakenttä"
+        },
+        {
+            "arvo": 0.3774,
+            "avain": "huippu"
+        },
+        {
+            "arvo": -0.1078,
+            "avain": "huono"
+        },
+        {
+            "arvo": 0.0446,
+            "avain": "hyvä"
+        },
+        {
+            "arvo": 0.116,
+            "avain": "keskiverto"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "heikko"
+        },
+        {
+            "arvo": 0.077,
+            "avain": "1v"
+        },
+        {
+            "arvo": 0.1542,
+            "avain": "2k"
+        },
+        {
+            "arvo": 0.1355,
+            "avain": "2p"
+        },
+        {
+            "arvo": 0.0618,
+            "avain": "2v"
+        },
+        {
+            "arvo": 0.1449,
+            "avain": "3k"
+        },
+        {
+            "arvo": 0.0952,
+            "avain": "3p"
+        },
+        {
+            "arvo": 0.0563,
+            "avain": "3v"
+        },
+        {
+            "arvo": 0.2018,
+            "avain": "l"
+        },
+        {
+            "arvo": 0.0574,
+            "avain": "s"
+        }
+    ],
+    "nsulapilyontimalli": [
+        {
+            "arvo": -4.1026,
+            "avain": "(Intercept)"
+        },
+        {
+            "arvo": 0.0,
+            "avain": "koppi"
+        },
+        {
+            "arvo": 0.0,
+            "avain": "pomppu"
+        },
+        {
+            "arvo": 0.6608,
+            "avain": "kumura"
+        },
+        {
+            "arvo": -17.5783,
+            "avain": "nappi"
+        },
+        {
+            "arvo": -18.1406,
+            "avain": "pussari"
+        },
+        {
+            "arvo": 0.7723,
+            "avain": "pystari/viisto"
+        },
+        {
+            "arvo": 0.823,
+            "avain": "vaakamaila"
+        },
+        {
+            "arvo": -17.0957,
+            "avain": "varsi"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "vääräpois"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "lento"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "kulma"
+        },
+        {
+            "arvo": 1.8465,
+            "avain": "vapaa"
+        },
+        {
+            "arvo": 4.3378,
+            "avain": "karvauskahdella"
+        },
+        {
+            "arvo": -19.4188,
+            "avain": "karvausyhdella"
+        },
+        {
+            "arvo": -0.2535,
+            "avain": "oulu"
+        },
+        {
+            "arvo": -0.0786,
+            "avain": "pertsa"
+        },
+        {
+            "arvo": -0.2735,
+            "avain": "ristivitonen"
+        },
+        {
+            "arvo": 0.6719,
+            "avain": "sailytys"
+        },
+        {
+            "arvo": -0.1725,
+            "avain": "tahko"
+        },
+        {
+            "arvo": -0.9766,
+            "avain": "tahko2"
+        },
+        {
+            "arvo": -0.1583,
+            "avain": "huippu"
+        },
+        {
+            "arvo": -0.242,
+            "avain": "huono"
+        },
+        {
+            "arvo": -0.102,
+            "avain": "hyvä"
+        },
+        {
+            "arvo": 0.0023,
+            "avain": "keskiverto"
+        },
+        {
+            "arvo": 0.000,
+            "avain": "heikko"
+        },
+        {
+            "arvo": -0.177,
+            "avain": "1v"
+        },
+        {
+            "arvo": -0.0237,
+            "avain": "2k"
+        },
+        {
+            "arvo": -0.5124,
+            "avain": "2p"
+        },
+        {
+            "arvo": -0.0838,
+            "avain": "2v"
+        },
+        {
+            "arvo": -0.0284,
+            "avain": "3k"
+        },
+        {
+            "arvo": -0.1401,
+            "avain": "3p"
+        },
+        {
+            "arvo": 0.057,
+            "avain": "3v"
+        },
+        {
+            "arvo": -77.7613,
+            "avain": "l"
+        },
+        {
+            "arvo": 0.0963,
+            "avain": "s"
+        }
+    ],
+    "nsuvapaat": [],
+    "nsusijainnitup": [
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "l",
+            "x": 18,
+            "y": -1.2812
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "l",
+            "x": 18,
+            "y": -1.2812
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "l",
+            "x": 18,
+            "y": -1.2812
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "l",
+            "x": 18,
+            "y": -1.2812
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "l",
+            "x": 18,
+            "y": -1.2812
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "l",
+            "x": 18,
+            "y": -1.2812
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "l",
+            "x": 18,
+            "y": -1.2812
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "l",
+            "x": 18,
+            "y": -1.2812
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "l",
+            "x": 18,
+            "y": -1.2812
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "l",
+            "x": 18,
+            "y": -1.2812
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "3v",
+            "x": 2.5714,
+            "y": 30
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "3v",
+            "x": 0,
+            "y": 34.5
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "3v",
+            "x": 2.5714,
+            "y": 30
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "3v",
+            "x": 2.5714,
+            "y": 30
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "3v",
+            "x": 0,
+            "y": 36
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "3v",
+            "x": 2.5714,
+            "y": 30
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "3v",
+            "x": 0,
+            "y": 36
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "3v",
+            "x": 0,
+            "y": 36
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "3v",
+            "x": 0,
+            "y": 36
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "3v",
+            "x": 0,
+            "y": 33
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "3k",
+            "x": 12,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "3k",
+            "x": 12,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "3k",
+            "x": 12,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "3k",
+            "x": 12,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "3k",
+            "x": 12,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "3k",
+            "x": 12,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "3k",
+            "x": 12,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "3k",
+            "x": 12,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "3k",
+            "x": 12,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "3k",
+            "x": 0,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "2k",
+            "x": 25.7143,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "2k",
+            "x": 25.7143,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "2k",
+            "x": 25.7143,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "2k",
+            "x": 25.7143,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "2k",
+            "x": 25.7143,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "2k",
+            "x": 25.7143,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "2k",
+            "x": 25.7143,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "2k",
+            "x": 25.7143,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "2k",
+            "x": 25.7143,
+            "y": 70.0417
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "2k",
+            "x": 36,
+            "y": 82
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "1v",
+            "x": 24,
+            "y": 35
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "1v",
+            "x": 16.3714,
+            "y": 21.7812
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "1v",
+            "x": 16.5,
+            "y": 35
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "1v",
+            "x": 21.8571,
+            "y": 21.7812
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "1v",
+            "x": 11.1429,
+            "y": 25.625
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "1v",
+            "x": 15,
+            "y": 34.5938
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "1v",
+            "x": 13.2857,
+            "y": 22.2083
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "1v",
+            "x": 12,
+            "y": 15.375
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "1v",
+            "x": 12,
+            "y": 15.375
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "1v",
+            "x": 0,
+            "y": 46.9792
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "3p",
+            "x": 5.5714,
+            "y": 42.7083
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "3p",
+            "x": 5.5714,
+            "y": 41
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "3p",
+            "x": 5.5714,
+            "y": 41
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "3p",
+            "x": 5.5714,
+            "y": 41
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "3p",
+            "x": 15,
+            "y": 44.4167
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "3p",
+            "x": 5.5714,
+            "y": 41.4271
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "3p",
+            "x": 14.5714,
+            "y": 42.2812
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "3p",
+            "x": 5.5714,
+            "y": 41
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "3p",
+            "x": 5.5714,
+            "y": 41
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "3p",
+            "x": 0,
+            "y": 64.0625
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "2p",
+            "x": 16.2857,
+            "y": 46.9792
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "2p",
+            "x": 22.2857,
+            "y": 46.9792
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "2p",
+            "x": 22.2857,
+            "y": 46.9792
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "2p",
+            "x": 16.2857,
+            "y": 46.9792
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "2p",
+            "x": 22.2857,
+            "y": 35.4479
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "2p",
+            "x": 21,
+            "y": 45.6979
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "2p",
+            "x": 22.2857,
+            "y": 40.5729
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "2p",
+            "x": 22.2857,
+            "y": 49.1146
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "2p",
+            "x": 22.2857,
+            "y": 49.1146
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "2p",
+            "x": 18,
+            "y": 72.6042
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "s",
+            "x": 33.5,
+            "y": 30
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "s",
+            "x": 34.5,
+            "y": 30.3229
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "s",
+            "x": 33,
+            "y": 30
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "s",
+            "x": 36,
+            "y": 34.5
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "s",
+            "x": 33,
+            "y": 30
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "s",
+            "x": 27,
+            "y": 24.3438
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "s",
+            "x": 26.1429,
+            "y": 24.3438
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "s",
+            "x": 26.1429,
+            "y": 15.375
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "s",
+            "x": 34.5,
+            "y": 30.3229
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "s",
+            "x": 35.1429,
+            "y": 35.0208
+        },
+        {
+            "ulkopelikuvio": "kaannettypertsa",
+            "pelipaikka": "2v",
+            "x": 30,
+            "y": 44.4167
+        },
+        {
+            "ulkopelikuvio": "oulu",
+            "pelipaikka": "2v",
+            "x": 30,
+            "y": 41
+        },
+        {
+            "ulkopelikuvio": "pertsa",
+            "pelipaikka": "2v",
+            "x": 30,
+            "y": 41
+        },
+        {
+            "ulkopelikuvio": "ristivitonen",
+            "pelipaikka": "2v",
+            "x": 30,
+            "y": 44.4167
+        },
+        {
+            "ulkopelikuvio": "tahko",
+            "pelipaikka": "2v",
+            "x": 30,
+            "y": 42.7083
+        },
+        {
+            "ulkopelikuvio": "tahko2",
+            "pelipaikka": "2v",
+            "x": 36,
+            "y": 36
+        },
+        {
+            "ulkopelikuvio": "sailytys",
+            "pelipaikka": "2v",
+            "x": 36,
+            "y": 36
+        },
+        {
+            "ulkopelikuvio": "karvauskahdella",
+            "pelipaikka": "2v",
+            "x": 31.2857,
+            "y": 41
+        },
+        {
+            "ulkopelikuvio": "karvausyhdella",
+            "pelipaikka": "2v",
+            "x": 30,
+            "y": 41
+        },
+        {
+            "ulkopelikuvio": "muu",
+            "pelipaikka": "2v",
+            "x": 36,
+            "y": 51.25
+        }
+    ]
 }
