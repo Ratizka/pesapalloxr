@@ -2040,7 +2040,6 @@ public class PesapalloxrController {
 
         CSVParser parse = null;
 
-        taulukkoxr.getItems().clear();
         try {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Avaa tiedosto");
@@ -2053,6 +2052,8 @@ public class PesapalloxrController {
             if (tiedosto == null) {
                 return;
             }
+
+            taulukkoxr.getItems().clear();
 
             fileReader = new FileReader(tiedosto.getAbsolutePath());
 
