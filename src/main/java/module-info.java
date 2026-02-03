@@ -11,6 +11,7 @@ module com.example.pesapalloxr {
     requires org.json;
     requires jdk.crypto.ec;
     requires org.jfxtras.styles.jmetro;
+    requires javafx.graphics;
 
     opens com.example.pesapalloxr to javafx.fxml;
     exports com.example.pesapalloxr;

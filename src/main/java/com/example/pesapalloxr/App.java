@@ -11,23 +11,22 @@ import java.io.IOException;
 
 
 public class App extends Application {
-    public static void main(String[] args) {
-        launch();
+
+    public static void main(String[] args){
+        launch(args);
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("ui.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ui.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         JMetro jMetro = new JMetro(Style.LIGHT);
 
         scene.getStylesheets().add(getClass().getResource("/stylesheet/style.css").toExternalForm());
-
         jMetro.setScene(scene);
         stage.setTitle("Pesäpalloxr");
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
-
     }
 }

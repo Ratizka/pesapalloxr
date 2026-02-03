@@ -92,6 +92,14 @@ public class Lyontitiedot {
         this.lapilyontitn = lapilyontitn;
     }
 
+    public Integer getEtenijaID() {
+        return etenijaID;
+    }
+
+    public void setEtenijaID(Integer etenijaID) {
+        this.etenijaID = etenijaID;
+    }
+
     public Integer getLyojaID() {
         return lyojaID;
     }

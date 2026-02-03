@@ -31,7 +31,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -64,9 +63,24 @@ public class PesapalloxrController {
     private final Map<String, Double> naistenSijaintiMapX = new HashMap<>();
     private final Map<String, Double> naistenSijaintiMapY = new HashMap<>();
 
-    public RadioMenuItem menuItemMiehet;
-    public RadioMenuItem menuItemNaiset;
-    public ComboBox<String> kuvionvaihdot;
+    @FXML
+    private RadioMenuItem menuItemMiehet;
+    @FXML
+    private ComboBox<String> kuvionvaihdot;
+    @FXML
+    private TableColumn<Lyontitiedot, Integer> taulukkopalot;
+    @FXML
+    private TableColumn<Lyontitiedot, String> taulukkoulkopelitempo;
+    @FXML
+    private TableColumn<Lyontitiedot, String> taulukkokarkaus;
+    @FXML
+    private TableColumn<Lyontitiedot, String> taulukkosauma;
+    @FXML
+    private TableColumn<Lyontitiedot, String> taulukkokumura;
+    @FXML
+    private TableColumn<Lyontitiedot, Double> taulukkoxlapilyonti;
+    @FXML
+    private TableColumn<Lyontitiedot, String> taulukkoulkopelisuoritus;
 
     @FXML
     private Canvas lyontiCanvas;
@@ -376,6 +390,13 @@ public class PesapalloxrController {
         taulukkoJuoksunTodennakoisyys.setCellValueFactory(new PropertyValueFactory<>("juoksutodennakoisyys"));
         taulukkoTilanne.setCellValueFactory(new PropertyValueFactory<>("tilanne"));
 
+        taulukkopalot.setCellValueFactory(new PropertyValueFactory<>("palot"));
+        taulukkosauma.setCellValueFactory(new PropertyValueFactory<>("saumakorkeus"));
+        taulukkokumura.setCellValueFactory(new PropertyValueFactory<>("kumurakorkeus"));
+        taulukkokarkaus.setCellValueFactory(new PropertyValueFactory<>("karkaus"));
+        taulukkoulkopelitempo.setCellValueFactory(new PropertyValueFactory<>("ulkopelitempo"));
+        taulukkoxlapilyonti.setCellValueFactory(new PropertyValueFactory<>("lapilyontitn"));
+        taulukkoulkopelisuoritus.setCellValueFactory(new PropertyValueFactory<>("ulkopelisuoritus"));
     }
 
     @FXML
@@ -441,6 +462,10 @@ public class PesapalloxrController {
         taulukkoulkopelivirhe.setCellFactory(TextFieldTableCell.forTableColumn());
         taulukkolapilyonti.setCellFactory(TextFieldTableCell.forTableColumn());
         taulukkokunnari.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkoulkopelitempo.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkokarkaus.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkosauma.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkokumura.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     @FXML
@@ -460,6 +485,17 @@ public class PesapalloxrController {
                 lyontitiedotIntegerCellEditEvent.getTableView().getItems().get(
                                 lyontitiedotIntegerCellEditEvent.getTablePosition().getRow()).
                         setVuoropari(lyontitiedotIntegerCellEditEvent.getNewValue());
+            }
+        });
+
+        taulukkoTilanne.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
+                        setTilanne(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
             }
         });
 
@@ -577,6 +613,24 @@ public class PesapalloxrController {
             }
         });
 
+        taulukkoulkopelisuoritus.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get(
+                        lyontitiedotStringCellEditEvent.getTablePosition().getRow())
+                        .setUlkopelisuoritus(lyontitiedotStringCellEditEvent.getNewValue());
+            }
+        });
+
+        taulukkoulkopelitempo.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get(
+                                lyontitiedotStringCellEditEvent.getTablePosition().getRow())
+                        .setUlkopelitempo(lyontitiedotStringCellEditEvent.getNewValue());
+            }
+        });
+
         taulukkoEtenijaLaatu.setOnEditCommit(new EventHandler<>() {
             @Override
             public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
@@ -645,16 +699,6 @@ public class PesapalloxrController {
             }
         });
 
-        taulukkoTilanne.setOnEditCommit(new EventHandler<>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
-                lyontitiedotStringCellEditEvent.getTableView().getItems().get
-                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
-                        setTilanne(
-                                lyontitiedotStringCellEditEvent.getNewValue()
-                        );
-            }
-        });
 
         taulukkojoukkue.setOnEditCommit(new EventHandler<>() {
             @Override
@@ -700,7 +744,43 @@ public class PesapalloxrController {
             }
         });
 
+        taulukkokarkaus.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
+                        setKarkaus(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
 
+        taulukkosauma.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
+                        setSaumakorkeus(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+
+        taulukkokumura.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Lyontitiedot, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get
+                                (lyontitiedotStringCellEditEvent.getTablePosition().getRow()).
+                        setKumurakorkeus(
+                                lyontitiedotStringCellEditEvent.getNewValue()
+                        );
+            }
+        });
+    }
+
+    @FXML
+    private void tyhjennaTaulukko(){
+        taulukkoxr.getItems().clear();
     }
 
     private void malli() {
@@ -1004,7 +1084,7 @@ public class PesapalloxrController {
 
         graphicsContext.fillOval(145, 410, 10, 10); // 3v
 
-        graphicsContext.fillOval(327, 500, 10, 10); // 1v
+        graphicsContext.fillOval(327, 505, 10, 10); // 1v
 
         graphicsContext.fillOval(530, 440, 10, 10); // Sieppari
 
@@ -1066,7 +1146,6 @@ public class PesapalloxrController {
         GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
 
         graphicsContext.setFill(Color.DARKMAGENTA);
-        //graphicsContext.setStroke(Color.BROWN);
 
         graphicsContext.fillOval(278, 127, 10, 10); // Kolmoskoppari
 
@@ -1091,7 +1170,6 @@ public class PesapalloxrController {
         GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
 
         graphicsContext.setFill(Color.DARKMAGENTA);
-        //graphicsContext.setStroke(Color.BROWN);
 
         graphicsContext.fillOval(278, 127, 10, 10); // Kolmoskoppari
 
@@ -1111,14 +1189,11 @@ public class PesapalloxrController {
 
     }
 
-
-
     @FXML
     private void kaannettyTahkoKuvio() {
         GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
 
         graphicsContext.setFill(Color.DARKMAGENTA);
-        //graphicsContext.setStroke(Color.BROWN);
 
         graphicsContext.fillOval(278, 127, 10, 10); // Kolmoskoppari
 
@@ -1146,7 +1221,6 @@ public class PesapalloxrController {
         GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
 
         graphicsContext.setFill(Color.DARKMAGENTA);
-        //graphicsContext.setStroke(Color.BROWN);
 
         graphicsContext.fillOval(278, 127, 10, 10); // Kolmoskoppari
 
@@ -1928,7 +2002,6 @@ public class PesapalloxrController {
                         datum.getUlkopelivirhe(),
                         datum.getUlkopelitempo(),
 
-
                         datum.getKuvio(),
                         datum.getVaaraAlla(),
                         datum.getMerkki(),
@@ -1938,7 +2011,6 @@ public class PesapalloxrController {
                         datum.getSaumakorkeus(),
                         datum.getKumurakorkeus(),
                         datum.getSuunta(),
-
 
                         datum.getKoordinaattix(),
                         datum.getKoordinaattiy(),
@@ -1967,6 +2039,8 @@ public class PesapalloxrController {
         FileReader fileReader = null;
 
         CSVParser parse = null;
+
+        taulukkoxr.getItems().clear();
         try {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Avaa tiedosto");
@@ -2051,7 +2125,6 @@ public class PesapalloxrController {
                 Double juoksutodennakoisyys = Double.valueOf(i.get("juoksutodennakoisyys"));
                 Double lapilyontitn = Double.valueOf(i.get("lapilyontitn"));
 
-
                 data.add(new Lyontitiedot(
                 koordinaattix, koordinaattiy,
                 sijainti, kuvio, lyonnintyyppi,
@@ -2076,7 +2149,7 @@ public class PesapalloxrController {
         } catch (IOException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }  finally {
-            if (fileReader != null | parse != null) {
+            if (fileReader != null & parse != null) {
                 fileReader.close();
                 parse.close();
             }
