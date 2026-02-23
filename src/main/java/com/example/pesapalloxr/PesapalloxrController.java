@@ -285,7 +285,7 @@ public class PesapalloxrController {
         jakso.getItems().addAll("1", "2", "supervuoro", "kotari");
         jakso.getSelectionModel().selectFirst();
 
-        lopputuloscombobox.getItems().addAll("kärkilyönti", "palo", "haava");
+        lopputuloscombobox.getItems().addAll("kärkilyönti", "palo", "haava", "palo/koppi");
         lopputuloscombobox.getSelectionModel().selectFirst();
 
         juoksut.getItems().addAll(0, 1, 2, 3, 4);
@@ -408,9 +408,10 @@ public class PesapalloxrController {
         taulukkoxr.getSelectionModel().setCellSelectionEnabled(true);
 
         ContextMenu taulukkoContextMenu = new ContextMenu();
+        MenuItem taulukkomuokkaa = new MenuItem("muokkaa");
         MenuItem taulukkopoista = new MenuItem("Poista");
 
-        taulukkoContextMenu.getItems().addAll(taulukkopoista);
+        taulukkoContextMenu.getItems().addAll(taulukkopoista, taulukkomuokkaa);
 
         taulukkoxr.setContextMenu(taulukkoContextMenu);
 
@@ -458,6 +459,7 @@ public class PesapalloxrController {
         taulukkoTilanne.setCellFactory(TextFieldTableCell.forTableColumn());
         taulukkovaaraalla.setCellFactory(TextFieldTableCell.forTableColumn());
         taulukkolyontinumero.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        taulukkopalot.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         taulukkolyonti.setCellFactory(TextFieldTableCell.forTableColumn());
         taulukkoulkopelivirhe.setCellFactory(TextFieldTableCell.forTableColumn());
         taulukkolapilyonti.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -505,6 +507,15 @@ public class PesapalloxrController {
                 lyontitiedotIntegerCellEditEvent.getTableView().getItems().get(
                                 lyontitiedotIntegerCellEditEvent.getTablePosition().getRow()).
                         setLyontinumero(lyontitiedotIntegerCellEditEvent.getNewValue());
+            }
+        });
+
+        taulukkopalot.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, Integer> lyontitiedotIntegerCellEditEvent) {
+                lyontitiedotIntegerCellEditEvent.getTableView().getItems().get(
+                                lyontitiedotIntegerCellEditEvent.getTablePosition().getRow()).
+                        setPalot(lyontitiedotIntegerCellEditEvent.getNewValue());
             }
         });
 
@@ -810,7 +821,7 @@ public class PesapalloxrController {
 
     private void xrmap(JSONObject jsonObject) {
 
-        JSONArray msumalli = jsonObject.getJSONArray("msumalli");
+        JSONArray msumalli = jsonObject.getJSONArray("msumallitesti");
 
         int pituus = msumalli.length();
 
@@ -841,7 +852,7 @@ public class PesapalloxrController {
 
     private void xrMallinsuMap(JSONObject jsonObject) {
 
-        JSONArray nsumalli = jsonObject.getJSONArray("nsumalli");
+        JSONArray nsumalli = jsonObject.getJSONArray("nsumallitesti");
 
         int pituus = nsumalli.length();
 
@@ -1534,6 +1545,26 @@ public class PesapalloxrController {
     }
 
     @FXML
+    private void juoksuUI(){
+
+        if (lopputuloscombobox.getValue().equals("kärkilyönti")){
+            juoksut.setValue(1);
+        } else {
+            juoksut.setValue(0);
+        }
+    }
+
+    @FXML
+    private void lapilyontiUI(){
+
+        if (juoksut.getValue() > 1){
+            lapilyonti.setValue("kyllä");
+        } else {
+            lapilyonti.setValue("ei");
+        }
+    }
+
+    @FXML
     private void laskeEtaisyys() {
 
         if (menuItemMiehet.isSelected()){
@@ -1624,7 +1655,7 @@ public class PesapalloxrController {
 
     }
 
-    @FXML
+
     private String haeSijaintiMiehet(Double y) {
         if (y <= 7.5) {
             return "etulyhyt";
@@ -1641,7 +1672,7 @@ public class PesapalloxrController {
         return "linja";
     }
 
-    @FXML
+
     private String haeSijaintiNaiset(Double y) {
         if (y <= 6.5) {
             return "etulyhyt";
@@ -1798,7 +1829,6 @@ public class PesapalloxrController {
 
     @FXML
     private void laskeTodennakoisyydet() {
-
         if (menuItemMiehet.isSelected()){
             todennakoisyydetMiehet();
         }
@@ -1834,7 +1864,7 @@ public class PesapalloxrController {
         Double tyyppi = naistenXrMap.get(tyyppixr);
         Double merkki = naistenXrMap.get(merkkixr);
         Double etenijalaatu = naistenXrMap.get(etenijalaatuxr);
-        Double ulkopelaajaxr = naistenXrMap.get(ulkopelaaja);
+        Double ulkopelaajaxr = naistenXrMap.get(kuvioxr + ulkopelaaja);
         Double sijanti = naistenXrMap.get(sijainti);
 
         Double ulkopelaajaX = naistenSijaintiMapX.get(kuvioxr + ulkopelaaja);
@@ -1868,7 +1898,7 @@ public class PesapalloxrController {
         Double tyyppi = miestenXrMap.get(tyyppixr);
         Double merkki = miestenXrMap.get(merkkixr);
         Double etenijalaatu = miestenXrMap.get(etenijalaatuxr);
-        Double ulkopelaajaxr = miestenXrMap.get(ulkopelaaja);
+        Double ulkopelaajaxr = miestenXrMap.get(kuvioxr + ulkopelaaja);
         Double sijanti = miestenXrMap.get(sijainti);
 
         Double ulkopelaajaX = miestenSijaintiMapX.get(kuvioxr + ulkopelaaja);
