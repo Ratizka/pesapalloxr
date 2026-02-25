@@ -64,6 +64,8 @@ public class PesapalloxrController {
     private final Map<String, Double> naistenSijaintiMapY = new HashMap<>();
 
     @FXML
+    private TableColumn<Lyontitiedot, String> taulukkosuunta;
+    @FXML
     private RadioMenuItem menuItemMiehet;
     @FXML
     private ComboBox<String> kuvionvaihdot;
@@ -397,6 +399,7 @@ public class PesapalloxrController {
         taulukkoulkopelitempo.setCellValueFactory(new PropertyValueFactory<>("ulkopelitempo"));
         taulukkoxlapilyonti.setCellValueFactory(new PropertyValueFactory<>("lapilyontitn"));
         taulukkoulkopelisuoritus.setCellValueFactory(new PropertyValueFactory<>("ulkopelisuoritus"));
+        taulukkosuunta.setCellValueFactory(new PropertyValueFactory<>("suunta"));
     }
 
     @FXML
@@ -468,6 +471,7 @@ public class PesapalloxrController {
         taulukkokarkaus.setCellFactory(TextFieldTableCell.forTableColumn());
         taulukkosauma.setCellFactory(TextFieldTableCell.forTableColumn());
         taulukkokumura.setCellFactory(TextFieldTableCell.forTableColumn());
+        taulukkosuunta.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     @FXML
@@ -785,6 +789,14 @@ public class PesapalloxrController {
                         setKumurakorkeus(
                                 lyontitiedotStringCellEditEvent.getNewValue()
                         );
+            }
+        });
+
+        taulukkosuunta.setOnEditCommit(new EventHandler<>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<Lyontitiedot, String> lyontitiedotStringCellEditEvent) {
+                lyontitiedotStringCellEditEvent.getTableView().getItems().get(lyontitiedotStringCellEditEvent.getTablePosition().getRow())
+                        .setSuunta(lyontitiedotStringCellEditEvent.getNewValue());
             }
         });
     }

@@ -168,6 +168,7 @@
                         <TableColumn fx:id="taulukkotyyppi" prefWidth="100.0" text="tyyppi" />
                         <TableColumn fx:id="taulukkosauma" prefWidth="100.0" text="saumakorkeus" />
                         <TableColumn fx:id="taulukkokumura" prefWidth="100.0" text="kumurankorkeus" />
+                        <TableColumn fx:id="taulukkosuunta" prefWidth="100.0" text="suunta" />
                         <TableColumn fx:id="taulukkosijainti" prefWidth="100.0" text="sijainti" />
                         <TableColumn fx:id="taulukkokoordinaattix" editable="false" prefWidth="100.0" text="x" />
                         <TableColumn fx:id="taulukkokoordinaattiy" editable="false" prefWidth="100.0" text="y" />
