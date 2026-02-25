@@ -111,8 +111,8 @@
                     <ComboBox fx:id="syotto" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                     <ComboBox fx:id="tyyppi" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                     <ComboBox fx:id="lyontisuuntacombobox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                    <ComboBox fx:id="lopputuloscombobox" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                    <ComboBox fx:id="juoksut" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                    <ComboBox fx:id="lopputuloscombobox" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="5" onAction="#juoksuUI"/>
+                    <ComboBox fx:id="juoksut" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="5" onAction="#lapilyontiUI"/>
                     <ComboBox fx:id="lapilyonti" prefWidth="150.0" GridPane.rowIndex="7" />
                     <ComboBox fx:id="kunnari" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                     <ComboBox fx:id="kumuranTyyppi" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
