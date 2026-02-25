@@ -6,7 +6,7 @@ voidaan lisätä muut tilanteet. Ohjelmisto on beta-vaiheessa, kun menee sen ohi
 
 #### Windows
 
-Lataa zip-kansio Releases kohdasta ja pura haluttuun paikkaan. Avaa kansio ja sieltä bin ja Kaynnista.
+Lataa pesapalloxr.exe ja suorita.
 
 #### Muut
 
