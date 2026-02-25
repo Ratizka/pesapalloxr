@@ -127,16 +127,55 @@
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jlink</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>com.example.pesapalloxr/com.example.pesapalloxr.App</mainClass>
+                    <launcher>${project.artifactId}</launcher>
+                    <!---jlinkZipName>Pesapalloxr 1.0</jlinkZipName>
+                    <jlinkImageName>Pesapalloxr 1.0</jlinkImageName-->
+                    <noManPages>true</noManPages>
+                    <noHeaderFiles>true</noHeaderFiles>
+                    <stripDebug>true</stripDebug>
+                    <compress>2</compress>
+                </configuration>
+            </plugin>
+            <!--package image as an exe-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- obtain warp-packer.exe from: "https://github.com/dgiagio/warp/releases/download/v0.3.0/windows-x64.warp-packer.exe" -->
+                    <executable>${project.basedir}\tools\warp-packer.exe</executable>
+                    <arguments>
+                        <argument>--arch</argument>
+                        <argument>windows-x64</argument>
 
-                        <configuration>
-                            <mainClass>com.example.pesapalloxr/com.example.pesapalloxr.App</mainClass>
-                            <launcher>Kaynnista</launcher>
-                            <jlinkZipName>Pesapalloxr 1.0</jlinkZipName>
-                            <jlinkImageName>Pesapalloxr 1.0</jlinkImageName>
-                            <noManPages>true</noManPages>
-                            <stripDebug>true</stripDebug>
-                            <compress>2</compress>
-                        </configuration>
+                        <argument>--input_dir</argument>
+                        <argument>${project.build.directory}\image</argument>
+
+                        <argument>--exec</argument>
+                        <argument>bin\${project.artifactId}.bat</argument>
+
+                        <argument>--output</argument>
+                        <argument>${project.build.directory}\${project.artifactId}.exe</argument>
+                    </arguments>
+                </configuration>
             </plugin>
         </plugins>
     </build>

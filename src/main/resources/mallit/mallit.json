@@ -235,6 +235,14 @@
             "avain": "pertsa"
         },
         {
+            "arvo": 1.50,
+            "avain": "muu"
+        },
+        {
+            "arvo": 0.0088,
+            "avain": "kaannettypertsa"
+        },
+        {
             "arvo": 0.9276,
             "avain": "ristivitonen"
         },
@@ -296,6 +304,14 @@
         },
         {
             "arvo": 0.0844,
+            "avain": "muu2k"
+        },
+        {
+            "arvo": 0.0986,
+            "avain": "muu3k"
+        },
+        {
+            "arvo": 0.0844,
             "avain": "oulu2k"
         },
         {
@@ -347,8 +363,16 @@
             "avain": "karvauskahdella2k"
         },
         {
+            "arvo": 0.0844,
+            "avain": "karvausyhdella2k"
+        },
+        {
             "arvo": 0.0986,
             "avain": "karvausyhdella3k"
+        },
+        {
+            "arvo": 0.0986,
+            "avain": "karvauskahdella3k"
         },
         {
             "arvo": 0.0844,
@@ -412,6 +436,10 @@
         },
         {
             "arvo": 0.2745,
+            "avain": "muul"
+        },
+        {
+            "arvo": 0.2745,
             "avain": "oulul"
         },
         {
@@ -469,6 +497,30 @@
         {
             "arvo": 0.1148,
             "avain": "oulus"
+        },
+        {
+            "arvo": 0.0993,
+            "avain": "muu1v"
+        },
+        {
+            "arvo": 0.1476,
+            "avain": "muu2p"
+        },
+        {
+            "arvo": 0.086,
+            "avain": "muu2v"
+        },
+        {
+            "arvo": 0.0785,
+            "avain": "muu3p"
+        },
+        {
+            "arvo": 0.1316,
+            "avain": "muu3v"
+        },
+        {
+            "arvo": 0.1148,
+            "avain": "muus"
         },
         {
             "arvo": 0.0504,
@@ -702,6 +754,10 @@
         {
             "arvo": -0.9083,
             "avain": "oulu"
+        },
+        {
+            "arvo": -5.9083,
+            "avain": "muu"
         },
         {
             "arvo": -0.6067,
@@ -1547,11 +1603,11 @@
             "avain": "vapaa"
         },
         {
-            "arvo": 4.3378,
+            "arvo": -0.25,
             "avain": "karvauskahdella"
         },
         {
-            "arvo": -19.4188,
+            "arvo": -0.50,
             "avain": "karvausyhdella"
         },
         {
@@ -1561,6 +1617,10 @@
         {
             "arvo": -0.0786,
             "avain": "pertsa"
+        },
+        {
+            "arvo":  0.000,
+            "avain": "kaannettypertsa"
         },
         {
             "arvo": -0.2735,
@@ -1597,6 +1657,10 @@
         {
             "arvo": 0.000,
             "avain": "heikko"
+        },
+        {
+            "arvo": -5.9083,
+            "avain": "muu"
         },
         {
             "arvo": -0.177,
@@ -2256,6 +2320,10 @@
             "avain": "kaannettypertsa"
         },
         {
+            "arvo": 0.0000,
+            "avain": "muu"
+        },
+        {
             "arvo": -1.0695,
             "avain": "ristivitonen"
         },
@@ -2317,6 +2385,14 @@
         },
         {
             "arvo": 0.1541,
+            "avain": "muu2k"
+        },
+        {
+            "arvo": 0.146,
+            "avain": "muu3k"
+        },
+        {
+            "arvo": 0.1541,
             "avain": "oulu2k"
         },
         {
@@ -2370,6 +2446,14 @@
         {
             "arvo": 0.146,
             "avain": "karvausyhdella3k"
+        },
+        {
+            "arvo": 0.1541,
+            "avain": "karvausyhdella2k"
+        },
+        {
+            "arvo": 0.146,
+            "avain": "karvauskahdella3k"
         },
         {
             "arvo": 0.1541,
