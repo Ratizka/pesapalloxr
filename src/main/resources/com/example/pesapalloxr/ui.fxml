@@ -211,6 +211,10 @@
                     </accelerator>
                 </MenuItem>
 
+                <MenuItem mnemonicParsing="false" onAction="#DBinsert" text="Lisaa tietokantaan">
+
+                </MenuItem>
+
                 <MenuItem mnemonicParsing="false" onAction="#sulje" text="Sulje" />
             </Menu>
 

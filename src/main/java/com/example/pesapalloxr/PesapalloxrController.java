@@ -37,6 +37,7 @@ import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -2200,11 +2201,22 @@ public class PesapalloxrController {
     }
 
     @FXML
+    private void DBinsert(){
+        List<Lyontitiedot> data = new ArrayList<>(taulukkoxr.getItems());
+
+        LyontiDB.Lisaa(data, "miestensuperpesis");
+    }
+
+    @FXML
     private JSONObject haeotteluntiedot() {
         try {
+            Properties env = new Properties();
+
+            env.load(new FileReader("./db.properties", StandardCharsets.UTF_8));
+
             String otteluid = ottelunid.getText();
 
-            String ilma = "https://api.pesistulokset.fi/api/v1/public/match?id=" + otteluid + "&apikey=wRX0tTke3DZ8RLKAMntjZ81LwgNQuSN9";
+            String ilma = "https://api.pesistulokset.fi/api/v1/public/match?id=" + otteluid + "&apikey=" + env.getProperty("apikey");
 
             HttpClient client = HttpClient.newHttpClient();
 
