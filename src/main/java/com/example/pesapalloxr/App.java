@@ -8,6 +8,7 @@ import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class App extends Application {
@@ -22,7 +23,7 @@ public class App extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         JMetro jMetro = new JMetro(Style.LIGHT);
 
-        scene.getStylesheets().add(getClass().getResource("/stylesheet/style.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/stylesheet/style.css")).toExternalForm());
         jMetro.setScene(scene);
         stage.setTitle("Pesäpalloxr");
         stage.setScene(scene);

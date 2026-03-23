@@ -150,10 +150,12 @@
                         <TableColumn fx:id="taulukkopalot" prefWidth="100.0" text="palot" />
                         <TableColumn fx:id="taulukkolyontinumero" prefWidth="100.0" text="lyontinumero" />
                         <TableColumn fx:id="taulukkojoukkue" prefWidth="100.0" text="sisäpelijoukkue" />
+                        <TableColumn fx:id="taulukkolyojaid" prefWidth="100.0" text="lyöjaid" />
                         <TableColumn fx:id="taulukkolyoja" prefWidth="100.0" text="lyöja" />
                         <TableColumn fx:id="taulukkoetenija" prefWidth="100.0" text="etenijä" />
                         <TableColumn fx:id="taulukkoEtenijaLaatu" prefWidth="100.0" text="etenijänlaatu" />
                         <TableColumn fx:id="taulukkoulkopelijoukkue" prefWidth="100.0" text="ulkopelijoukkue" />
+                        <TableColumn fx:id="taulukkoulkopelaajaid" prefWidth="100.0" text="ulkopelaajaid" />
                         <TableColumn fx:id="taulukkoulkopelaaja" prefWidth="100.0" text="ulkopelaaja" />
                         <TableColumn fx:id="taulukkoulkopelipaikka" prefWidth="100.0" text="ulkopelipaikka" />
                         <TableColumn fx:id="taulukkoulkopelisuoritus" prefWidth="100.0" text="ulkopelisuoritus" />

@@ -3,7 +3,7 @@ package com.example.pesapalloxr;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 
 public class LyontiDB {
 
@@ -11,8 +11,10 @@ public class LyontiDB {
 
     }
 
-    protected static void Lisaa(List<Lyontitiedot> data, String tietokannanmuutos) {
-        try (Connection yhdistys = DB.tiedot(tietokannanmuutos)) {
+    protected static void Lisaa(ArrayList<Lyontitiedot> data, String tietokannanmuutos) {
+
+        try (Connection yhdistys = new DB().tiedot(tietokannanmuutos)) {
+
             PreparedStatement insert = yhdistys.prepareStatement(
                     """
                             INSERT INTO pesistiedot (otteluID, jakso, vuoropari, tilanne, palot, lyontinumero, sisajoukkue, sisajoukkueID, lyoja, lyojaID, etenija, etenijanlaatu, ulkopelijoukkue, ulkopelijoukkueID,
@@ -68,8 +70,10 @@ public class LyontiDB {
                 insert.setDouble(38, datum.getLapilyontitn());
                 insert.executeUpdate();
             }
+
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
+
     }
 }
