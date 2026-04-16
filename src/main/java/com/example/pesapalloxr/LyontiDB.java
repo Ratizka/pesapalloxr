@@ -17,10 +17,22 @@ public class LyontiDB {
 
             PreparedStatement insert = yhdistys.prepareStatement(
                     """
-                            INSERT INTO pesistiedot (otteluID, jakso, vuoropari, tilanne, palot, lyontinumero, sisajoukkue, sisajoukkueID, lyoja, lyojaID, etenija, etenijanlaatu, ulkopelijoukkue, ulkopelijoukkueID,
-                            ulkopelisuorittaja, ulkopelaajaID, ulkopelipaikka, ulkopelisuoritus, ulkopelivirhe, ulkopelitempo, kuvio, vaaraAlla, merkki, karkaus, syotto, lyonnintyyppi, saumakorkeus,
-                            kumurankorkeus, suunta, koordinaattix, koordinaattiy, sijainti, lopputulos, juoksut, lapilyonti, kunnari, juoksutodennakoisyys, lapilyontitn)
-                            VALUES (?, ? ,? ,? ,? ,? ,? , ?, ?, ?, ?, ?,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? , ?, ?, ?,? ,? ,? ,? ,? ,? ,? ,? ,? ,?)
+                            INSERT INTO pesistiedot (
+                            otteluID, jakso, vuoropari, tilanne, palot, lyontinumero, sisajoukkue, sisajoukkueID,
+                            lyoja, lyojaID, etenija, etenijanlaatu, ulkopelijoukkue, ulkopelijoukkueID,
+                            ulkopelisuorittaja, ulkopelaajaID, ulkopelipaikka, ulkopelisuoritus, ulkopelivirhe, ulkopelitempo,
+                            kuvio, vaaraAlla, merkki, karkaus, syotto, lyonnintyyppi, saumakorkeus,
+                            kumurankorkeus, suunta, koordinaattix, koordinaattiy, sijainti,
+                            lopputulos, juoksut, lapilyonti, kunnari, juoksutodennakoisyys, lapilyontitn)
+                            VALUES (
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?, ?, ?,
+                            ?, ?, ?)
                             """);
 
             for (Lyontitiedot datum : data) {
@@ -42,10 +54,10 @@ public class LyontiDB {
                 insert.setInt(14, datum.getUlkopelijoukkueID());
                 insert.setString(15, datum.getUlkopelisuorittaja());
                 insert.setInt(16, datum.getUlkopelaajaID());
-                insert.setString(17,datum.getUlkopelipaikka());
-                insert.setString(18,datum.getUlkopelisuoritus());
-                insert.setString(19,datum.getUlkopelivirhe());
-                insert.setString(20,datum.getUlkopelitempo());
+                insert.setString(17, datum.getUlkopelipaikka());
+                insert.setString(18, datum.getUlkopelisuoritus());
+                insert.setString(19, datum.getUlkopelivirhe());
+                insert.setString(20, datum.getUlkopelitempo());
 
                 insert.setString(21, datum.getKuvio());
                 insert.setString(22, datum.getVaaraAlla());
