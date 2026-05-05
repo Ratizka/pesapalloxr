@@ -411,7 +411,7 @@ public class PesapalloxrController {
         taulukkoxr.getSelectionModel().setCellSelectionEnabled(true);
 
         ContextMenu taulukkoContextMenu = new ContextMenu();
-        MenuItem taulukkomuokkaa = new MenuItem("muokkaa");
+        MenuItem taulukkomuokkaa = new MenuItem("Muokkaa");
         MenuItem taulukkopoista = new MenuItem("Poista");
 
         taulukkoContextMenu.getItems().addAll(taulukkopoista, taulukkomuokkaa);
@@ -819,6 +819,7 @@ public class PesapalloxrController {
     }
 
     private JSONObject lataamallit() {
+
         try {
             URL url = getClass().getResource("/mallit/mallit.json");
 
@@ -848,6 +849,7 @@ public class PesapalloxrController {
     }
 
     private void miestenXlapilyontiMap(JSONObject jsonObject) {
+
         JSONArray msulapilyontimalli = jsonObject.getJSONArray("msulapilyontimalli");
 
         int pituus = msulapilyontimalli.length();
@@ -879,6 +881,7 @@ public class PesapalloxrController {
     }
 
     private void naistenXRlapilyontiMap(JSONObject jsonObject) {
+
         JSONArray nsulapilyontimalli = jsonObject.getJSONArray("nsulapilyontimalli");
 
         int pituus = nsulapilyontimalli.length();
@@ -1366,7 +1369,6 @@ public class PesapalloxrController {
         GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
 
         graphicsContext.setFill(Color.DARKMAGENTA);
-        //graphicsContext.setStroke(Color.BROWN);
 
         graphicsContext.fillOval(278, 127, 10, 10); // Kolmoskoppari
 
@@ -1390,7 +1392,6 @@ public class PesapalloxrController {
         GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
 
         graphicsContext.setFill(Color.DARKMAGENTA);
-        //graphicsContext.setStroke(Color.BROWN);
 
         graphicsContext.fillOval(278, 127, 10, 10); // Kolmoskoppari
 
@@ -1506,7 +1507,6 @@ public class PesapalloxrController {
         GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
 
         graphicsContext.setFill(Color.DARKMAGENTA);
-        //graphicsContext.setStroke(Color.BROWN);
 
         graphicsContext.fillOval(145, 33, 10, 10); // Kolmoskoppari
 
@@ -1547,7 +1547,7 @@ public class PesapalloxrController {
 
         graphicsContext.fillOval(mouseX, mouseY, 5, 5);
 
-        if (menuItemMiehet.isSelected()){
+        if (menuItemMiehet.isSelected()) {
             lyonninSijaintiMetreissaMiestenRajat(xMetri, yMetri);
 
         } else {
@@ -1559,21 +1559,23 @@ public class PesapalloxrController {
     @FXML
     private void juoksuUI(){
 
-        if (lopputuloscombobox.getValue().equals("kärkilyönti")){
+        if (lopputuloscombobox.getValue().equals("kärkilyönti")) {
             juoksut.setValue(1);
         } else {
             juoksut.setValue(0);
         }
+
     }
 
     @FXML
     private void lapilyontiUI(){
 
-        if (juoksut.getValue() > 1){
+        if (juoksut.getValue() > 1) {
             lapilyonti.setValue("kyllä");
         } else {
             lapilyonti.setValue("ei");
         }
+
     }
 
     @FXML
@@ -1581,13 +1583,15 @@ public class PesapalloxrController {
 
         if (menuItemMiehet.isSelected()){
             miehet();
-        }else {
+        } else {
             naiset();
         }
 
     }
 
+    @FXML
     private void miehet() {
+
         String kuvioxr = kuvio.getValue();
         String ulkopelaaja = ulkopelipaikka.getValue();
 
@@ -1596,12 +1600,17 @@ public class PesapalloxrController {
         Double ulkopelaajaX = miestenSijaintiMapX.get(kuvioxr + ulkopelaaja);
         Double ulkopelaajaY = miestenSijaintiMapY.get(kuvioxr + ulkopelaaja);
 
-        double etaisyys = Math.sqrt(Math.pow(XKOORDINAATTI - ulkopelaajaX, 2) + Math.pow(YKOORDINAATTI - ulkopelaajaY, 2));
+        double etaisyys = Math.sqrt(
+                Math.pow(XKOORDINAATTI - ulkopelaajaX, 2) + Math.pow(YKOORDINAATTI - ulkopelaajaY, 2)
+        );
 
         lyonninEtaisyysulkopelaajasta.setText(String.format(Locale.US, "%.2f", etaisyys));
+
     }
 
+    @FXML
     private void naiset() {
+
         String kuvioxr = kuvio.getValue();
         String ulkopelaaja = ulkopelipaikka.getValue();
 
@@ -1610,13 +1619,17 @@ public class PesapalloxrController {
         Double ulkopelaajaX = naistenSijaintiMapX.get(kuvioxr + ulkopelaaja);
         Double ulkopelaajaY = naistenSijaintiMapY.get(kuvioxr + ulkopelaaja);
 
-        double etaisyys = Math.sqrt(Math.pow(XKOORDINAATTI - ulkopelaajaX, 2) + Math.pow(YKOORDINAATTI - ulkopelaajaY, 2));
+        double etaisyys = Math.sqrt(
+                Math.pow(XKOORDINAATTI - ulkopelaajaX, 2) + Math.pow(YKOORDINAATTI - ulkopelaajaY, 2)
+        );
 
         lyonninEtaisyysulkopelaajasta.setText(String.format(Locale.US, "%.2f", etaisyys));
+
     }
 
     @FXML
     private void lyonninSijaintiMetreissaMiestenRajat(double x, double y) {
+
         String kuvioxr = kuvio.getValue();
         String ulkopelaaja = ulkopelipaikka.getValue();
 
@@ -1631,7 +1644,9 @@ public class PesapalloxrController {
         Double ulkopelaajaX = miestenSijaintiMapX.get(kuvioxr + ulkopelaaja);
         Double ulkopelaajaY = miestenSijaintiMapY.get(kuvioxr + ulkopelaaja);
 
-        double etaisyys = Math.sqrt(Math.pow(xLaskettu - ulkopelaajaX, 2) + Math.pow(yLaskettu - ulkopelaajaY, 2));
+        double etaisyys = Math.sqrt(
+                Math.pow(xLaskettu - ulkopelaajaX, 2) + Math.pow(yLaskettu - ulkopelaajaY, 2)
+        );
 
         lyonninEtaisyysulkopelaajasta.setText(String.format(Locale.US, "%.2f", etaisyys));
 
@@ -1655,7 +1670,9 @@ public class PesapalloxrController {
         Double ulkopelaajaX = naistenSijaintiMapX.get(kuvioxr + ulkopelaaja);
         Double ulkopelaajaY = naistenSijaintiMapY.get(kuvioxr + ulkopelaaja);
 
-        double etaisyys = Math.sqrt(Math.pow(xLaskettu - ulkopelaajaX, 2) + Math.pow(yLaskettu - ulkopelaajaY, 2));
+        double etaisyys = Math.sqrt(
+                Math.pow(xLaskettu - ulkopelaajaX, 2) + Math.pow(yLaskettu - ulkopelaajaY, 2)
+        );
 
         lyonninEtaisyysulkopelaajasta.setText(String.format(Locale.US, "%.2f", etaisyys));
 
@@ -1668,7 +1685,8 @@ public class PesapalloxrController {
     }
 
 
-    private String haeSijaintiMiehet(Double y) {
+    private static String haeSijaintiMiehet(Double y) {
+
         if (y <= 7.5) {
             return "etulyhyt";
         }
@@ -1681,11 +1699,14 @@ public class PesapalloxrController {
         if (y >= 62) {
             return "takakenttä";
         }
+
         return "linja";
+
     }
 
 
-    private String haeSijaintiNaiset(Double y) {
+    private static String haeSijaintiNaiset(Double y) {
+
         if (y <= 6.5) {
             return "etulyhyt";
         }
@@ -1698,6 +1719,7 @@ public class PesapalloxrController {
         if (y >= 53) {
             return "takakenttä";
         }
+
         return "linja";
     }
 
@@ -1712,7 +1734,9 @@ public class PesapalloxrController {
 
     }
 
+    @FXML
     private void miehetlyontitiedot() {
+
         double x = XKOORDINAATTI;
         double y = YKOORDINAATTI;
 
@@ -1758,7 +1782,6 @@ public class PesapalloxrController {
         String karkaus = karkauscombobox.getValue();
         String ulkopelitempo = ulkopelitempocombobox.getValue();
 
-
         Lyontitiedot tiedot = new Lyontitiedot(
                 x, y,
                 sijainti, kuvioxr, lyontityyppi,
@@ -1773,9 +1796,12 @@ public class PesapalloxrController {
         );
 
         taulukkoxr.getItems().addAll(tiedot);
+
     }
 
+    @FXML
     private void naisetlyontitiedot() {
+
         double x = XKOORDINAATTI;
         double y = YKOORDINAATTI;
 
@@ -1821,8 +1847,6 @@ public class PesapalloxrController {
         String karkaus = karkauscombobox.getValue();
         String ulkopelitempo = ulkopelitempocombobox.getValue();
 
-
-
         Lyontitiedot tiedot = new Lyontitiedot(
                 x, y,
                 sijainti, kuvioxr, tyyppixr,
@@ -1837,30 +1861,38 @@ public class PesapalloxrController {
         );
 
         taulukkoxr.getItems().addAll(tiedot);
+
     }
 
     @FXML
     private void laskeTodennakoisyydet() {
+
         if (menuItemMiehet.isSelected()){
             todennakoisyydetMiehet();
         }
         else {
             todennakoisyydetNaiset();
         }
+
     }
 
     private void todennakoisyydetMiehet() {
+
         laskeJuoksuTodennakoisyysMiehet();
         laskeTodennakoisyysLapi();
+
     }
 
     private void todennakoisyydetNaiset() {
+
         laskeJuoksuTodennakoisyysNaiset();
         laskeTodennakoisyysLapiNaiset();
+
     }
 
     @FXML
     private double laskeJuoksuTodennakoisyysNaiset() {
+
         double x = XKOORDINAATTI;
         double y = YKOORDINAATTI;
 
@@ -1891,10 +1923,12 @@ public class PesapalloxrController {
         juoksuodottama.setText(String.format(Locale.US, "%.4f", juoksutn));
 
         return juoksutn;
+
     }
 
     @FXML
     private double laskeJuoksuTodennakoisyysMiehet() {
+
         double x = XKOORDINAATTI;
         double y = YKOORDINAATTI;
 
@@ -1925,10 +1959,12 @@ public class PesapalloxrController {
         juoksuodottama.setText(String.format(Locale.US, "%.4f", juoksutn));
 
         return juoksutn;
+
     }
 
     @FXML
     private Double laskeTodennakoisyysLapi() {
+
         double x = XKOORDINAATTI;
         double y = YKOORDINAATTI;
 
@@ -1955,10 +1991,12 @@ public class PesapalloxrController {
         lapilyontiolettama.setText(String.format(Locale.US, "%.4f", juoksutn));
 
         return juoksutn;
+
     }
 
     @FXML
     private Double laskeTodennakoisyysLapiNaiset() {
+
         double x = XKOORDINAATTI;
         double y = YKOORDINAATTI;
 
@@ -1985,10 +2023,12 @@ public class PesapalloxrController {
         lapilyontiolettama.setText(String.format(Locale.US, "%.4f", juoksutn));
 
         return juoksutn;
+
     }
 
     @FXML
     private void tallennacsvtiedostoon() {
+
         try {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Tallenna tiedostoon");
@@ -2004,7 +2044,7 @@ public class PesapalloxrController {
 
             FileWriter writer = new FileWriter(tiedosto.getAbsolutePath());
 
-            List<Lyontitiedot> data = new ArrayList<>(taulukkoxr.getItems());
+            ArrayList<Lyontitiedot> data = new ArrayList<>(taulukkoxr.getItems());
 
             CSVFormat format = CSVFormat.Builder.create().setHeader(
                     "otteluID", "jakso", "vuoropari", "tilanne", "palot", "lyontinumero",
@@ -2017,7 +2057,6 @@ public class PesapalloxrController {
             ).get();
 
             CSVPrinter printer = format.print(writer);
-
 
             for (Lyontitiedot datum : data) {
                 printer.printRecord(
@@ -2074,12 +2113,13 @@ public class PesapalloxrController {
         } catch (IOException ioexception) {
             System.err.print(ioexception.getMessage());
         }
+
     }
 
     @FXML
     private void avaaOttelu() throws IOException {
-        FileReader fileReader = null;
 
+        FileReader fileReader = null;
         CSVParser parse = null;
 
         try {
@@ -2099,7 +2139,7 @@ public class PesapalloxrController {
 
             fileReader = new FileReader(tiedosto.getAbsolutePath());
 
-            List<Lyontitiedot> data = new ArrayList<>();
+            ArrayList<Lyontitiedot> data = new ArrayList<>();
 
             CSVFormat format = CSVFormat.Builder.create().setHeader(
                     "otteluID", "jakso", "vuoropari", "tilanne", "palot", "lyontinumero",
@@ -2186,7 +2226,6 @@ public class PesapalloxrController {
             taulukkoxr.getItems().addAll(data);
 
             parse.close();
-
             fileReader.close();
 
         } catch (IOException | IllegalArgumentException e) {
@@ -2201,16 +2240,26 @@ public class PesapalloxrController {
 
     @FXML
     private JSONObject haeotteluntiedot() {
+
         try {
+
+            URL url = getClass().getResource("/properties/.properties");
+
+            Path path = Paths.get(Objects.requireNonNull(url).toURI());
+
+            Properties env = new Properties();
+
+            env.load(Files.newInputStream(path));
+
             String otteluid = ottelunid.getText();
 
-            String ilma = "https://api.pesistulokset.fi/api/v1/public/match?id=" + otteluid + "&apikey=wRX0tTke3DZ8RLKAMntjZ81LwgNQuSN9";
+            String ilma = "https://api.pesistulokset.fi/api/v1/public/match?id=" + otteluid + "&apikey="
+                    + env.getProperty("apikey");
 
             HttpClient client = HttpClient.newHttpClient();
 
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create(ilma)).GET().headers(
-                            "Content-Type", "application/json")
-                    .build();
+                            "Content-Type", "application/json").build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -2225,15 +2274,18 @@ public class PesapalloxrController {
             OTTELUID = Integer.parseInt(ottelunid.getText());
 
             return jsonObject;
+
         } catch (Exception e) {
             System.err.print(e.getMessage());
         }
 
         return null;
+
     }
 
     @FXML
     private void haepelaajat() {
+
         String otteluid = ottelunid.getText();
 
         if (otteluid.isEmpty()) {
@@ -2242,6 +2294,7 @@ public class PesapalloxrController {
 
         Thread t = new HaeOtteluThread();
         t.start();
+
     }
 
     private void pelaajalisays(JSONObject jsonObject) {
@@ -2249,12 +2302,14 @@ public class PesapalloxrController {
         if ((jsonObject != null && jsonObject.has("error")) | jsonObject == null) {
             return;
         }
+
         kotipelaajat(jsonObject);
         vieraspelaajat(jsonObject);
     }
 
     @FXML
     private void kotipelaajat(JSONObject jsonObject) {
+
         ObservableList<Pelaajat> kotilyojatlista = FXCollections.observableArrayList();
 
         JSONArray kotipelaajalista = jsonObject.getJSONObject("home").getJSONArray("players");
@@ -2276,9 +2331,12 @@ public class PesapalloxrController {
                     )
             );
         }
+
         Platform.runLater(new Runnable() {
+
             @Override
             public void run() {
+
                 lyojat.setItems(kotilyojatlista);
 
                 lyojat.getSelectionModel().selectFirst();
@@ -2292,10 +2350,12 @@ public class PesapalloxrController {
                 etenijat.getSelectionModel().selectFirst();
             }
         });
+
     }
 
     @FXML
     private void vieraspelaajat(JSONObject jsonObject) {
+
         ObservableList<Pelaajat> vieraslyojatlista = FXCollections.observableArrayList();
 
         JSONArray vieraspelaajalista = jsonObject.getJSONObject("away").getJSONArray("players");
@@ -2323,9 +2383,12 @@ public class PesapalloxrController {
                     )
             );
         }
+
         Platform.runLater(new Runnable() {
+
             @Override
             public void run() {
+
                 lyojat.getItems().addAll(vieraslyojatlista);
 
                 //lyojat.getSelectionModel().selectFirst();
@@ -2344,30 +2407,39 @@ public class PesapalloxrController {
 
     @FXML
     private void sisapelijoukkue() {
+
         if (lyojat.getValue() == null) {
             return;
         }
+
         sisapelijoukkue.setText(lyojat.getValue().getJoukkue());
+
     }
 
     @FXML
     private void sisapelijoukkueEtenija() {
+
         if (etenijat.getValue() == null) {
             return;
         }
         sisapelijoukkue.setText(etenijat.getValue().getJoukkue());
+
     }
 
     @FXML
     private void ulkopelijoukkue() {
+
         if (ulkopelaajat.getValue() == null) {
             return;
         }
+
         ulkopelijoukkue.setText(ulkopelaajat.getValue().getJoukkue());
+
     }
 
     @FXML
     private void poistarivi() {
+
         Lyontitiedot poistettava = taulukkoxr.getSelectionModel().getSelectedItem();
 
         taulukkoxr.getItems().remove(poistettava);
@@ -2375,6 +2447,7 @@ public class PesapalloxrController {
     }
 
     public class HaeOtteluThread extends Thread {
+
         @Override
         public void run() {
 

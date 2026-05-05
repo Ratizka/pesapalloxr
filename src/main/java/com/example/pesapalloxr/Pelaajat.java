@@ -8,7 +8,8 @@ public class Pelaajat {
     Integer joukkueID;
     String joukkue;
 
-    public Pelaajat(Integer numero, Integer id, String nimi, Integer joukkueID, String joukkue) {
+    public Pelaajat(Integer numero, Integer id, String nimi,
+                    Integer joukkueID, String joukkue) {
         this.numero = numero;
         this.id = id;
         this.nimi = nimi;
@@ -60,4 +61,5 @@ public class Pelaajat {
     public void setJoukkue(String joukkue) {
         this.joukkue = joukkue;
     }
+
 }
