@@ -109,7 +109,7 @@
                     <ComboBox fx:id="vaaraalla" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                     <ComboBox fx:id="merkki" prefWidth="150.0" GridPane.rowIndex="5" />
                     <ComboBox fx:id="syotto" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                    <ComboBox fx:id="tyyppi" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                    <ComboBox fx:id="tyyppi" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5" onAction="#korkeus" />
                     <ComboBox fx:id="lyontisuuntacombobox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                     <ComboBox fx:id="lopputuloscombobox" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="5" onAction="#juoksuUI"/>
                     <ComboBox fx:id="juoksut" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="5" onAction="#lapilyontiUI"/>

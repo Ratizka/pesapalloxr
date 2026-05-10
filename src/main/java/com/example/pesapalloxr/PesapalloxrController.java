@@ -1573,6 +1573,28 @@ public class PesapalloxrController {
             lapilyonti.setValue("ei");
         }
 
+        if (juoksut.getValue() == 4) {
+            kunnari.setValue("kyllä");
+        }
+        else if(juoksut.getValue() == 3 & (tilannecombobox.getValue().equals("1-3") | tilannecombobox.getValue().equals("2-3")) ){
+            kunnari.setValue("kyllä");
+        }
+        else if (juoksut.getValue() > 1 & (tilannecombobox.getValue().equals("0-3"))) {
+            kunnari.setValue("kyllä");
+        }
+        else {
+            kunnari.setValue("ei");
+        }
+
+    }
+
+    @FXML
+    private void korkeus(){
+        if (!(tyyppi.getValue().equals("kumura") | tyyppi.getValue().equals("vaakamaila"))) {
+            kumuranTyyppi.setValue("");
+            saumakorkeuscombobox.setValue("");
+        }
+
     }
 
     @FXML
