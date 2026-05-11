@@ -18,12 +18,14 @@ Muut käyttöjärjestelmät voivat katsoa [linkki](https://github.com/Ratizka/pe
 
 Vaatimukset Java 21 ja javafx.
 
-``
+```
 git clone https://github.com/Ratizka/pesapalloxr.git
 
 cd pesapalloxr
 
 mvn clean javafx:run
+
+```
 
 ### Mallit ja merkkaus
 
