@@ -1,12 +1,11 @@
 # Käyttöohjeet
 
 Tässä on käyttöohjeet pesäpallon juoksuodottaman keräämiseen. Juoksun ja läpilyönnin todennäköisyydet ovat luotu logistisen regression avulla.
-Kerääjää voi käyttää alemmilla sarjatasoilla, mutta muilla sarjatasoilla kuin ykköspesiksessä ovat todennäköisesti epätarkkoja todennäköisyyksiä
-juoksuille.
+Kerääjää voi käyttää alemmilla sarjatasoilla, mutta muilla sarjatasoilla kuin Superpesiksessä mallin antamat todennäköisyydet voivat olla epätarkkoja
 
 ## Malliin vaikuttavat tekijät ja muodostaminen
 
-Läpilyönnin määritelmänä on, että lyönnillä tulee enemmän kuin yksi kärkilyönti.Läpilyönnissä merkki on vain vapaa tai merkattu. 
+Läpilyönnin määritelmänä on, että lyönnillä tulee enemmän kuin yksi kärkilyönti. Läpilyönnissä merkki on vain vapaa tai merkattu. 
 Lentomerkki on määritelty sen perusteella, mitataanko eteneminen.
 
 | Muuttuja                | Tyyppi      |
