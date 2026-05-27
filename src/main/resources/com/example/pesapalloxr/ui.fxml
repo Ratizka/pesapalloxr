@@ -199,7 +199,6 @@
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="Tiedosto">
-                <MenuItem mnemonicParsing="false" text="Asetukset" />
 
                 <MenuItem mnemonicParsing="false" onAction="#avaaOttelu" text="Avaa">
                     <accelerator>
@@ -213,10 +212,8 @@
                     </accelerator>
                 </MenuItem>
 
-                <MenuItem mnemonicParsing="false" onAction="#DBinsert" text="Lisaa tietokantaan">
-
-                </MenuItem>
-
+                <MenuItem mnemonicParsing="false" onAction="#DBinsert" text="Lisaa tietokantaan"> </MenuItem>
+                <MenuItem mnemonicParsing="false" text="Asetukset" />
                 <MenuItem mnemonicParsing="false" onAction="#sulje" text="Sulje" />
             </Menu>
 

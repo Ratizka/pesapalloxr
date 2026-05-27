@@ -325,7 +325,7 @@ public class PesapalloxrController {
         );
         lyontisuuntacombobox.getSelectionModel().selectFirst();
 
-        ulkopelisuorituscombobox.getItems().addAll("ei", "kyllä");
+        ulkopelisuorituscombobox.getItems().addAll("ei", "kyllä", "syöksykiinniotto");
         ulkopelisuorituscombobox.getSelectionModel().selectFirst();
 
         tilannecombobox.getItems().addAll("0-3", "1-3", "2-3", "ajo");
@@ -957,7 +957,7 @@ public class PesapalloxrController {
         graphicsContext.strokeLine(150, 37.5, 550, 37.5); // Takaraja
         graphicsContext.strokeLine(150, 37.5, 150, 554); // Kolmosjatke
         graphicsContext.strokeLine(550, 37.5, 550, 472.5); // Kakkosjatke
-        graphicsContext.strokeLine(275, 690, 400, 690); // Kotipesä
+        graphicsContext.strokeLine(275, 690, 425, 690); // Kotipesä
 
         graphicsContext.strokeLine(150, 472.5, 337.5, 690); // Kolmosraja
 
@@ -988,7 +988,7 @@ public class PesapalloxrController {
         graphicsContext.strokeLine(150, 37.5, 550, 37.5); // Takaraja
         graphicsContext.strokeLine(150, 37.5, 150, 554); // Kolmosjatke
         graphicsContext.strokeLine(550, 37.5, 550, 472.5); // Kakkosjatke
-        graphicsContext.strokeLine(275, 690, 400, 690); // Kotipesä
+        graphicsContext.strokeLine(275, 690, 415, 690); // Kotipesä
 
         graphicsContext.strokeLine(150, 472.5, 337.5, 690); // Kolmosraja
 
