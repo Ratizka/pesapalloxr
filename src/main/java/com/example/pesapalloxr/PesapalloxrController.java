@@ -31,6 +31,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -218,6 +220,8 @@ public class PesapalloxrController {
     private TextField sijaintitext;
     @FXML
     private ComboBox<String> lopputuloscombobox;
+    @FXML
+    private Label koordinaattiui;
 
     @FXML
     private void sulje() {
@@ -293,7 +297,8 @@ public class PesapalloxrController {
         juoksut.getItems().addAll(0, 1, 2, 3, 4);
         juoksut.getSelectionModel().selectFirst();
 
-        ulkopelivirhe.getItems().addAll("ei", "kiinniotto", "häpläys", "harhaheitto", "heittoa ei saada kiinni");
+        ulkopelivirhe.getItems().addAll("ei", "kiinniotto", "häpläys", "harhaheitto", "heittoa ei saada kiinni",
+                "kiinniottaja ei ole pesässä", "sijoittumisvirhe", "pakottamaton virhe");
         ulkopelivirhe.getSelectionModel().selectFirst();
 
         etenijalaatucombobox.getItems().addAll("huippu", "hyvä", "keskiverto", "heikko", "huono");
@@ -325,7 +330,7 @@ public class PesapalloxrController {
         );
         lyontisuuntacombobox.getSelectionModel().selectFirst();
 
-        ulkopelisuorituscombobox.getItems().addAll("ei", "kyllä", "syöksykiinniotto");
+        ulkopelisuorituscombobox.getItems().addAll("ei", "kyllä", "kopiksi haku");
         ulkopelisuorituscombobox.getSelectionModel().selectFirst();
 
         tilannecombobox.getItems().addAll("0-3", "1-3", "2-3", "ajo");
@@ -1554,6 +1559,22 @@ public class PesapalloxrController {
     }
 
     @FXML
+    private void koordinaatit(MouseEvent event){
+        if (menuItemMiehet.isSelected()){
+            koordinaattiui.setText(
+                    "x: " + BigDecimal.valueOf((event.getX() - 150) / 9.5238).setScale(2, RoundingMode.UP)
+                            + " y: " + BigDecimal.valueOf((690 - event.getY()) / 6.7967).setScale(2, RoundingMode.UP)
+            );
+        } else {
+            koordinaattiui.setText(
+                    "x: " + BigDecimal.valueOf((event.getX() - 150) / 11.111).setScale(2, RoundingMode.UP)
+                            + " y: " + BigDecimal.valueOf((690 - event.getY()) / 7.95731).setScale(2, RoundingMode.UP)
+            );
+        }
+
+    }
+
+    @FXML
     private void juoksuUI(){
 
         if (lopputuloscombobox.getValue().equals("kärkilyönti")) {
@@ -1669,8 +1690,8 @@ public class PesapalloxrController {
 
         lyonninEtaisyysulkopelaajasta.setText(String.format(Locale.US, "%.2f", etaisyys));
 
-        koordinaattix.setText(String.format(Locale.US, "%.2f", xLaskettu));
-        koordinaattiy.setText(String.format(Locale.US, "%.2f", yLaskettu));
+        koordinaattix.setText(String.valueOf(BigDecimal.valueOf(xLaskettu).setScale(2, RoundingMode.UP)));
+        koordinaattiy.setText(String.valueOf(BigDecimal.valueOf(yLaskettu).setScale(2, RoundingMode.UP)));
 
     }
 
@@ -1695,8 +1716,8 @@ public class PesapalloxrController {
 
         lyonninEtaisyysulkopelaajasta.setText(String.format(Locale.US, "%.2f", etaisyys));
 
-        koordinaattix.setText(String.format(Locale.US, "%.2f", xLaskettu));
-        koordinaattiy.setText(String.format(Locale.US, "%.2f", yLaskettu));
+        koordinaattix.setText(String.valueOf(BigDecimal.valueOf(xLaskettu).setScale(2, RoundingMode.UP)));
+        koordinaattiy.setText(String.valueOf(BigDecimal.valueOf(yLaskettu).setScale(2, RoundingMode.UP)));
 
         sijaintitext.setText(haeSijaintiNaiset(yLaskettu));
 

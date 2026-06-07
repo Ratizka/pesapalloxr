@@ -26,8 +26,10 @@
     <center>
         <ScrollPane>
             <AnchorPane>
+            <Label fx:id="koordinaattiui" layoutX="6.0" layoutY="4.0" />
                 <Canvas fx:id="kentta" height="750.0" onMouseClicked="#lyonti" width="750.0" />
-                <Canvas fx:id="lyontiCanvas" height="750.0" onMouseClicked="#lyonti" width="750.0" />
+                <Canvas fx:id="lyontiCanvas" height="750.0" onMouseClicked="#lyonti" onMouseMoved="#koordinaatit" width="750.0" />
+
                 <GridPane hgap="5.0" layoutX="765.0" layoutY="12.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -109,10 +111,10 @@
                     <ComboBox fx:id="vaaraalla" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                     <ComboBox fx:id="merkki" prefWidth="150.0" GridPane.rowIndex="5" />
                     <ComboBox fx:id="syotto" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                    <ComboBox fx:id="tyyppi" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5" onAction="#korkeus" />
+                    <ComboBox fx:id="tyyppi" onAction="#korkeus" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                     <ComboBox fx:id="lyontisuuntacombobox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                    <ComboBox fx:id="lopputuloscombobox" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="5" onAction="#juoksuUI"/>
-                    <ComboBox fx:id="juoksut" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="5" onAction="#lapilyontiUI"/>
+                    <ComboBox fx:id="lopputuloscombobox" onAction="#juoksuUI" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                    <ComboBox fx:id="juoksut" onAction="#lapilyontiUI" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                     <ComboBox fx:id="lapilyonti" prefWidth="150.0" GridPane.rowIndex="7" />
                     <ComboBox fx:id="kunnari" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                     <ComboBox fx:id="kumuranTyyppi" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
