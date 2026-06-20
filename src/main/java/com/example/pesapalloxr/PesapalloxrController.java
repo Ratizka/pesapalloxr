@@ -66,6 +66,10 @@ public class PesapalloxrController {
     private final Map<String, Double> naistenSijaintiMapY = new HashMap<>();
 
     @FXML
+    private TableColumn<Lyontitiedot, Integer> taulukkoulkopelaajaid;
+    @FXML
+    private TableColumn<Lyontitiedot, Integer> taulukkolyojaid;
+    @FXML
     private TableColumn<Lyontitiedot, String> taulukkosuunta;
     @FXML
     private RadioMenuItem menuItemMiehet;
@@ -298,7 +302,8 @@ public class PesapalloxrController {
         juoksut.getSelectionModel().selectFirst();
 
         ulkopelivirhe.getItems().addAll("ei", "kiinniotto", "häpläys", "harhaheitto", "heittoa ei saada kiinni",
-                "kiinniottaja ei ole pesässä", "sijoittumisvirhe", "pakottamaton virhe");
+                "kiinniottaja ei ole pesässä", "sijoittumisvirhe", "pakottamaton virhe", "kahden palon haku", "kommunikaatio virhe",
+                "arviointivirhe");
         ulkopelivirhe.getSelectionModel().selectFirst();
 
         etenijalaatucombobox.getItems().addAll("huippu", "hyvä", "keskiverto", "heikko", "huono");
@@ -405,6 +410,9 @@ public class PesapalloxrController {
         taulukkoxlapilyonti.setCellValueFactory(new PropertyValueFactory<>("lapilyontitn"));
         taulukkoulkopelisuoritus.setCellValueFactory(new PropertyValueFactory<>("ulkopelisuoritus"));
         taulukkosuunta.setCellValueFactory(new PropertyValueFactory<>("suunta"));
+
+        taulukkolyojaid.setCellValueFactory(new PropertyValueFactory<>("lyojaID"));
+        taulukkoulkopelaajaid.setCellValueFactory(new PropertyValueFactory<>("ulkopelaajaID"));
     }
 
     @FXML
@@ -871,7 +879,7 @@ public class PesapalloxrController {
 
     private void xrMallinsuMap(JSONObject jsonObject) {
 
-        JSONArray nsumalli = jsonObject.getJSONArray("nsumallitesti");
+        JSONArray nsumalli = jsonObject.getJSONArray("nsumalli");
 
         int pituus = nsumalli.length();
 
@@ -887,7 +895,7 @@ public class PesapalloxrController {
 
     private void naistenXRlapilyontiMap(JSONObject jsonObject) {
 
-        JSONArray nsulapilyontimalli = jsonObject.getJSONArray("nsulapilyontimalli");
+        JSONArray nsulapilyontimalli = jsonObject.getJSONArray("nsulapilyontimallitesti");
 
         int pituus = nsulapilyontimalli.length();
 
@@ -962,27 +970,36 @@ public class PesapalloxrController {
         graphicsContext.strokeLine(150, 37.5, 550, 37.5); // Takaraja
         graphicsContext.strokeLine(150, 37.5, 150, 554); // Kolmosjatke
         graphicsContext.strokeLine(550, 37.5, 550, 472.5); // Kakkosjatke
-        graphicsContext.strokeLine(275, 690, 425, 690); // Kotipesä
+        graphicsContext.strokeLine(272.23, 690, 425, 690); // Kotipesä
+
+        graphicsContext.strokeLine(112, 435,150, 435); // 3-viiva
+
+        graphicsContext.strokeLine(550, 435,588, 435); // 2-viiva
 
         graphicsContext.strokeLine(150, 472.5, 337.5, 690); // Kolmosraja
 
         graphicsContext.strokeLine(550, 472.5, 362.5, 690); // Kakkosraja
 
-        graphicsContext.strokeLine(152, 415.480, 550, 415.480); // 2-3 väli
+        graphicsContext.strokeLine(152, 415.47, 550, 415.47); // 2-3 väli
 
-        graphicsContext.strokeLine(192, 592.5, 550, 415.480); // 1-2 väli
+        graphicsContext.strokeLine(190.5, 592.5, 550, 415.47); // 1-2 väli
 
-        graphicsContext.strokeLine(150, 554, 290, 690); // Kotijuoksuviiva
+        graphicsContext.strokeLine(150, 555, 285, 690); // Kotijuoksuviiva
 
-        graphicsContext.strokeArc(120,395, 60,40, 270,180 , ArcType.ROUND); // Kolmospesä
+        graphicsContext.strokeArc(205,548, 65,35, 32,90, ArcType.OPEN); // ykköspesä
 
-        graphicsContext.strokeArc(520,395, 60,40, 90,180 , ArcType.ROUND); // Kakkospesä
+        graphicsContext.strokeArc(124,395, 54,40, 270,180, ArcType.OPEN); // Kolmospesä
 
+        graphicsContext.strokeArc(523,395, 54,40, 90,180, ArcType.OPEN); // Kakkospesä
 
+        graphicsContext.strokeArc(272.23, 635, 155, 110,180,180, ArcType.OPEN); // Kotipesän kaari
+
+        graphicsContext.strokeArc(296, 653, 110, 75,180,180, ArcType.OPEN); // Kotipesän kaari
     }
 
     @FXML
     private void miestenkentta() {
+        // x,y,x,y kaaressa kaksi viimeisintä, mistä aloitetaan
         GraphicsContext graphicsContext = kentta.getGraphicsContext2D();
         graphicsContext.clearRect(0, 0, kentta.getWidth(), kentta.getHeight());
         graphicsContext.setFill(Color.BLACK);
@@ -993,21 +1010,32 @@ public class PesapalloxrController {
         graphicsContext.strokeLine(150, 37.5, 550, 37.5); // Takaraja
         graphicsContext.strokeLine(150, 37.5, 150, 554); // Kolmosjatke
         graphicsContext.strokeLine(550, 37.5, 550, 472.5); // Kakkosjatke
-        graphicsContext.strokeLine(275, 690, 415, 690); // Kotipesä
+        graphicsContext.strokeLine(284, 690, 415, 690); // Kotipesä
+
+
+        graphicsContext.strokeLine(112, 448,150, 448); // 3-viiva
+
+        graphicsContext.strokeLine(550, 448,588, 448); // 2-viiva
 
         graphicsContext.strokeLine(150, 472.5, 337.5, 690); // Kolmosraja
 
         graphicsContext.strokeLine(550, 472.5, 362.5, 690); // Kakkosraja
 
-        graphicsContext.strokeLine(152, 428.3268, 550, 428.3268); // 2-3 väli
+        graphicsContext.strokeLine(152, 428, 550, 428); // 2-3 väli
 
-        graphicsContext.strokeLine(190, 592.5, 550, 428.3268); // 1-2 väli
+        graphicsContext.strokeLine(190.5, 592.5, 550, 428); // 1-2 väli
 
-        graphicsContext.strokeLine(150, 554, 290, 690); // Kotijuoksuviiva
+        graphicsContext.strokeLine(150, 555, 294, 690); // Kotijuoksuviiva
 
-        graphicsContext.strokeArc(120,408, 60,40, 270,180 , ArcType.ROUND); // Kolmospesä
+        graphicsContext.strokeArc(205,548, 65,35, 32,90, ArcType.OPEN); // ykköspesä
 
-        graphicsContext.strokeArc(520,408, 60,40, 90,180 , ArcType.ROUND); // Kakkospesä
+        graphicsContext.strokeArc(522,408, 56,40, 90,180, ArcType.OPEN); // Kakkospesä
+
+        graphicsContext.strokeArc(122,408, 56,40, 270,180, ArcType.OPEN); // Kolmospesä
+
+        graphicsContext.strokeArc(284, 640, 130, 100,180,180, ArcType.OPEN); // Kotipesän kaari
+
+        graphicsContext.strokeArc(302.5, 659, 95, 65,180,180, ArcType.OPEN); // Kotipesän kaari
 
     }
 
@@ -1684,9 +1712,11 @@ public class PesapalloxrController {
         Double ulkopelaajaX = miestenSijaintiMapX.get(kuvioxr + ulkopelaaja);
         Double ulkopelaajaY = miestenSijaintiMapY.get(kuvioxr + ulkopelaaja);
 
-        double etaisyys = Math.sqrt(
-                Math.pow(xLaskettu - ulkopelaajaX, 2) + Math.pow(yLaskettu - ulkopelaajaY, 2)
-        );
+        //double etaisyys = Math.sqrt(
+        //        Math.pow(xLaskettu - ulkopelaajaX, 2) + Math.pow(yLaskettu - ulkopelaajaY, 2)
+        //);
+
+        double etaisyys =  etaisyys(xLaskettu, yLaskettu, ulkopelaajaX, ulkopelaajaY);
 
         lyonninEtaisyysulkopelaajasta.setText(String.format(Locale.US, "%.2f", etaisyys));
 
@@ -1710,9 +1740,11 @@ public class PesapalloxrController {
         Double ulkopelaajaX = naistenSijaintiMapX.get(kuvioxr + ulkopelaaja);
         Double ulkopelaajaY = naistenSijaintiMapY.get(kuvioxr + ulkopelaaja);
 
-        double etaisyys = Math.sqrt(
-                Math.pow(xLaskettu - ulkopelaajaX, 2) + Math.pow(yLaskettu - ulkopelaajaY, 2)
-        );
+        //double etaisyys = Math.sqrt(
+        //        Math.pow(xLaskettu - ulkopelaajaX, 2) + Math.pow(yLaskettu - ulkopelaajaY, 2)
+        //);
+
+        double etaisyys =  etaisyys(xLaskettu, yLaskettu, ulkopelaajaX, ulkopelaajaY);
 
         lyonninEtaisyysulkopelaajasta.setText(String.format(Locale.US, "%.2f", etaisyys));
 
@@ -1720,7 +1752,6 @@ public class PesapalloxrController {
         koordinaattiy.setText(String.valueOf(BigDecimal.valueOf(yLaskettu).setScale(2, RoundingMode.UP)));
 
         sijaintitext.setText(haeSijaintiNaiset(yLaskettu));
-
     }
 
 
@@ -1831,7 +1862,8 @@ public class PesapalloxrController {
                 vaaraallaxr, lopputulos, juoksutxr,
                 lapilyontixr, lyontinumeroxr, ulkopelijoukkuexr, ulkopelijoukkueid,
                 etenijaxr, etenijalaatuxr, juoksutodennakoisyys,
-                kunnarixr, tilanne, palot, suunta, kumurankorkeus, saumakorkeus, karkaus, ulkopelitempo, lapilyontitn
+                kunnarixr, tilanne, palot, suunta, kumurankorkeus, saumakorkeus,
+                karkaus, ulkopelitempo, lapilyontitn
         );
 
         taulukkoxr.getItems().addAll(tiedot);
@@ -1846,9 +1878,9 @@ public class PesapalloxrController {
 
         String sijainti = haeSijaintiNaiset(y);
 
-        Double juoksutodennakoisyys = laskeJuoksuTodennakoisyysNaiset();
+        Double juoksutodennakoisyys = laskeJuoksuTodennakoisyysNaisetkulma();
 
-        Double lapilyontitn = laskeTodennakoisyysLapiNaiset();
+        Double lapilyontitn = laskeTodennakoisyysLapiNaisetkulma();
 
         String kuvioxr = kuvio.getValue();
         String tyyppixr = tyyppi.getValue();
@@ -1924,9 +1956,24 @@ public class PesapalloxrController {
 
     private void todennakoisyydetNaiset() {
 
-        laskeJuoksuTodennakoisyysNaiset();
-        laskeTodennakoisyysLapiNaiset();
+        laskeJuoksuTodennakoisyysNaisetkulma();
+        laskeTodennakoisyysLapiNaisetkulma();
 
+    }
+
+    private static double etaisyys(double x, double y, double ulkopelaajax, double ulkopelaajay){
+
+        return Math.sqrt(Math.pow(x - ulkopelaajax, 2) + Math.pow(y - ulkopelaajay, 2));
+    }
+
+    private static double kulma(double x, double y, double ulkopelaajax, double ulkopelaajay) {
+        double kulma = Math.abs(Math.toDegrees(Math.atan2(x - ulkopelaajax, y - ulkopelaajay)));
+
+        if (kulma > 90) {
+            kulma = 180 - kulma;
+        }
+
+        return kulma;
     }
 
     @FXML
@@ -1953,9 +2000,52 @@ public class PesapalloxrController {
         Double ulkopelaajaX = naistenSijaintiMapX.get(kuvioxr + ulkopelaaja);
         Double ulkopelaajaY = naistenSijaintiMapY.get(kuvioxr + ulkopelaaja);
 
-        double etaisyys = Math.sqrt(Math.pow(x - ulkopelaajaX, 2) + Math.pow(y - ulkopelaajaY, 2));
+        //double etaisyys = Math.sqrt(Math.pow(x - ulkopelaajaX, 2) + Math.pow(y - ulkopelaajaY, 2));
 
-        double juoksutn = 1 / (1 + Math.exp(-(intercept + kuvio + tyyppi + merkki + etenijalaatu + sijanti + ulkopelaajaxr * etaisyys)));
+        double matka = etaisyys(x, y, ulkopelaajaX, ulkopelaajaY);
+
+        double juoksutn = 1 / (1 + Math.exp(-(intercept + kuvio + tyyppi + merkki + etenijalaatu + sijanti + ulkopelaajaxr * matka)));
+
+        lyonninEtaisyysulkopelaajasta.setText(String.format(Locale.US, "%.2f", matka));
+
+        juoksuodottama.setText(String.format(Locale.US, "%.4f", juoksutn));
+
+        return juoksutn;
+    }
+
+    @FXML
+    private double laskeJuoksuTodennakoisyysNaisetkulma() {
+
+        double x = XKOORDINAATTI;
+        double y = YKOORDINAATTI;
+
+        String kuvioxr = kuvio.getValue();
+        String tyyppixr = tyyppi.getValue();
+        String merkkixr = merkki.getValue();
+        String etenijalaatuxr = etenijalaatucombobox.getValue();
+        String ulkopelaaja = ulkopelipaikka.getValue();
+        String sijainti = haeSijaintiNaiset(y);
+
+        Double intercept = naistenXrMap.get("(Intercept)");
+        Double kuvio = naistenXrMap.get(kuvioxr);
+        Double tyyppi = naistenXrMap.get(tyyppixr);
+        Double merkki = naistenXrMap.get(merkkixr);
+        Double etenijalaatu = naistenXrMap.get(etenijalaatuxr);
+        Double ulkopelaajaxr = naistenXrMap.get(kuvioxr + ulkopelaaja);
+        Double sijanti = naistenXrMap.get(sijainti);
+        Double kulmapelaaja = naistenXrMap.get("kulma" + ulkopelaaja);
+
+        Double ulkopelaajaX = naistenSijaintiMapX.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaY = naistenSijaintiMapY.get(kuvioxr + ulkopelaaja);
+
+        double etaisyys = etaisyys(x, y, ulkopelaajaX, ulkopelaajaY);
+        double kulma = kulma(x, y, ulkopelaajaX, ulkopelaajaY);
+
+        double juoksutn = 1 / (1 + Math.exp(
+                -(intercept + kuvio + tyyppi + merkki + etenijalaatu + sijanti
+                        + ulkopelaajaxr * etaisyys + kulmapelaaja * kulma)
+        )
+        );
 
         lyonninEtaisyysulkopelaajasta.setText(String.format(Locale.US, "%.2f", etaisyys));
 
@@ -2058,6 +2148,40 @@ public class PesapalloxrController {
         double etaisyys = Math.sqrt(Math.pow(x - ulkopelaajaX, 2) + Math.pow(y - ulkopelaajaY, 2));
 
         double juoksutn = 1 / (1 + Math.exp(-(intercept + kuvio + tyyppi + merkki + etenijalaatu + ulkopelaajaxr * etaisyys)));
+
+        lapilyontiolettama.setText(String.format(Locale.US, "%.4f", juoksutn));
+
+        return juoksutn;
+
+    }
+
+    @FXML
+    private Double laskeTodennakoisyysLapiNaisetkulma() {
+
+        double x = XKOORDINAATTI;
+        double y = YKOORDINAATTI;
+
+        Double intercept = naistenXrLapiMap.get("(Intercept)");
+        String kuvioxr = kuvio.getValue();
+        String tyyppixr = tyyppi.getValue();
+        String merkkixr = merkki.getValue();
+        String etenijalaatuxr = etenijalaatucombobox.getValue();
+        String ulkopelaaja = ulkopelipaikka.getValue();
+
+        Double kuvio = naistenXrLapiMap.get(kuvioxr);
+        Double tyyppi = naistenXrLapiMap.get(tyyppixr);
+        Double merkki = naistenXrLapiMap.get(merkkixr);
+        Double etenijalaatu = naistenXrLapiMap.get(etenijalaatuxr);
+        Double ulkopelaajaxr = naistenXrLapiMap.get(ulkopelaaja);
+        Double kulmapelaaja = naistenXrLapiMap.get("kulma" + ulkopelaaja);
+
+        Double ulkopelaajaX = naistenSijaintiMapX.get(kuvioxr + ulkopelaaja);
+        Double ulkopelaajaY = naistenSijaintiMapY.get(kuvioxr + ulkopelaaja);
+
+        double etaisyys = etaisyys(x, y, ulkopelaajaX, ulkopelaajaY);
+        double kulma = kulma(x, y, ulkopelaajaX, ulkopelaajaY);
+
+        double juoksutn = 1 / (1 + Math.exp(-(intercept + kuvio + tyyppi + merkki + etenijalaatu + ulkopelaajaxr * etaisyys + kulmapelaaja * kulma)));
 
         lapilyontiolettama.setText(String.format(Locale.US, "%.4f", juoksutn));
 

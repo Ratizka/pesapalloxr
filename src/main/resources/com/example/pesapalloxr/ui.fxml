@@ -134,8 +134,8 @@
                     <TextField fx:id="juoksuodottama" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="11" />
 
                     <TextField fx:id="lapilyontiolettama" editable="false" GridPane.columnIndex="5" GridPane.rowIndex="11" />
-                    <TextField fx:id="sisapelijoukkue" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                    <TextField fx:id="ulkopelijoukkue" GridPane.rowIndex="9" />
+                    <TextField fx:id="sisapelijoukkue" GridPane.columnIndex="1" GridPane.rowIndex="1" text="Koti"/>
+                    <TextField fx:id="ulkopelijoukkue" GridPane.rowIndex="9" text="Vieras"/>
                     <Label prefHeight="17.0" prefWidth="186.0" text="Palojen määrä" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                     <Label prefHeight="17.0" prefWidth="202.0" text="Kuvion vaihdot" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                     <Button mnemonicParsing="false" onAction="#laskeTodennakoisyydet" prefWidth="100.0" text="Laske juoksu %" GridPane.columnIndex="4" GridPane.rowIndex="12" />
