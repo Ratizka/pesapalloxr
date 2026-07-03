@@ -134,8 +134,8 @@
                     <TextField fx:id="juoksuodottama" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="11" />
 
                     <TextField fx:id="lapilyontiolettama" editable="false" GridPane.columnIndex="5" GridPane.rowIndex="11" />
-                    <TextField fx:id="sisapelijoukkue" GridPane.columnIndex="1" GridPane.rowIndex="1" text="Koti"/>
-                    <TextField fx:id="ulkopelijoukkue" GridPane.rowIndex="9" text="Vieras"/>
+                    <TextField fx:id="sisapelijoukkue" text="Koti" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <TextField fx:id="ulkopelijoukkue" text="Vieras" GridPane.rowIndex="9" />
                     <Label prefHeight="17.0" prefWidth="186.0" text="Palojen määrä" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                     <Label prefHeight="17.0" prefWidth="202.0" text="Kuvion vaihdot" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                     <Button mnemonicParsing="false" onAction="#laskeTodennakoisyydet" prefWidth="100.0" text="Laske juoksu %" GridPane.columnIndex="4" GridPane.rowIndex="12" />
@@ -215,24 +215,24 @@
                 </MenuItem>
 
                 <MenuItem mnemonicParsing="false" onAction="#DBinsert" text="Lisaa tietokantaan"> </MenuItem>
-                <MenuItem mnemonicParsing="false" text="Asetukset" />
+                <MenuItem disable="true" mnemonicParsing="false" text="Asetukset" visible="false" />
                 <MenuItem mnemonicParsing="false" onAction="#sulje" text="Sulje" />
             </Menu>
 
             <Menu mnemonicParsing="false" text="Näytä">
-                <MenuItem mnemonicParsing="false" text="Näytä ulkopelaajat" />
-                <MenuItem mnemonicParsing="false" text="Poista lyönti" />
-                <MenuItem mnemonicParsing="false" text="Uusi kartta" />
+                <RadioMenuItem fx:id="naytaup" mnemonicParsing="false" text="Näytä ulkopelaajat" onAction="#ulkopelikuvio" selected="true"/>
+                <MenuItem mnemonicParsing="false" onAction="#puhdistus" text="Uusi kartta" />
+                <MenuItem disable="true" mnemonicParsing="false" text="Poista lyönti" visible="false" />
                 <MenuItem onAction="#tyhjennaTaulukko" text="Tyhjennä taulukko" />
             </Menu>
 
             <Menu mnemonicParsing="false" text="Sarja">
-                <RadioMenuItem fx:id="menuItemMiehet" mnemonicParsing="false" onAction="#miestenKuviot" selected="true" text="Miehet">
+                <RadioMenuItem fx:id="menuItemMiehet" mnemonicParsing="false" onAction="#ulkopelikuvio" selected="true" text="Miehet">
                     <toggleGroup>
                         <ToggleGroup fx:id="sarja" />
                     </toggleGroup>
                 </RadioMenuItem>
-                <RadioMenuItem fx:id="menuItemNaiset" mnemonicParsing="false" onAction="#naistenKuviot" text="Naiset" toggleGroup="$sarja" />
+                <RadioMenuItem mnemonicParsing="false" onAction="#ulkopelikuvio" text="Naiset" toggleGroup="$sarja" />
             </Menu>
             <Menu mnemonicParsing="false" text="Joukkue">
                 <RadioMenuItem fx:id="vierasjoukkueToggle" mnemonicParsing="false" text="Vierasjoukkue">
@@ -242,7 +242,7 @@
                 </RadioMenuItem>
             </Menu>
             <Menu mnemonicParsing="false" text="Ohje">
-                <RadioMenuItem mnemonicParsing="false" text="Tietoa" />
+                <MenuItem mnemonicParsing="false" text="Tietoa" onAction="#ohjeet"/>
             </Menu>
         </MenuBar>
     </top>
