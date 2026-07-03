@@ -26,8 +26,10 @@
     <center>
         <ScrollPane>
             <AnchorPane>
+            <Label fx:id="koordinaattiui" layoutX="6.0" layoutY="4.0" />
                 <Canvas fx:id="kentta" height="750.0" onMouseClicked="#lyonti" width="750.0" />
-                <Canvas fx:id="lyontiCanvas" height="750.0" onMouseClicked="#lyonti" width="750.0" />
+                <Canvas fx:id="lyontiCanvas" height="750.0" onMouseClicked="#lyonti" onMouseMoved="#koordinaatit" width="750.0" />
+
                 <GridPane hgap="5.0" layoutX="765.0" layoutY="12.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -111,8 +113,8 @@
                     <ComboBox fx:id="syotto" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                     <ComboBox fx:id="tyyppi" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5" onAction="#korkeus" />
                     <ComboBox fx:id="lyontisuuntacombobox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                    <ComboBox fx:id="lopputuloscombobox" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="5" onAction="#juoksuUI"/>
-                    <ComboBox fx:id="juoksut" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="5" onAction="#lapilyontiUI"/>
+                    <ComboBox fx:id="lopputuloscombobox" onAction="#juoksuUI" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                    <ComboBox fx:id="juoksut" onAction="#lapilyontiUI" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                     <ComboBox fx:id="lapilyonti" prefWidth="150.0" GridPane.rowIndex="7" />
                     <ComboBox fx:id="kunnari" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                     <ComboBox fx:id="kumuranTyyppi" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
@@ -132,8 +134,8 @@
                     <TextField fx:id="juoksuodottama" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="11" />
 
                     <TextField fx:id="lapilyontiolettama" editable="false" GridPane.columnIndex="5" GridPane.rowIndex="11" />
-                    <TextField fx:id="sisapelijoukkue" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                    <TextField fx:id="ulkopelijoukkue" GridPane.rowIndex="9" />
+                    <TextField fx:id="sisapelijoukkue" text="Koti" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <TextField fx:id="ulkopelijoukkue" text="Vieras" GridPane.rowIndex="9" />
                     <Label prefHeight="17.0" prefWidth="186.0" text="Palojen määrä" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                     <Label prefHeight="17.0" prefWidth="202.0" text="Kuvion vaihdot" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                     <Button mnemonicParsing="false" onAction="#laskeTodennakoisyydet" prefWidth="100.0" text="Laske juoksu %" GridPane.columnIndex="4" GridPane.rowIndex="12" />
@@ -150,10 +152,12 @@
                         <TableColumn fx:id="taulukkopalot" prefWidth="100.0" text="palot" />
                         <TableColumn fx:id="taulukkolyontinumero" prefWidth="100.0" text="lyontinumero" />
                         <TableColumn fx:id="taulukkojoukkue" prefWidth="100.0" text="sisäpelijoukkue" />
+                        <TableColumn fx:id="taulukkolyojaid" prefWidth="100.0" text="lyöjaid" />
                         <TableColumn fx:id="taulukkolyoja" prefWidth="100.0" text="lyöja" />
                         <TableColumn fx:id="taulukkoetenija" prefWidth="100.0" text="etenijä" />
                         <TableColumn fx:id="taulukkoEtenijaLaatu" prefWidth="100.0" text="etenijänlaatu" />
                         <TableColumn fx:id="taulukkoulkopelijoukkue" prefWidth="100.0" text="ulkopelijoukkue" />
+                        <TableColumn fx:id="taulukkoulkopelaajaid" prefWidth="100.0" text="ulkopelaajaid" />
                         <TableColumn fx:id="taulukkoulkopelaaja" prefWidth="100.0" text="ulkopelaaja" />
                         <TableColumn fx:id="taulukkoulkopelipaikka" prefWidth="100.0" text="ulkopelipaikka" />
                         <TableColumn fx:id="taulukkoulkopelisuoritus" prefWidth="100.0" text="ulkopelisuoritus" />
@@ -197,7 +201,6 @@
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="Tiedosto">
-                <MenuItem mnemonicParsing="false" text="Asetukset" />
 
                 <MenuItem mnemonicParsing="false" onAction="#avaaOttelu" text="Avaa">
                     <accelerator>
@@ -215,19 +218,19 @@
             </Menu>
 
             <Menu mnemonicParsing="false" text="Näytä">
-                <MenuItem mnemonicParsing="false" text="Näytä ulkopelaajat" />
-                <MenuItem mnemonicParsing="false" text="Poista lyönti" />
-                <MenuItem mnemonicParsing="false" text="Uusi kartta" />
+                <RadioMenuItem fx:id="naytaup" mnemonicParsing="false" text="Näytä ulkopelaajat" onAction="#ulkopelikuvio" selected="true"/>
+                <MenuItem mnemonicParsing="false" onAction="#puhdistus" text="Uusi kartta" />
+                <MenuItem disable="true" mnemonicParsing="false" text="Poista lyönti" visible="false" />
                 <MenuItem onAction="#tyhjennaTaulukko" text="Tyhjennä taulukko" />
             </Menu>
 
             <Menu mnemonicParsing="false" text="Sarja">
-                <RadioMenuItem fx:id="menuItemMiehet" mnemonicParsing="false" onAction="#miestenKuviot" selected="true" text="Miehet">
+                <RadioMenuItem fx:id="menuItemMiehet" mnemonicParsing="false" onAction="#ulkopelikuvio" selected="true" text="Miehet">
                     <toggleGroup>
                         <ToggleGroup fx:id="sarja" />
                     </toggleGroup>
                 </RadioMenuItem>
-                <RadioMenuItem fx:id="menuItemNaiset" mnemonicParsing="false" onAction="#naistenKuviot" text="Naiset" toggleGroup="$sarja" />
+                <RadioMenuItem mnemonicParsing="false" onAction="#ulkopelikuvio" text="Naiset" toggleGroup="$sarja" />
             </Menu>
             <Menu mnemonicParsing="false" text="Joukkue">
                 <RadioMenuItem fx:id="vierasjoukkueToggle" mnemonicParsing="false" text="Vierasjoukkue">
@@ -237,7 +240,7 @@
                 </RadioMenuItem>
             </Menu>
             <Menu mnemonicParsing="false" text="Ohje">
-                <RadioMenuItem mnemonicParsing="false" text="Tietoa" />
+                <MenuItem mnemonicParsing="false" text="Tietoa" onAction="#ohjeet"/>
             </Menu>
         </MenuBar>
     </top>
