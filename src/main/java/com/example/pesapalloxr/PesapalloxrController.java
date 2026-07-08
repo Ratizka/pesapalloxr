@@ -908,7 +908,7 @@ public class PesapalloxrController {
 
     private void xrmap(JSONObject jsonObject) {
 
-        JSONArray msumalli = jsonObject.getJSONArray("msumallikulmatesti");
+        JSONArray msumalli = jsonObject.getJSONArray("msumallikulma");
 
         int pituus = msumalli.length();
 
@@ -924,7 +924,7 @@ public class PesapalloxrController {
 
     private void miestenXlapilyontiMap(JSONObject jsonObject) {
 
-        JSONArray msulapilyontimalli = jsonObject.getJSONArray("msulapilyontimallitesti");
+        JSONArray msulapilyontimalli = jsonObject.getJSONArray("msulapilyontimallikulma");
 
         int pituus = msulapilyontimalli.length();
 
@@ -956,7 +956,7 @@ public class PesapalloxrController {
 
     private void naistenXRlapilyontiMap(JSONObject jsonObject) {
 
-        JSONArray nsulapilyontimalli = jsonObject.getJSONArray("nsulapilyontimallitesti");
+        JSONArray nsulapilyontimalli = jsonObject.getJSONArray("nsulapilyontimallikulma");
 
         int pituus = nsulapilyontimalli.length();
 
@@ -1719,6 +1719,10 @@ public class PesapalloxrController {
         if (!(tyyppi.getValue().equals("kumura") | tyyppi.getValue().equals("vaakamaila"))) {
             kumuranTyyppi.setValue("");
             saumakorkeuscombobox.setValue("");
+        } else if (tyyppi.getValue().equals("kumura")) {
+            saumakorkeuscombobox.setValue("");
+        } else if (tyyppi.getValue().equals("vaakamaila")) {
+            kumuranTyyppi.setValue("");
         }
 
     }
