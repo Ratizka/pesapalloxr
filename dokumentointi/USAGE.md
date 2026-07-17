@@ -6,7 +6,15 @@ Mallin data on luotu Superpesiksen datan avulla. Kerääjää voi käyttää ale
 ## Malliin vaikuttavat tekijät ja muodostaminen
 
 Alla olevassa taulukkossa näkyy malliin vaikuttavat muuttujat. Läpilyönnin määritelmänä on, että lyönnillä tulee enemmän kuin yksi kärkilyönti. 
-Läpilyönnissä merkki on vain vapaa tai merkattu eli muut merkit kuin vapaa. Lentomerkki on määritelty sen perusteella, mitataanko eteneminen.
+Läpilyönnissä merkki on vain vapaa tai merkattu eli muut merkit kuin vapaa. Lentomerkki on määritelty sen perusteella, mitataanko eteneminen. Lentomerkissä lähdön raja-arvo on < 0.60 s. Todellisuudessa rajaksi voi laittaa noin < 0.50 s tai 0.40 s. 0.50 s ylittyessä voi tulla muita merkkejä käyttöön kuin lento.
+
+| Merkki    | raja-arvo                       |
+|-----------|---------------------------------|
+| Lento     | < 0.40-0.50s                    |
+| Kulma     | 0.40-0.50s < Lähtö < 0.70-0.75s |
+| Vääräpois | > 0.70-0.75s                    |
+| Vapaa     | Lähdetään lyönnin perusteella   |
+
 
 | Muuttuja                | Tyyppi                  |
 |-------------------------|-------------------------|
