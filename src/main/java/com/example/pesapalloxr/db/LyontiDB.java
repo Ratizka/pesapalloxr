@@ -1,4 +1,6 @@
-package com.example.pesapalloxr;
+package com.example.pesapalloxr.db;
+
+import com.example.pesapalloxr.DataClasses.Lyontitiedot;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +13,7 @@ public class LyontiDB {
 
     }
 
-    protected static void Lisaa(ArrayList<Lyontitiedot> data, String tietokannanmuutos) {
+    public static void Lisaa(ArrayList<Lyontitiedot> data, String tietokannanmuutos) {
 
         try (Connection yhdistys = new DB().tiedot(tietokannanmuutos)) {
 

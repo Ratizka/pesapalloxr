@@ -1,4 +1,4 @@
-package com.example.pesapalloxr;
+package com.example.pesapalloxr.DataClasses;
 
 
 public class Lyontitiedot {

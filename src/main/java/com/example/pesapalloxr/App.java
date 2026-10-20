@@ -13,18 +13,14 @@ import java.util.Objects;
 
 public class App extends Application {
 
-    public static void main(String[] args){
-        launch(args);
-    }
-
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ui.fxml"));
+    public void start(Stage stage) throws IOException { 
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("ui.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         JMetro jMetro = new JMetro(Style.LIGHT);
 
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/stylesheet/style.css")).toExternalForm());
         jMetro.setScene(scene);
+        scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource("/stylesheet/style.css")).toExternalForm());
         stage.setTitle("Pesäpalloxr");
         stage.setScene(scene);
         stage.setMaximized(true);

@@ -1,4 +1,4 @@
-package com.example.pesapalloxr;
+package com.example.pesapalloxr.db;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

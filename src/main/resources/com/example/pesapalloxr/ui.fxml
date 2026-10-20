@@ -30,7 +30,7 @@
                 <Canvas fx:id="kentta" height="750.0" onMouseClicked="#lyonti" width="750.0" />
                 <Canvas fx:id="lyontiCanvas" height="750.0" onMouseClicked="#lyonti" onMouseMoved="#koordinaatit" width="750.0" />
 
-                <GridPane hgap="5.0" layoutX="765.0" layoutY="12.0">
+                <GridPane hgap="5.0" layoutX="755.0" layoutY="15.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -41,6 +41,8 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -53,39 +55,39 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
-                    <Label prefHeight="17.0" prefWidth="249.0" text="Tilanne" />
-                    <Label prefWidth="100.0" text="Sisäjoukkue" GridPane.columnIndex="1" />
-                    <Label prefWidth="100.0" text="Lyöjä" GridPane.columnIndex="2" />
-                    <Label prefHeight="17.0" prefWidth="107.0" text="Etenijä" GridPane.columnIndex="3" />
-                    <Label prefWidth="100.0" text="Kuvio" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                    <Label prefWidth="100.0" text="Merkki" GridPane.rowIndex="4" />
-                    <Label prefWidth="100.0" text="Syöttö" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                    <Label prefWidth="100.0" text="Tyyppi" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                    <Label prefWidth="100.0" text="Jakso" GridPane.columnIndex="6" />
-                    <Label prefWidth="100.0" text="Ulkopelijoukkue" GridPane.rowIndex="8" />
-                    <Label prefWidth="100.0" text="Ulkopelisuorittaja" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                    <Label prefWidth="100.0" text="X-koordinaatti" GridPane.rowIndex="10" />
-                    <Label prefHeight="17.0" prefWidth="150.0" text="Lopputulos" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                    <Label prefWidth="100.0" text="Y-koodrinaatti" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                    <Label prefWidth="100.0" text="Sijainti" GridPane.columnIndex="3" GridPane.rowIndex="10" />
-                    <Label prefHeight="17.0" prefWidth="137.0" text="Ulkopelivirhe" GridPane.columnIndex="4" GridPane.rowIndex="8" />
-                    <Label prefHeight="17.0" prefWidth="125.0" text="Juoksut" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                    <Label prefHeight="17.0" prefWidth="128.0" text="Ulkopelipaikka" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-                    <Label prefHeight="17.0" prefWidth="137.0" text="Vuoropari" GridPane.columnIndex="5" />
-                    <Label prefHeight="17.0" prefWidth="114.0" text="Läpilyönti" GridPane.rowIndex="6" />
-                    <Label prefHeight="17.0" prefWidth="154.0" text="Kunnari" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                    <Label prefHeight="17.0" prefWidth="164.0" text="Väärä alla" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                    <Label prefHeight="17.0" prefWidth="269.0" text="Lyönnin nro" GridPane.rowIndex="2" />
-                    <Label prefHeight="17.0" prefWidth="136.0" text="Etenijän laatu" GridPane.columnIndex="4" />
-                    <Label prefHeight="17.0" prefWidth="105.0" text="Ulkopelisuoritus" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-                    <Label prefHeight="17.0" prefWidth="179.0" text="Suunta" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                    <Label prefHeight="17.0" prefWidth="187.0" text="Karkaus" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-                    <Label prefHeight="17.0" prefWidth="211.0" text="Juoksun todennäköisyys" GridPane.columnIndex="4" GridPane.rowIndex="10" />
-                    <Label prefHeight="17.0" prefWidth="217.0" text="Läpilyönnin todennäköisyys" GridPane.columnIndex="5" GridPane.rowIndex="10" />
-                    <Label text="Saumalyönnin korkeus" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                    <Label prefHeight="17.0" prefWidth="161.0" text="Tempo" GridPane.columnIndex="5" GridPane.rowIndex="8">
+                    <Label prefHeight="17.0" prefWidth="249.0" text="Tilanne" GridPane.rowIndex="2" />
+                    <Label prefWidth="100.0" text="Sisäjoukkue" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                    <Label prefWidth="100.0" text="Lyöjä" />
+                    <Label prefHeight="17.0" prefWidth="107.0" text="Etenijä" GridPane.columnIndex="1" />
+                    <Label prefWidth="100.0" text="Kuvio" GridPane.rowIndex="4" />
+                    <Label prefWidth="100.0" text="Merkki" GridPane.rowIndex="6" />
+                    <Label prefWidth="100.0" text="Syöttö" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                    <Label prefWidth="100.0" text="Tyyppi" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                    <Label prefWidth="100.0" text="Jakso" GridPane.columnIndex="5" />
+                    <Label prefWidth="100.0" text="Ulkopelijoukkue" GridPane.rowIndex="12" />
+                    <Label prefWidth="100.0" text="Ulkopelisuorittaja" GridPane.rowIndex="10" />
+                    <Label prefWidth="100.0" text="X-koordinaatti" GridPane.rowIndex="8" />
+                    <Label prefHeight="17.0" prefWidth="150.0" text="Lopputulos" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                    <Label prefWidth="100.0" text="Y-koodrinaatti" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                    <Label prefWidth="100.0" text="Sijainti" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+                    <Label prefHeight="17.0" prefWidth="137.0" text="Ulkopelivirhe" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+                    <Label prefHeight="17.0" prefWidth="125.0" text="Juoksut" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                    <Label prefHeight="17.0" prefWidth="128.0" text="Ulkopelipaikka" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                    <Label prefHeight="17.0" prefWidth="137.0" text="Vuoropari" GridPane.columnIndex="4" />
+                    <Label prefHeight="17.0" prefWidth="114.0" text="Läpilyönti" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                    <Label prefHeight="17.0" prefWidth="154.0" text="Kunnari" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                    <Label prefHeight="17.0" prefWidth="164.0" text="Väärä alla" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                    <Label prefHeight="17.0" prefWidth="269.0" text="Lyönnin nro" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    <Label prefHeight="17.0" prefWidth="136.0" text="Etenijän laatu" GridPane.columnIndex="3" />
+                    <Label prefHeight="17.0" prefWidth="105.0" text="Ulkopelisuoritus" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+                    <Label prefHeight="17.0" prefWidth="179.0" text="Suunta" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                    <Label prefHeight="17.0" prefWidth="187.0" text="Eteneminen" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                    <Label prefHeight="17.0" prefWidth="211.0" text="Juoksun todennäköisyys" GridPane.columnIndex="3" GridPane.rowIndex="12" />
+                    <Label prefHeight="17.0" prefWidth="217.0" text="Läpilyönnin todennäköisyys" GridPane.columnIndex="4" GridPane.rowIndex="12" />
+                    <Label text="Saumalyönnin korkeus" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+                    <Label prefHeight="17.0" prefWidth="161.0" text="Tempo" GridPane.columnIndex="4" GridPane.rowIndex="10">
                         <tooltip>
                             <Tooltip fx:id="tempoToolTip" height="1000.0" width="1000.0" wrapText="true">
                                 <font>
@@ -94,56 +96,73 @@
                             </Tooltip>
                         </tooltip>
                     </Label>
-                    <Label prefHeight="17.0" prefWidth="146.0" text="Etäisyys up" GridPane.columnIndex="2" GridPane.rowIndex="10" />
-                    <Label prefHeight="17.0" prefWidth="214.0" text="Kumuran korkeus" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                    <ComboBox fx:id="tilannecombobox" prefWidth="150.0" GridPane.rowIndex="1" />
+                    <Label prefHeight="17.0" prefWidth="146.0" text="Etäisyys up" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                    <Label prefHeight="17.0" prefWidth="214.0" text="Kumuran korkeus" GridPane.columnIndex="3" GridPane.rowIndex="8" />
 
-                    <ComboBox fx:id="lyojat" onAction="#sisapelijoukkue" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                    <ComboBox fx:id="etenijat" onAction="#sisapelijoukkueEtenija" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                    <ComboBox fx:id="etenijalaatucombobox" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                    <ComboBox fx:id="vuoropari" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                    <ComboBox fx:id="jakso" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-                    <ComboBox fx:id="lyontinumero" prefWidth="150.0" GridPane.rowIndex="3" />
+                    <ComboBox fx:id="kotiutukset" onAction="#kotiutusyritykset" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                    <ComboBox fx:id="tilannecombobox" prefWidth="150.0" GridPane.rowIndex="3" />
 
-                    <ComboBox fx:id="kuvio" onAction="#kuvioAction" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                    <ComboBox fx:id="kuvionvaihdot" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                    <ComboBox fx:id="palojenMaara" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                    <ComboBox fx:id="vaaraalla" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                    <ComboBox fx:id="merkki" prefWidth="150.0" GridPane.rowIndex="5" />
-                    <ComboBox fx:id="syotto" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                    <ComboBox fx:id="tyyppi" onAction="#korkeus" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                    <ComboBox fx:id="lyontisuuntacombobox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                    <ComboBox fx:id="lopputuloscombobox" onAction="#juoksuUI" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                    <ComboBox fx:id="juoksut" onAction="#lapilyontiUI" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                    <ComboBox fx:id="lapilyonti" prefWidth="150.0" GridPane.rowIndex="7" />
-                    <ComboBox fx:id="kunnari" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                    <ComboBox fx:id="kumuranTyyppi" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                    <ComboBox fx:id="saumakorkeuscombobox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-                    <ComboBox fx:id="karkauscombobox" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
-                    <ComboBox fx:id="ulkopelaajat" onAction="#ulkopelijoukkue" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                    <ComboBox fx:id="ulkopelipaikka" onAction="#laskeEtaisyys" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-                    <ComboBox fx:id="ulkopelisuorituscombobox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
-                    <ComboBox fx:id="ulkopelivirhe" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="9" />
-                    <ComboBox fx:id="ulkopelitempocombobox" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+                    <ComboBox fx:id="lyojat" onAction="#sisapelijoukkue" prefWidth="150.0" GridPane.rowIndex="1" />
+                    <ComboBox fx:id="etenijat" onAction="#sisapelijoukkueEtenija" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <ComboBox fx:id="etenijalaatucombobox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                    <ComboBox fx:id="vuoropari" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                    <ComboBox fx:id="jakso" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                    <ComboBox fx:id="lyontinumero" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                    <TextField fx:id="koordinaattix" editable="false" text="21.0" GridPane.rowIndex="11" />
-                    <TextField fx:id="koordinaattiy" editable="false" text="43.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                    <TextField fx:id="lyonninEtaisyysulkopelaajasta" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="11" />
-                    <TextField fx:id="sijaintitext" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+                    <ComboBox fx:id="kuvio" onAction="#kuvioAction" prefWidth="150.0" GridPane.rowIndex="5" />
+                    <ComboBox fx:id="kuvionvaihdot" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                    <ComboBox fx:id="palojenMaara" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                    <ComboBox fx:id="vaaraalla" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                    <ComboBox fx:id="merkki" prefWidth="150.0" GridPane.rowIndex="7" />
+                    <ComboBox fx:id="syotto" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                    <ComboBox fx:id="tyyppi" onAction="#korkeus" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                    <ComboBox fx:id="lyontisuuntacombobox" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+                    <ComboBox fx:id="lopputuloscombobox" onAction="#juoksuUI" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                    <ComboBox fx:id="juoksut" onAction="#lapilyontiUI" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                    <ComboBox fx:id="lapilyonti" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                    <ComboBox fx:id="kunnari" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                    <ComboBox fx:id="kumuranTyyppi" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+                    <ComboBox fx:id="saumakorkeuscombobox" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+                    <ComboBox fx:id="karkauscombobox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                    <ComboBox fx:id="ulkopelaajat" onAction="#ulkopelijoukkue" prefWidth="150.0" GridPane.rowIndex="11" />
+                    <ComboBox fx:id="ulkopelipaikka" onAction="#laskeEtaisyys" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                    <ComboBox fx:id="ulkopelisuorituscombobox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+                    <ComboBox fx:id="ulkopelivirhe" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+                    <ComboBox fx:id="ulkopelitempocombobox" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="11" />
 
-                    <TextField fx:id="juoksuodottama" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="11" />
+                    <TextField fx:id="koordinaattix" editable="false" text="21.0" GridPane.rowIndex="9" />
+                    <TextField fx:id="koordinaattiy" editable="false" text="48.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                    <TextField fx:id="lyonninEtaisyysulkopelaajasta" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                    <TextField fx:id="sijaintitext" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="13" />
 
-                    <TextField fx:id="lapilyontiolettama" editable="false" GridPane.columnIndex="5" GridPane.rowIndex="11" />
-                    <TextField fx:id="sisapelijoukkue" text="Koti" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                    <TextField fx:id="ulkopelijoukkue" text="Vieras" GridPane.rowIndex="9" />
-                    <Label prefHeight="17.0" prefWidth="186.0" text="Palojen määrä" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                    <Label prefHeight="17.0" prefWidth="202.0" text="Kuvion vaihdot" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                    <Button mnemonicParsing="false" onAction="#laskeTodennakoisyydet" prefWidth="100.0" text="Laske juoksu %" GridPane.columnIndex="4" GridPane.rowIndex="12" />
-                    <Button mnemonicParsing="false" onAction="#lyontitiedot" prefHeight="25.0" prefWidth="100.0" text="Lisää lyönti" GridPane.columnIndex="5" GridPane.rowIndex="12" />
+                    <TextField fx:id="juoksuodottama" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="13" />
+
+                    <TextField fx:id="lapilyontiolettama" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="13" />
+                    <TextField fx:id="sisapelijoukkue" text="Koti" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                    <TextField fx:id="ulkopelijoukkue" text="Vieras" GridPane.rowIndex="13" />
+                    <Label prefHeight="17.0" prefWidth="186.0" text="Palojen määrä" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                    <Label prefHeight="17.0" prefWidth="202.0" text="Kuvion vaihdot" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    <Button mnemonicParsing="false" onAction="#laskeTodennakoisyydet" prefWidth="100.0" text="Laske juoksu %" GridPane.columnIndex="3" GridPane.rowIndex="14" />
+                    <Button mnemonicParsing="false" onAction="#lyontitiedot" prefHeight="25.0" prefWidth="100.0" text="Lisää lyönti" GridPane.columnIndex="4" GridPane.rowIndex="14" />
+               <Label text="Lyönnin laatu" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+               <ComboBox fx:id="lyonninlaatu" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+   
+                    <TextField fx:id="ottelunid" prefHeight="25.0" prefWidth="100.0" promptText="Anna ottelun id" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                    <Button mnemonicParsing="false" onAction="#haepelaajat" prefHeight="25.0" prefWidth="100.0" text="Hae tiedot" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                        <tooltip>
+                            <Tooltip text="Hakee ottelun tiedon pesistulokset.fi rajapinnasta" wrapText="true">
+                                <font>
+                                    <Font size="14.0" />
+                                </font>
+                            </Tooltip>
+                        </tooltip>
+                    </Button>
+               <Label prefHeight="17.0" prefWidth="123.0" text="Ottelun tiedot" GridPane.columnIndex="6" />
+               <Label prefHeight="17.0" prefWidth="100.0" text="Kotiutusyritys" GridPane.columnIndex="2" />
 
                 </GridPane>
 
-                <TableView fx:id="taulukkoxr" editable="true" layoutX="765.0" layoutY="484.0" prefHeight="500.0" prefWidth="1125.0" tableMenuButtonVisible="true">
+                <TableView fx:id="taulukkoxr" editable="true" layoutX="755.0" layoutY="485.0" prefHeight="500.0" prefWidth="1125.0" tableMenuButtonVisible="true">
                     <columns>
                         <TableColumn fx:id="taulukkoOttelunID" prefWidth="100.0" text="ottelunID" />
                         <TableColumn fx:id="taulukkojakso" prefWidth="100.0" text="jakso" />
@@ -184,17 +203,6 @@
                         <TableColumn fx:id="taulukkoxlapilyonti" prefWidth="100.0" text="xlapilyonti" />
                     </columns>
                 </TableView>
-
-                 <TextField fx:id="ottelunid" layoutX="765.0" layoutY="409.0" prefHeight="25.0" prefWidth="100.0" promptText="Anna ottelun id" />
-                 <Button layoutX="765.0" layoutY="440.0" mnemonicParsing="false" onAction="#haepelaajat" prefHeight="25.0" prefWidth="100.0" text="Hae tiedot">
-                     <tooltip>
-                         <Tooltip text="Hakee ottelun tiedon pesistulokset.fi rajapinnasta" wrapText="true">
-                             <font>
-                                 <Font size="14.0" />
-                             </font>
-                         </Tooltip>
-                     </tooltip>
-                 </Button>
             </AnchorPane>
         </ScrollPane>
     </center>
@@ -220,7 +228,7 @@
             </Menu>
 
             <Menu mnemonicParsing="false" text="Näytä">
-                <RadioMenuItem fx:id="naytaup" mnemonicParsing="false" text="Näytä ulkopelaajat" onAction="#ulkopelikuvio" selected="true"/>
+                <RadioMenuItem fx:id="naytaup" mnemonicParsing="false" onAction="#ulkopelikuvio" selected="true" text="Näytä ulkopelaajat" />
                 <MenuItem mnemonicParsing="false" onAction="#puhdistus" text="Uusi kartta" />
                 <MenuItem disable="true" mnemonicParsing="false" text="Poista lyönti" visible="false" />
                 <MenuItem onAction="#tyhjennaTaulukko" text="Tyhjennä taulukko" />
@@ -242,7 +250,7 @@
                 </RadioMenuItem>
             </Menu>
             <Menu mnemonicParsing="false" text="Ohje">
-                <MenuItem mnemonicParsing="false" text="Tietoa" onAction="#ohjeet"/>
+                <MenuItem mnemonicParsing="false" onAction="#ohjeet" text="Tietoa" />
             </Menu>
         </MenuBar>
     </top>
