@@ -19,7 +19,7 @@ import java.util.Properties;
 
 public class Ottelutiedot {
 
-    public JSONObject haeotteluntiedot(String otteluid) {
+    public JSONObject haeOttelunTiedot(String otteluid) {
         try {
             URL url = getClass().getResource("/properties/.properties");
 
@@ -52,64 +52,62 @@ public class Ottelutiedot {
         }
     }
 
-    public ObservableList<Pelaajat> kotipelaajat(JSONObject jsonObject) {
+    public ObservableList<Pelaajat> suodatakotiPelaajat(JSONObject jsonObject) {
 
-        ObservableList<Pelaajat> kotilyojatlista = FXCollections.observableArrayList();
+        ObservableList<Pelaajat> pelaajaLista = FXCollections.observableArrayList();
 
-        JSONArray kotipelaajalista = jsonObject.getJSONObject("home").getJSONArray("players");
+        JSONArray kotiPelaajat = jsonObject.getJSONObject("home").getJSONArray("players");
 
-        int kotijoukkueID = jsonObject.getJSONObject("home").getInt("sport_club_id");
+        int kotipelaajapituus = kotiPelaajat.length();
 
-        String vierasjoukkue = jsonObject.getJSONObject("home").getString("name");
-
-        int kotipelaajapituus = kotipelaajalista.length();
+        int seuraID = jsonObject.getJSONObject("home").getInt("sport_club_id");
+        int joukkueID = jsonObject.getJSONObject("home").getInt("id");
+        String joukkue = jsonObject.getJSONObject("home").getString("name");
 
         for (int i = 0; i < kotipelaajapituus; i++) {
 
-            JSONObject pelaaja = kotipelaajalista.getJSONObject(i);
+            JSONObject pelaaja = kotiPelaajat.getJSONObject(i);
 
-            kotilyojatlista.add(
-                new Pelaajat(
-                    pelaaja.getInt("number"), pelaaja.getInt("id"), pelaaja.getString("name"),
-                    kotijoukkueID, vierasjoukkue
+            pelaajaLista.add(
+                new Pelaajat(pelaaja.getInt("id"), pelaaja.getInt("number"), pelaaja.getString("name"),
+                    seuraID, joukkueID, joukkue
                 )
             );
         }
-        return kotilyojatlista;
+        return pelaajaLista;
     }
 
-    public ObservableList<Pelaajat> vieraspelaajat(JSONObject jsonObject) {
+    public ObservableList<Pelaajat> suodatavierasPelaajat(JSONObject jsonObject) {
 
-        ObservableList<Pelaajat> vieraslyojatlista = FXCollections.observableArrayList();
+        ObservableList<Pelaajat> pelaajaLista = FXCollections.observableArrayList();
 
-        JSONArray vieraspelaajalista = jsonObject.getJSONObject("away").getJSONArray("players");
+        JSONArray kotiPelaajat = jsonObject.getJSONObject("away").getJSONArray("players");
 
-        int vierasjoukkueID = jsonObject.getJSONObject("away").getInt("sport_club_id");
+        int pelaajaListaPituus = kotiPelaajat.length();
 
-        String vierasjoukkue = jsonObject.getJSONObject("away").getString("name");
+        int seuraID = jsonObject.getJSONObject("away").getInt("sport_club_id");
+        int joukkueID = jsonObject.getJSONObject("away").getInt("id");
+        String joukkue = jsonObject.getJSONObject("away").getString("name");
 
-        vieraslyojatlista.add(
+        pelaajaLista.add(
             new Pelaajat(
                 0, 0, " ",
-                vierasjoukkueID, vierasjoukkue
+                seuraID, joukkueID, joukkue
             )
         );
 
-        int vieraspelaajapituus = vieraspelaajalista.length();
+        for (int i = 0; i < pelaajaListaPituus; i++) {
 
-        for (int i = 0; i < vieraspelaajapituus; i++) {
+            JSONObject pelaaja = kotiPelaajat.getJSONObject(i);
 
-            JSONObject pelaaja = vieraspelaajalista.getJSONObject(i);
-
-            vieraslyojatlista.add(
-                new Pelaajat(
-                    pelaaja.getInt("number"), pelaaja.getInt("id"), pelaaja.getString("name"),
-                    vierasjoukkueID, vierasjoukkue
+            pelaajaLista.add(
+                new Pelaajat(pelaaja.getInt("id"), pelaaja.getInt("number"), pelaaja.getString("name"),
+                    seuraID, joukkueID, joukkue
                 )
             );
         }
 
-        return vieraslyojatlista;
+        return pelaajaLista;
     }
 
 

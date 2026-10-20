@@ -5,6 +5,7 @@ public class Kotiutustilanteet {
     Integer id;
     Integer jakso;
     Integer vuoro;
+    Integer joukkue;
     Integer batter;
     Integer hitnumber;
     Integer etenijaid;
@@ -19,13 +20,11 @@ public class Kotiutustilanteet {
     String lahtotilanne;
     String lopputilanne;
 
-    public Kotiutustilanteet(Integer id, Integer jakso, Integer vuoro, Integer batter, Integer hitnumber,
-                             Integer etenijaid, Boolean koppi, Integer karkilyonnit, Integer kunnari,
-                             Integer palot, Integer juoksut, Integer karkilyontikotia, Integer karkilyonnitkotia, Integer karkilyontiepaonnistuminenkotia,
-                             String lahtotilanne, String lopputilanne) {
+    public Kotiutustilanteet(Integer id, Integer jakso, Integer vuoro, Integer joukkue, Integer batter, Integer hitnumber, Integer etenijaid, Boolean koppi, Integer karkilyonnit, Integer kunnari, Integer palot, Integer juoksut, Integer karkilyontikotia, Integer karkilyonnitkotia, Integer karkilyontiepaonnistuminenkotia, String lahtotilanne, String lopputilanne) {
         this.id = id;
         this.jakso = jakso;
         this.vuoro = vuoro;
+        this.joukkue = joukkue;
         this.batter = batter;
         this.hitnumber = hitnumber;
         this.etenijaid = etenijaid;
@@ -39,6 +38,14 @@ public class Kotiutustilanteet {
         this.karkilyontiepaonnistuminenkotia = karkilyontiepaonnistuminenkotia;
         this.lahtotilanne = lahtotilanne;
         this.lopputilanne = lopputilanne;
+    }
+
+    public Integer getJoukkue() {
+        return joukkue;
+    }
+
+    public void setJoukkue(Integer joukkue) {
+        this.joukkue = joukkue;
     }
 
     public Integer getKunnari() {

@@ -19,8 +19,8 @@ public class App extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         JMetro jMetro = new JMetro(Style.LIGHT);
 
-        jMetro.setScene(scene);
-        scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource("/stylesheet/style.css")).toExternalForm());
+        //jMetro.setScene(scene);
+        //scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource("/stylesheet/style.css")).toExternalForm());
         stage.setTitle("Pesäpalloxr");
         stage.setScene(scene);
         stage.setMaximized(true);

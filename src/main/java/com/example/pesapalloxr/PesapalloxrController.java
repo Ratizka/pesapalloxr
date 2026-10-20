@@ -417,16 +417,22 @@ public class PesapalloxrController {
         ulkopelitempocombobox.getItems().addAll("pysäytys", "ali", "peli", "yli", "taittoheitto");
         ulkopelitempocombobox.getSelectionModel().selectFirst();
 
-        lyojat.getItems().addAll(new Pelaajat(1, 1, "Koti", 1, "Koti"),
-                new Pelaajat(1, 2, "Vieras", 2, "Vieras"));
+        lyojat.getItems().addAll(
+            new Pelaajat(1, 1, "Koti", 1, 1,"Koti"),
+            new Pelaajat(1, 2, "Vieras", 2, 2, "Vieras")
+        );
         lyojat.getSelectionModel().selectFirst();
 
-        etenijat.getItems().addAll(new Pelaajat(1, 1, "Koti", 1, "Koti"),
-                new Pelaajat(1, 2, "Vieras", 2, "Vieras"));
+        etenijat.getItems().addAll(
+            new Pelaajat(1, 1, "Koti", 1, 1,"Koti"),
+            new Pelaajat(1, 2, "Vieras", 2, 2, "Vieras")
+        );
         etenijat.getSelectionModel().selectFirst();
 
-        ulkopelaajat.getItems().addAll(new Pelaajat(1, 1, "Koti", 1, "Koti"),
-                new Pelaajat(1, 2, "Vieras", 2, "Vieras"));
+        ulkopelaajat.getItems().addAll(
+            new Pelaajat(1, 1, "Koti", 1, 1,"Koti"),
+            new Pelaajat(1, 2, "Vieras", 2, 2, "Vieras")
+        );
         ulkopelaajat.getSelectionModel().selectFirst();
 
         kuvionvaihdot.getItems().addAll("", "kyllä");
@@ -475,11 +481,9 @@ public class PesapalloxrController {
 
     @FXML
     private void poistarivi() {
-
         Lyontitiedot poistettava = taulukkoxr.getSelectionModel().getSelectedItem();
 
         taulukkoxr.getItems().remove(poistettava);
-
     }
 
     @FXML
@@ -959,8 +963,12 @@ public class PesapalloxrController {
         juoksut.setValue(kotiutukset.getValue().getJuoksut());
 
         Kotiutustilanteet kotiutus = kotiutukset.getValue();
+
         for (Pelaajat pelaaja : lyojat.getItems()) {
             if (pelaaja.getId().equals(kotiutus.getBatter())) {
+                lyojat.getSelectionModel().select(pelaaja);
+                break;
+            } else if (pelaaja.getNumero().equals(kotiutus.getBatter()) & pelaaja.getJoukkueID().equals(kotiutus.getJoukkue())) {
                 lyojat.getSelectionModel().select(pelaaja);
                 break;
             }
@@ -970,12 +978,16 @@ public class PesapalloxrController {
             if (pelaaja.getId().equals(kotiutus.getEtenijaid())) {
                 etenijat.getSelectionModel().select(pelaaja);
                 break;
+            } else if (pelaaja.getNumero().equals(kotiutus.getEtenijaid()) & pelaaja.getJoukkueID().equals(kotiutus.getJoukkue())) {
+                etenijat.getSelectionModel().select(pelaaja);
+                break;
             }
         }
 
         if (kotiutukset.getValue().getKarkilyonnitkotia() > 0){
             lopputuloscombobox.setValue("kärkilyönti");
-        } else if (kotiutukset.getValue().getPalot() > 0 && kotiutukset.getValue().getKarkilyontiepaonnistuminenkotia() > 0 && kotiutukset.getValue().getKoppi() == true){
+        } else if (kotiutukset.getValue().getPalot() > 0 && kotiutukset.getValue().getKarkilyontiepaonnistuminenkotia() > 0 &&
+            kotiutukset.getValue().getKoppi() == true){
             lopputuloscombobox.setValue("palo/koppi");
         } else if (kotiutukset.getValue().getPalot() > 0 && kotiutukset.getValue().getKarkilyontiepaonnistuminenkotia() > 0){
             lopputuloscombobox.setValue("palo");
@@ -986,7 +998,6 @@ public class PesapalloxrController {
         if (kotiutukset.getValue().getKarkilyonnit() > 1){
             lapilyonti.setValue("kyllä");
         }
-
     }
 
     @FXML
@@ -2589,21 +2600,21 @@ public class PesapalloxrController {
                 return;
             }
 
-            JSONObject data = new Ottelutiedot().haeotteluntiedot(otteluid); //haeotteluntiedot();
+            JSONObject peliTiedot = new Ottelutiedot().haeOttelunTiedot(otteluid); //haeotteluntiedot();
 
-            if (data == null) {
+            if (peliTiedot == null) {
                 return;
             }
 
             OTTELUID = Integer.parseInt(otteluid);
 
-            ObservableList<Pelaajat> kotipelaajat = new Ottelutiedot().kotipelaajat(data);
+            JSONArray poytakirja = new Poytakirja().poytakirja(otteluid);
 
-            ObservableList<Pelaajat> vieraspelaajat = new Ottelutiedot().vieraspelaajat(data);
+            ObservableList<Pelaajat> kotipelaajat = new Ottelutiedot().suodatakotiPelaajat(peliTiedot);
 
-            Poytakirja poytakirja = new Poytakirja();
+            ObservableList<Pelaajat> vieraspelaajat = new Ottelutiedot().suodatavierasPelaajat(peliTiedot);
 
-            ObservableList<Kotiutustilanteet> kotiutustilanteet = poytakirja.poytakirjakasittely(poytakirja.poytakirja(otteluid));
+            ObservableList<Kotiutustilanteet> kotiutustilanteet = new Poytakirja().poytakirjakasittely(poytakirja);
 
             Platform.runLater(new Runnable() {
                 @Override

@@ -99,6 +99,7 @@ public class Poytakirja {
 
                 Integer jakso = events.getJSONObject(i).optInt("period");
                 Integer vuoro = events.getJSONObject(i).optInt("inning");
+                Integer joukkue = events.getJSONObject(i).optInt("team");
                 Integer batter = events.getJSONObject(i).optInt("batter");
                 Integer hitnumber = events.getJSONObject(i).optInt("hitNumber");
                 Integer etenijanID = etenijaid(lahtotilannelista);
@@ -143,7 +144,7 @@ public class Poytakirja {
                     }
                 }
 
-                kotiutustilanteet.add(new Kotiutustilanteet(i, jakso, vuoro, batter, hitnumber, etenijanID, koppi,
+                kotiutustilanteet.add(new Kotiutustilanteet(i, jakso, vuoro, joukkue ,batter, hitnumber, etenijanID, koppi,
                         karkilyonnit, kunnari, palot, juoksut, karkilyontikotia, karkilyonnitkotia, karkilyontiepaonnistuminenkotia,
                         lahtotilanne, lopputilanne
                     )

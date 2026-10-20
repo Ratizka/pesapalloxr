@@ -2,19 +2,29 @@ package com.example.pesapalloxr.DataClasses;
 
 public class Pelaajat {
 
-    Integer numero;
     Integer id;
+    Integer numero;
     String nimi;
+    Integer SeuraID;
     Integer joukkueID;
     String joukkue;
 
-    public Pelaajat(Integer numero, Integer id, String nimi,
-                    Integer joukkueID, String joukkue) {
-        this.numero = numero;
+    public Pelaajat(Integer id, Integer numero, String nimi,
+                    Integer seuraID, Integer joukkueID, String joukkue) {
         this.id = id;
+        this.numero = numero;
         this.nimi = nimi;
+        SeuraID = seuraID;
         this.joukkueID = joukkueID;
         this.joukkue = joukkue;
+    }
+
+    public Integer getSeuraID() {
+        return SeuraID;
+    }
+
+    public void setSeuraID(Integer seuraID) {
+        SeuraID = seuraID;
     }
 
     public Integer getNumero() {
